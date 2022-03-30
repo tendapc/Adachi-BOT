@@ -34,7 +34,7 @@
 
 #### 准备环境
 
-首先你需要有可用的 `npm` 和 `npx` 命令。
+首先你需要有一份较新的 [Node.js](https://nodejs.org/en/download/) ，本项目不兼容较旧版本的 Node.js 。
 
 ```sh
 echo 'export N_NODE_MIRROR="https://mirrors.ustc.edu.cn/node/"' | tee -a ~/.bashrc
@@ -42,6 +42,8 @@ echo 'export N_NODE_DOWNLOAD_MIRROR="https://mirrors.ustc.edu.cn/node/"' | tee -
 source ~/.bashrc
 
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | sudo -E bash -s lts
+sudo --preserve-env=PATH env npm install -g n
+sudo --preserve-env=PATH env n lts
 ```
 
 > 1. 建议提供一个内存和交换空间容量**总和**达到 `1.5 GiB` 的 Linux 环境进行部署，以运行无头浏览器。
