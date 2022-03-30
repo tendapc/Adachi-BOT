@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 {
-  remoteUrl='https://github.com/Arondight/Adachi-BOT.git'
-  remoteBranch='master'
+  remoteUrl='https://github.com/ixCiel/Adachi-BOT.git'
+  remoteBranch='myBranch'
 
   remoteID=$(git ls-remote -qh "$remoteUrl" "$remoteBranch" 2>/dev/null | awk '{print $1}')
   localID=$(git rev-list HEAD | head -1)
