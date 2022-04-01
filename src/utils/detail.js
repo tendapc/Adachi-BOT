@@ -9,8 +9,8 @@ function detailError(message, cache = false, master = false, message_master = ""
   return { detail: true, message, cache, master, message_master };
 }
 
-function getDetailErrorForPossibleInvalidCookie(message, cookie) {
-  const warnInvalidCookie = tryToWarnInvalidCookie(message, cookie);
+function getDetailErrorForPossibleInvalidCookie(retcode, message, cookie) {
+  const warnInvalidCookie = tryToWarnInvalidCookie(retcode, cookie);
   const masterArgs = warnInvalidCookie ? [true, warnInvalidCookie] : [false, ""];
   throw detailError(`米游社接口报错: ${message}`, false, ...masterArgs);
 }
@@ -143,8 +143,8 @@ async function abyDetail(uid, server, userID, schedule_type, bot) {
 
   const { retcode, message, data } = response;
 
-  if (retcode !== 0) {
-    return getDetailErrorForPossibleInvalidCookie(message, cookie);
+  if (0 !== retcode) {
+    return getDetailErrorForPossibleInvalidCookie(retcode, message, cookie);
   }
 
   if (!data || 0 === Object.keys(data).length) {
@@ -184,9 +184,11 @@ async function baseDetail(mhyID, userID, bot) {
   const { retcode, message, data } = response;
   const errInfo = "未查询到角色数据，请检查米哈游通行证是否有误或是否设置角色信息公开";
 
-  if (retcode !== 0) {
-    return getDetailErrorForPossibleInvalidCookie(message, cookie);
-  } else if (!data.list || 0 === data.list.length) {
+  if (0 !== retcode) {
+    return getDetailErrorForPossibleInvalidCookie(retcode, message, cookie);
+  }
+
+  if (!Array.isArray(data.list) || 0 === data.list.length) {
     throw detailError(errInfo);
   }
 
@@ -223,13 +225,13 @@ async function indexDetail(uid, server, userID, bot) {
     const { retcode } = db.get("info", "user", { uid }) || {};
 
     if (0 === retcode) {
-      bot.logger.debug(`缓存：使用 ${uid} 在 ${global.config.cacheInfoEffectTime} 小时内的玩家数据缓存。`);
       const { retcode, message } = db.get("info", "user", { uid }) || {};
 
-      if (retcode !== 0) {
+      if (0 !== retcode) {
         throw detailError(`米游社接口报错: ${message}`);
       }
 
+      bot.logger.debug(`缓存：使用 ${uid} 在 ${global.config.cacheInfoEffectTime} 小时内的玩家数据缓存。`);
       throw detailError("", true);
     }
   }
@@ -246,9 +248,9 @@ async function indexDetail(uid, server, userID, bot) {
 
   const { retcode, message, data } = response;
 
-  if (retcode !== 0) {
+  if (0 !== retcode) {
     db.update("info", "user", { uid }, { message, retcode: parseInt(retcode) });
-    return getDetailErrorForPossibleInvalidCookie(message, cookie);
+    return getDetailErrorForPossibleInvalidCookie(retcode, message, cookie);
   }
 
   if (!Array.isArray(data.avatars) || 0 === data.avatars.length) {
@@ -293,8 +295,8 @@ async function characterDetail(uid, server, character_ids, guess = false, bot) {
 
   const { retcode, message, data } = response;
 
-  if (retcode !== 0) {
-    return getDetailErrorForPossibleInvalidCookie(message, cookie);
+  if (0 !== retcode) {
+    return getDetailErrorForPossibleInvalidCookie(retcode, message, cookie);
   }
 
   if (!Array.isArray(data.avatars) || 0 === data.avatars.length) {
