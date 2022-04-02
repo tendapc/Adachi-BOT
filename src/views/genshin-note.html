@@ -293,24 +293,23 @@
           document.getElementById("rrt").innerHTML = "树脂将在 " + getDayTime(myDate, rrt) + " 回满";
         }
 
-          if (params.note.transformer != null && params.note.transformer.obtained) {
-              if (params.note.transformer.recovery_time.reached)
-                  document.getElementById("transformer").innerHTML = "可使用";
-              else {
-                  var t = "冷却时间：";
-                  if (params.note.transformer.recovery_time.Day > 0)
-                      t += params.note.transformer.recovery_time.Day + "天";
-                  if (params.note.transformer.recovery_time.Hour > 0)
-                      t += params.note.transformer.recovery_time.Hour + "小时";
-                  if (params.note.transformer.recovery_time.Minute > 0)
-                      t += params.note.transformer.recovery_time.Minute + "分";
-                  if (params.note.transformer.recovery_time.Second > 0)
-                      t += params.note.transformer.recovery_time.Second + "秒";
-                  document.getElementById("transformer").innerHTML = t;
-              }
-          } else {
-              document.getElementById("transformer").innerHTML = "尚未获得";
+        if (params.note.transformer != null && params.note.transformer.obtained) {
+          if (params.note.transformer.recovery_time.reached)
+            document.getElementById("transformer").innerHTML = "可使用";
+          else {
+            var t = "冷却时间：";
+            if (params.note.transformer.recovery_time.Day > 0) t += params.note.transformer.recovery_time.Day + "天";
+            if (params.note.transformer.recovery_time.Hour > 0)
+              t += params.note.transformer.recovery_time.Hour + "小时";
+            if (params.note.transformer.recovery_time.Minute > 0)
+              t += params.note.transformer.recovery_time.Minute + "分";
+            if (params.note.transformer.recovery_time.Second > 0)
+              t += params.note.transformer.recovery_time.Second + "秒";
+            document.getElementById("transformer").innerHTML = t;
           }
+        } else {
+          document.getElementById("transformer").innerHTML = "尚未获得";
+        }
 
         const hcrt = parseInt(params.note.home_coin_recovery_time) + (params.baseTime - nowTime) / 1000;
         if (hcrt <= 0) {
