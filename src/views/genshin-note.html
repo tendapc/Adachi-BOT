@@ -306,6 +306,7 @@
                       t += params.note.transformer.recovery_time.Minute + "分";
                   if (params.note.transformer.recovery_time.Second > 0)
                       t += params.note.transformer.recovery_time.Second + "秒";
+                  document.getElementById("transformer").innerHTML = t;
               }
           } else {
               document.getElementById("transformer").innerHTML = "尚未获得";
