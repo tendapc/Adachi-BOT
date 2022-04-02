@@ -294,18 +294,18 @@
         }
 
           if (params.note.transformer != null && params.note.transformer.obtained) {
-              if (params.note.transformer.recoveryTime.reached)
+              if (params.note.transformer.recovery_time.reached)
                   document.getElementById("transformer").innerHTML = "可使用";
               else {
                   var t = "冷却时间：";
-                  if (params.note.transformer.recoveryTime.Day > 0)
-                      t += params.note.transformer.recoveryTime.Day + "天";
-                  if (params.note.transformer.recoveryTime.Hour > 0)
-                      t += params.note.transformer.recoveryTime.Hour + "小时";
-                  if (params.note.transformer.recoveryTime.Minute > 0)
-                      t += params.note.transformer.recoveryTime.Minute + "分";
-                  if (params.note.transformer.recoveryTime.Second > 0)
-                      t += params.note.transformer.recoveryTime.Second + "秒";
+                  if (params.note.transformer.recovery_time.Day > 0)
+                      t += params.note.transformer.recovery_time.Day + "天";
+                  if (params.note.transformer.recovery_time.Hour > 0)
+                      t += params.note.transformer.recovery_time.Hour + "小时";
+                  if (params.note.transformer.recovery_time.Minute > 0)
+                      t += params.note.transformer.recovery_time.Minute + "分";
+                  if (params.note.transformer.recovery_time.Second > 0)
+                      t += params.note.transformer.recovery_time.Second + "秒";
               }
           } else {
               document.getElementById("transformer").innerHTML = "尚未获得";
