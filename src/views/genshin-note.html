@@ -308,7 +308,7 @@
         if (params.note.transformer != null && params.note.transformer.obtained) {
           if (params.note.transformer.recovery_time.reached) {
             document.getElementById("transformer").innerHTML = "可使用";
-            document.getElementById("transformer").innerHTML = "";
+              document.getElementById("tfrt").innerHTML = "";
           } else {
             var t = "冷却时间：";
             var tfrt = 0;
@@ -334,11 +334,11 @@
               tfrtt = getDayTime(myDate, tfrt) + "可用";
             }
             document.getElementById("transformer").innerHTML = t;
-            document.getElementById("transformer").innerHTML = tfrtt;
+              document.getElementById("tfrt").innerHTML = tfrtt;
           }
         } else {
           document.getElementById("transformer").innerHTML = "尚未获得";
-          document.getElementById("transformer").innerHTML = "";
+            document.getElementById("tfrt").innerHTML = "";
         }
 
         const hcrt = parseInt(params.note.home_coin_recovery_time) + (params.baseTime - nowTime) / 1000;
