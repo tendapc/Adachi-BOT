@@ -88,7 +88,7 @@
         width: 300px;
         height: 26px;
         left: 200px;
-        top: 470px;
+        top: 468px;
         color: #7b8386;
         font-weight: bold;
         font-size: 16px;
@@ -308,24 +308,24 @@
         if (params.note.transformer != null && params.note.transformer.obtained) {
           if (params.note.transformer.recovery_time.reached) {
             document.getElementById("transformer").innerHTML = "可使用";
-              document.getElementById("tfrt").innerHTML = "";
+            document.getElementById("tfrt").innerHTML = "";
           } else {
             var t = "冷却时间：";
             var tfrt = 0;
             var tfrtt = 0;
             if (params.note.transformer.recovery_time.Day > 0) {
               t += params.note.transformer.recovery_time.Day + "天";
-              tfrt += 24 * 3600;
+              tfrt += 24 * 3600 * params.note.transformer.recovery_time.Day;
               tfrtt = "预估" + new Date(parseInt(myDate.valueOf() + tfrt * 1000)).Format("M月d日") + "之后可用";
             }
             if (params.note.transformer.recovery_time.Hour > 0) {
               t += params.note.transformer.recovery_time.Hour + "小时";
-              tfrt += 3600;
+              tfrt += 3600 * params.note.transformer.recovery_time.Hour;
               tfrtt = "预估" + getDayTime(myDate, tfrt) + "之后可用";
             }
             if (params.note.transformer.recovery_time.Minute > 0) {
               t += params.note.transformer.recovery_time.Minute + "分";
-              tfrt += 60;
+              tfrt += 60 * params.note.transformer.recovery_time.Minute;
               tfrtt = "预估" + getDayTime(myDate, tfrt) + "之后可用";
             }
             if (params.note.transformer.recovery_time.Second > 0) {
@@ -338,7 +338,7 @@
           }
         } else {
           document.getElementById("transformer").innerHTML = "尚未获得";
-            document.getElementById("tfrt").innerHTML = "";
+          document.getElementById("tfrt").innerHTML = "";
         }
 
         const hcrt = parseInt(params.note.home_coin_recovery_time) + (params.baseTime - nowTime) / 1000;
