@@ -2,6 +2,8 @@
 import { baseDetail } from "../../utils/detail.js";
 import { getID } from "../../utils/id.js";
 import { render } from "../../utils/render.js";
+import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
+import db from "#utils/database";
 import {
   changeAuto,
   doGetMYB,
