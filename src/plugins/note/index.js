@@ -3,6 +3,7 @@ import { getID } from "../../utils/id.js";
 import { render } from "../../utils/render.js";
 import db from "#utils/database";
 import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
+import { filterWordsByRegex } from "#utils/tools";
 import {
   changeAuto,
   doGetMYB,
@@ -151,6 +152,7 @@ async function doSetMYBCookie(msg, uid) {
 
 async function Plugin(msg) {
   const dbInfo = await getID(msg.text, msg.uid); // 米游社 ID
+  const args = filterWordsByRegex(msg.text, ...global.command.functions.entrance.card);
   let uid, region;
   let message = undefined;
   if ("string" === typeof dbInfo) {
