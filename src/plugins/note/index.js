@@ -178,8 +178,6 @@ async function Plugin(msg) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
-        const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
-        await characterDetail(...baseInfo, detailInfo, false, msg.bot);
         const data = db.get("info", "user", { uid });
         var fiveStar = {};
         fiveStar.up_avatars = [];
