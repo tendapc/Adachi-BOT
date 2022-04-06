@@ -1,5 +1,5 @@
-import { getParams, html } from "../common/utils.js";
 import { CharacterBox, ExplorationBox, SectionTitle } from "../card/cardComponents.js";
+import { getParams, html } from "../common/utils.js";
 
 const { defineComponent } = window.Vue;
 const lodash = window._;
