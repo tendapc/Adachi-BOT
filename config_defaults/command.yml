@@ -457,20 +457,21 @@ note:
     - ^米游币Cookie\s+.+$
     - ^(实时)?(便笺|树脂|便签)\s*$
     - ^(实时)?(便笺|树脂|便签)\s+\d+.*$
-    - ^(实时)?(便笺|树脂|便签)\s*\[CQ:at,qq=.*$
+    - ^(实时)?(便笺|树脂|便签)\s*\[CQ:at,type=.*?,qq=.*$
     - ^图片便签
     - ^签到\s*$
     - ^签到\s+\d+.*$
-    - ^签到\s*\[CQ:at,qq=.*$
+    - ^签到\s*\[CQ:at,type=.*?,qq=.*$
     - ^米游币\s*$
     - ^米游币\s+\d+.*$
-    - ^米游币\s*\[CQ:at,qq=.*$
+    - ^米游币\s*\[CQ:at,type=.*?,qq=.*$
     - ^札记\s*$
     - ^上月札记\s*$
     - ^上上月札记\s*$
     - ^补签\s*$
     - ^开启自动签到\s*$
     - ^关闭自动签到\s*$
+    - ^五星统计
   functions:
     set_user_cookie:
       weights: 9998
@@ -568,6 +569,13 @@ note:
       description:
       entrance:
         - ^上上月札记
+    fivestar:
+      weights: 9299
+      name:
+      usage:
+      description:
+      entrance:
+        - ^五星统计
 
 nikename:
   enable: true

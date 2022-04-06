@@ -169,7 +169,14 @@ async function Plugin(msg) {
     await msg.bot.say(msg.sid, `获取游戏UID失败：${e}`, msg.type, msg.uid);
     return;
   }
-  try {
+    try {
+        if (hasEntrance(msg.text, "note", "fivestar")) {
+            if ((await getUserCookie(uid, msg.bot)) == undefined) {
+                message = `未设置私人Cookie`;
+            } else {
+
+            }
+        }else
     if (hasEntrance(msg.text, "note", "set_user_cookie")) {
       message = await doSetCookie(msg, uid);
     } else if (hasEntrance(msg.text, "note", "re_sign")) {
