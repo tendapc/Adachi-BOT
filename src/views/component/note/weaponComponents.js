@@ -3,6 +3,7 @@ import { html } from "../common/utils.js";
 const { defineComponent } = window.Vue;
 const weaponTemplate = html` <div class="character-box">
   <div class="container-char-headups">
+    <div />
     <div class="constellation" :class="data.affix_level === 5 ? 'max-constellation' : ''">{{ data.affix_level }}</div>
   </div>
   <img class="main" :src="data.icon" :style="{ 'background-image': 'url(' + starBackground + ')' }" alt="ERROR" />
