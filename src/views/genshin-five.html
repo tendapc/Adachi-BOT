@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>genshin-card</title>
     <script src="../../data/js/vue3.global.prod.js"></script>
@@ -11,34 +11,36 @@
     <link rel="preload" as="script" href="component/note/five.js" crossorigin />
     <link rel="preload" as="script" href="component/card/cardComponents.js" crossorigin />
     <link rel="stylesheet" href="./component/card/card.css" />
-    <link rel="preload"
-          as="image"
-          href="../../resources/Version2/backgrounds/contour-background.svg"
-          type="image/svg+xml" />
+    <link
+      rel="preload"
+      as="image"
+      href="../../resources/Version2/backgrounds/contour-background.svg"
+      type="image/svg+xml"
+    />
     <link rel="icon" href="data:," />
     <style type="text/css">
-        .weaponlevel {
-            justify-self: start;
-            background: #33333391;
-            color: #f0ebe3;
-            font-size: 13px;
-            width: 15px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0 6px;
-            backdrop-filter: blur(4px);
-        }
+      .weaponlevel {
+        justify-self: start;
+        background: #33333391;
+        color: #f0ebe3;
+        font-size: 13px;
+        width: 15px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 6px;
+        backdrop-filter: blur(4px);
+      }
     </style>
-</head >
-        <body >
-        <div id="app" > </div >
-        <script src="../../data/js/lodash.min.js" > </script >
-        <script type="module" >
-        import App from "./component/note/five.js";
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="../../data/js/lodash.min.js"></script>
+    <script type="module">
+      import App from "./component/note/five.js";
 
-        Vue.createApp(App).mount("#app");
-        </script >
-        </body >
-        </html >
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
