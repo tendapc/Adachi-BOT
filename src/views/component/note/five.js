@@ -1,4 +1,5 @@
 import { CharacterBox, ExplorationBox, SectionTitle } from "../card/cardComponents.js";
+import { WeaponBox} from "./weaponComponents.js";
 import { getParams, html } from "../common/utils.js";
 
 const { defineComponent } = window.Vue;
@@ -34,6 +35,14 @@ const template = html`
         <SectionTitle title="UP5星角色" />
         <div class="container-character-box main-content">
           <CharacterBox v-for="character in up_avatars" :data="character" />
+        </div>
+        <SectionTitle title="常驻5星武器" />
+        <div class="container-character-box main-content">
+          <WeaponBox v-for="weapon in other_weapons" :data="weapon" />
+        </div>
+        <SectionTitle title="UP5星武器" />
+        <div class="container-character-box main-content">
+          <WeaponBox v-for="weapon in up_weapons" :data="weapon" />
         </div>
       </div>
       <!-- 数据 container 结束 -->
