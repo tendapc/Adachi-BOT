@@ -1,6 +1,6 @@
 import { CharacterBox, ExplorationBox, SectionTitle } from "../card/cardComponents.js";
-import { WeaponBox} from "./weaponComponents.js";
 import { getParams, html } from "../common/utils.js";
+import { WeaponBox } from "./weaponComponents.js";
 
 const { defineComponent } = window.Vue;
 const lodash = window._;
