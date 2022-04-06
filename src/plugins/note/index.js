@@ -1,8 +1,8 @@
 ﻿import { hasEntrance } from "../../utils/config.js";
 import { getID } from "../../utils/id.js";
 import { render } from "../../utils/render.js";
-import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
 import db from "#utils/database";
+import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
 import {
   changeAuto,
   doGetMYB,
