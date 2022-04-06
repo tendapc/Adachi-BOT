@@ -27,13 +27,11 @@ const template = html`
         <p>{{ up_weapons_num }}</p>
       </div>
       <div class="section-container" id="character-box">
-        <SectionTitle
-          title="常驻5星角色"/>
+        <SectionTitle title="常驻5星角色" />
         <div class="container-character-box main-content">
           <CharacterBox v-for="character in other_avatars" :data="character" />
         </div>
-        <SectionTitle
-          title="UP5星角色"/>
+        <SectionTitle title="UP5星角色" />
         <div class="container-character-box main-content">
           <CharacterBox v-for="character in up_avatars" :data="character" />
         </div>
@@ -75,21 +73,20 @@ export default defineComponent({
 
     const namecardAvatar = "" !== qqid ? `https://q1.qlogo.cn/g?b=qq&s=5&nk=${qqid}` : character;
 
-
     return {
       playerUid: uid,
       playerNickname: nickname,
       playerLevel: level,
       nameCard,
       namecardAvatar,
-        up_avatars: params.up_avatars,
-        other_avatars: params.other_avatars,
-        up_weapons: params.up_weapons,
-        other_weapons: params.other_weapons,
-        up_avatars_num: params.up_avatars_num,
-        other_avatars_num: params.other_avatars_num,
-        up_weapons_num: params.up_weapons_num,
-        other_weapons_num: params.other_weapons_num,
+      up_avatars: params.up_avatars,
+      other_avatars: params.other_avatars,
+      up_weapons: params.up_weapons,
+      other_weapons: params.other_weapons,
+      up_avatars_num: params.up_avatars_num,
+      other_avatars_num: params.other_avatars_num,
+      up_weapons_num: params.up_weapons_num,
+      other_weapons_num: params.other_weapons_num,
       hasLevelInfo,
       hasPlayerNameInfo,
     };

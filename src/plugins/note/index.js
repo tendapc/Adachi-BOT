@@ -176,54 +176,71 @@ async function Plugin(msg) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
-          const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
-          await characterDetail(...baseInfo, detailInfo, false, msg.bot);
-          const data = db.get("info", "user", { uid });
-          var fiveStar = {};
-          fiveStar.up_avatars = [];
-          fiveStar.other_avatars = [];
-          fiveStar.up_weapons = [];
-          fiveStar.other_weapons = [];
-          fiveStar.up_avatars_num = 0;
-          fiveStar.other_avatars_num = 0;
-          fiveStar.up_weapons_num = 0;
-          fiveStar.other_weapons_num = 0;
-          fiveStar.uid = data.uid;
-          fiveStar.nickname = data.nickname;
-          fiveStar.level = data.level;
-          for (var i = 0; i < data.avatars.length; i++) {
-              var avatar = data.avatars[i];
-              if (avatar.rarity === 5) {
-                  if (avatar.id != 10000007 /*荧*/ && avatar.id != 10000005 /*空*/) {
-                      if (avatar.id === 10000035 /*七七*/ || avatar.id === 10000042 /*刻晴*/ || avatar.id === 10000003 /*琴*/ || avatar.id === 10000016 /*迪卢克*/ || avatar.id === 10000041 /*莫娜*/) {
-                          fiveStar.other_avatars_num += avatar.actived_constellation_num + 1;
-                          fiveStar.other_avatars[fiveStar.other_avatars.length] = avatar;
-                      } else {
-                          fiveStar.up_avatars_num += avatar.actived_constellation_num + 1;
-                          fiveStar.up_avatars[fiveStar.up_avatars.length] = avatar;
-                      }
-                  }
+        const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
+        await characterDetail(...baseInfo, detailInfo, false, msg.bot);
+        const data = db.get("info", "user", { uid });
+        var fiveStar = {};
+        fiveStar.up_avatars = [];
+        fiveStar.other_avatars = [];
+        fiveStar.up_weapons = [];
+        fiveStar.other_weapons = [];
+        fiveStar.up_avatars_num = 0;
+        fiveStar.other_avatars_num = 0;
+        fiveStar.up_weapons_num = 0;
+        fiveStar.other_weapons_num = 0;
+        fiveStar.uid = data.uid;
+        fiveStar.nickname = data.nickname;
+        fiveStar.level = data.level;
+        for (var i = 0; i < data.avatars.length; i++) {
+          var avatar = data.avatars[i];
+          if (avatar.rarity === 5) {
+            if (avatar.id != 10000007 /*荧*/ && avatar.id != 10000005 /*空*/) {
+              if (
+                avatar.id === 10000035 /*七七*/ ||
+                avatar.id === 10000042 /*刻晴*/ ||
+                avatar.id === 10000003 /*琴*/ ||
+                avatar.id === 10000016 /*迪卢克*/ ||
+                avatar.id === 10000041 /*莫娜*/
+              ) {
+                fiveStar.other_avatars_num += avatar.actived_constellation_num + 1;
+                fiveStar.other_avatars[fiveStar.other_avatars.length] = avatar;
+              } else {
+                fiveStar.up_avatars_num += avatar.actived_constellation_num + 1;
+                fiveStar.up_avatars[fiveStar.up_avatars.length] = avatar;
               }
-              if (avatar.weapon != null) {
-                  if (avatar.weapon.rarity === 5) {
-                      if (avatar.weapon.name === "天空之傲" || avatar.weapon.name === "天空之刃" || avatar.weapon.name === "天空之卷" || avatar.weapon.name === "天空之翼" || avatar.weapon.name === "天空之脊"
-                          || avatar.weapon.name === "四风原典" || avatar.weapon.name === "阿莫斯之弓" || avatar.weapon.name === "风鹰剑" || avatar.weapon.name === "狼的末路" || avatar.weapon.name === "和璞鸢") {
-                          fiveStar.other_weapons_num += avatar.weapon.affix_level;
-                          fiveStar.other_weapons[fiveStar.other_weapons.length] = avatar.weapon;
-                      } else {
-                          fiveStar.up_weapons_num += avatar.weapon.affix_level;
-                          fiveStar.up_weapons[fiveStar.up_weapons.length] = avatar.weapon;
-                      }
-                  }
-              }
+            }
           }
-          const qqid = "" === args ? msg.uid : msg.text.includes("[CQ:at") ? parseInt(msg.text.match(/\d+/g)[0]) : undefined;
+          if (avatar.weapon != null) {
+            if (avatar.weapon.rarity === 5) {
+              if (
+                avatar.weapon.name === "天空之傲" ||
+                avatar.weapon.name === "天空之刃" ||
+                avatar.weapon.name === "天空之卷" ||
+                avatar.weapon.name === "天空之翼" ||
+                avatar.weapon.name === "天空之脊" ||
+                avatar.weapon.name === "四风原典" ||
+                avatar.weapon.name === "阿莫斯之弓" ||
+                avatar.weapon.name === "风鹰剑" ||
+                avatar.weapon.name === "狼的末路" ||
+                avatar.weapon.name === "和璞鸢"
+              ) {
+                fiveStar.other_weapons_num += avatar.weapon.affix_level;
+                fiveStar.other_weapons[fiveStar.other_weapons.length] = avatar.weapon;
+              } else {
+                fiveStar.up_weapons_num += avatar.weapon.affix_level;
+                fiveStar.up_weapons[fiveStar.up_weapons.length] = avatar.weapon;
+              }
+            }
+          }
+        }
+        const qqid =
+          "" === args ? msg.uid : msg.text.includes("[CQ:at") ? parseInt(msg.text.match(/\d+/g)[0]) : undefined;
 
-          if (undefined !== qqid) {
-              fiveStar.qqid = qqid;
-          }
-          render(msg, fiveStar, "genshin-five");
-          return;
+        if (undefined !== qqid) {
+          fiveStar.qqid = qqid;
+        }
+        render(msg, fiveStar, "genshin-five");
+        return;
       }
     } else if (hasEntrance(msg.text, "note", "set_user_cookie")) {
       message = await doSetCookie(msg, uid);
