@@ -57,7 +57,8 @@ export default defineComponent({
   components: {
     SectionTitle,
     ExplorationBox,
-    CharacterBox,
+      CharacterBox,
+      WeaponBox,
   },
   setup() {
     const params = getParams(window.location.href);
