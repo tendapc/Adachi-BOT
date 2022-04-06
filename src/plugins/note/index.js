@@ -241,6 +241,7 @@ async function Plugin(msg) {
         if (undefined !== qqid) {
           fiveStar.qqid = qqid;
         }
+        msg.bot.logger.debug(`five：${JSON.stringify(fiveStar)}`);
         render(msg, fiveStar, "genshin-five");
         return;
       }
