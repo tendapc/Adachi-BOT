@@ -14,7 +14,7 @@ async function doAvatarDetail(uid, server, avatar, msg) {
     let skill_list = lodash.orderBy(skillres.skill_list, ["id"], ["asc"]);
     for (let val of skill_list) {
       val.level_original = val.level_current;
-      if (val.name.includes("��ͨ����")) {
+      if (val.name.includes("普通攻击")) {
         skill.a = val;
         continue;
       }
@@ -30,15 +30,15 @@ async function doAvatarDetail(uid, server, avatar, msg) {
     if (avatar.actived_constellation_num >= 3) {
       const info = await getInfo(avatar.name);
       if (info && info.constellations.length >= 5) {
-        if (info.constellations[2].includes("Ԫ��ս��")) {
+        if (info.constellations[2].includes("元素战技")) {
           skill.e.level_current += 3;
-        } else if (info.constellations[2].effect.includes("Ԫ�ر���")) {
+        } else if (info.constellations[2].includes("元素爆发")) {
           skill.q.level_current += 3;
         }
         if (avatar.actived_constellation_num >= 5) {
-          if (info.constellations[4].effect.includes("Ԫ��ս��")) {
+          if (info.constellations[4].includes("元素战技")) {
             skill.e.level_current += 3;
-          } else if (info.constellations[4].effect.includes("Ԫ�ر���")) {
+          } else if (info.constellations[4].includes("元素爆发")) {
             skill.q.level_current += 3;
           }
         }
@@ -54,7 +54,7 @@ async function doTalentList(msg, uid, region) {
     value = {};
     value.time = nowTime;
     const data = db.get("info", "user", { uid });
-    if (!data) return "���Ȼ�ȡ��ɫ����";
+    if (!data) return "请先获取角色信息";
     value.nickname = data.nickname;
     value.uid = data.uid;
     let avatars = [];
@@ -75,7 +75,7 @@ async function doTalentList(msg, uid, region) {
       c.costumes = avatar.costumes;
       c.skills = await doAvatarDetail(uid, region, avatar, msg);
       if (avatar.rarity === 5) {
-        if (avatar.id == 10000007 /*ӫ*/ || avatar.id == 10000005 /*��*/) avatars[avatars.length] = c;
+        if (avatar.id == 10000007 /*荧*/ || avatar.id == 10000005 /*空*/) avatars[avatars.length] = c;
         else fives[fives.length] = c;
       } else {
         others[others.length] = c;
@@ -99,7 +99,7 @@ async function doTalentList(msg, uid, region) {
   if (undefined !== qqid) {
     value.qqid = qqid;
   }
-  msg.bot.logger.debug(`talent��${JSON.stringify(fiveStar)}`);
+  msg.bot.logger.debug(`talent:${JSON.stringify(fiveStar)}`);
   render(msg, value, "genshin-talent");
   return undefined;
 }
