@@ -41,21 +41,21 @@ const AvatarBox = defineComponent({
     data: Object,
   },
   setup(props) {
-      function getCostume(costumeName) {
-          return encodeURI(`http://localhost:9934/resources/Version2/costumes/avatars/${costumeName}.png`);
-      }
+    function getCostume(costumeName) {
+      return encodeURI(`http://localhost:9934/resources/Version2/costumes/avatars/${costumeName}.png`);
+    }
 
-      const starBackground = encodeURI(
-          `http://localhost:9934/resources/Version2/thumb/stars/${props.data.rarity}-Star.png`
-      );
-      const element = encodeURI(`http://localhost:9934/resources/gacha/element/${props.data.element.toLowerCase()}.png`);
-      const hasCostume = props.data.costumes.length !== 0;
-      const costumePath = hasCostume ? getCostume(props.data.costumes[0]["name"]) : "";
+    const starBackground = encodeURI(
+      `http://localhost:9934/resources/Version2/thumb/stars/${props.data.rarity}-Star.png`
+    );
+    const element = encodeURI(`http://localhost:9934/resources/gacha/element/${props.data.element.toLowerCase()}.png`);
+    const hasCostume = props.data.costumes.length !== 0;
+    const costumePath = hasCostume ? getCostume(props.data.costumes[0]["name"]) : "";
 
-      const weaponNameLength = props.data.weapon.name.length || 5;
-      const additionalStyle = weaponNameLength > 5 ? "font-size: 9px;" : undefined;
+    const weaponNameLength = props.data.weapon.name.length || 5;
+    const additionalStyle = weaponNameLength > 5 ? "font-size: 9px;" : undefined;
 
-      return { starBackground, element, hasCostume, costumePath, additionalStyle };
+    return { starBackground, element, hasCostume, costumePath, additionalStyle };
   },
 });
 export { AvatarBox };
