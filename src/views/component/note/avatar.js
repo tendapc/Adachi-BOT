@@ -26,7 +26,7 @@ const avatarTemplate = html`<div class="avatar">
                   <span class="weapon_lv">Lv{{data.weapon.level}}</span>
 
                   <span class="weapon_alv weapon_alv_{{data.weapon.affix_level}}">{{data.weapon.affix_level}}</span>
-                  <img src="{{_res_path}}genshin/logo/weapon/{{data.weapon.name}}.png"/>
+                  <img src="data.weapon.icon"/>
                   <span class="weapon_name">{{abbr[data.weapon.name] || data.weapon.name}}</span>
                 </div>
                 {{/if}}
