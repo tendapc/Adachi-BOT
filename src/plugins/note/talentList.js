@@ -74,6 +74,7 @@ async function doTalentList(msg, uid, region, args) {
       c.rarity = avatar.rarity;
       c.level = avatar.level;
       c.actived_constellation_num = avatar.actived_constellation_num;
+      c.constellationNum = avatar.constellationNum;
       c.weapon = avatar.weapon;
       c.costumes = avatar.costumes;
       c.skills = await doAvatarDetail(uid, region, avatar, msg);

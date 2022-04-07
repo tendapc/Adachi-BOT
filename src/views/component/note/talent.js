@@ -14,10 +14,23 @@ const template = html`
       </div>
     </div>
     <div class="info-container">
-      <div class="section-container" id="character-box">
-        <div class="container-character-box main-content">
-          <AvatarBox v-for="avatar in avatars" :data="avatar" />
-        </div>
+<div class="talent_list">
+            <div class="avatar th">
+              <div class="index">#</div>
+              <div class="name">
+                角色
+              </div>
+              <div class="lvl">等级</div>
+              <div class="fetter">好感</div>
+              <div class="cons">命座</div>
+
+              <div class="talent">普攻</div>
+              <div class="talent">技能</div>
+              <div class="talent">爆发</div>
+              <div class="weapon for_weapon">武器</div>
+            </div>
+        <AvatarBox v-for="avatar in avatars" :data="avatar" />
+</div>
       </div>
     </div>
     <div id="credit">Created by Adachi-BOT</div>
