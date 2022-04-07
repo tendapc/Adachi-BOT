@@ -185,22 +185,22 @@ function mysReSignIn(role_id, server, cookie) {
 }
 
 function getAvatarDetail(uid, region, avatar_id, cookie) {
-    const query = {
-        uid: uid,
-        region: region,
-        avatar_id: avatar_id,
-    };
+  const query = {
+    uid: uid,
+    region: region,
+    avatar_id: avatar_id,
+  };
 
-    return fetch(`${__API.DETAIL_URL}?${new URLSearchParams(query)}`, {
-        method: "GET",
-        qs: query,
-        headers: {
-            ...HEADERS,
-            DS: getDS(query),
-            Cookie: cookie,
-            Referer: __API.REFERER_URL,
-        },
-    }).then((res) => res.json());
+  return fetch(`${__API.DETAIL_URL}?${new URLSearchParams(query)}`, {
+    method: "GET",
+    qs: query,
+    headers: {
+      ...HEADERS,
+      DS: getDS(query),
+      Cookie: cookie,
+      Referer: __API.REFERER_URL,
+    },
+  }).then((res) => res.json());
 }
 
 function getLedger(bind_uid, bind_region, cookie, month = 0) {
@@ -412,16 +412,16 @@ async function signInfoPromise(uid, server, userID, bot) {
 }
 
 async function getAvatarDetailPromise(uid, server, avatar_id, userID, bot) {
-    const cookie = await getUserCookie(uid, bot);
-    if (!cookie) return Promise.reject(`未设置私人cookie`);
-    bot.logger.debug(`getAvatarDetail ${uid} ${server} ${cookie}`);
-    const { retcode, message, data } = await getAvatarDetail(uid, server, avatar_id, cookie);
+  const cookie = await getUserCookie(uid, bot);
+  if (!cookie) return Promise.reject(`未设置私人cookie`);
+  bot.logger.debug(`getAvatarDetail ${uid} ${server} ${cookie}`);
+  const { retcode, message, data } = await getAvatarDetail(uid, server, avatar_id, cookie);
 
-    if (retcode !== 0) {
-        return Promise.reject(`米游社接口报错: ${message}`);
-    }
+  if (retcode !== 0) {
+    return Promise.reject(`米游社接口报错: ${message}`);
+  }
 
-    return data;
+  return data;
 }
 
 async function resignInfoPromise(uid, server, userID, bot) {

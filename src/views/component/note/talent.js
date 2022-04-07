@@ -19,46 +19,46 @@ const template = html`
           <AvatarBox v-for="avatar in avatars" :data="avatar" />
         </div>
       </div>
-      <!-- Êý¾Ý container ½áÊø -->
+      <!-- ï¿½ï¿½ï¿½ï¿½ container ï¿½ï¿½ï¿½ï¿½ -->
     </div>
     <div id="credit">Created by Adachi-BOT</div>
   </div>
 `;
 
 export default defineComponent({
-    name: "genshinTalent",
-    template: template,
-    components: {
-        AvatarBox,
-    },
-    setup() {
-        const params = getParams(window.location.href);
-        const { uid, nickname } = params;
-        const hasPlayerNameInfo = params.nickname !== "";
-        const randomAvatarOrder = Math.floor(Math.random() * params.avatars.length);
-        const target = params.avatars[randomAvatarOrder];
-        const targetHasCostume = params.avatars[randomAvatarOrder]["costumes"].length !== 0;
-        const costumeName = targetHasCostume ? params.avatars[randomAvatarOrder]["costumes"][0]["name"] : "";
-        const qqid = params.qqid || "";
+  name: "genshinTalent",
+  template: template,
+  components: {
+    AvatarBox,
+  },
+  setup() {
+    const params = getParams(window.location.href);
+    const { uid, nickname } = params;
+    const hasPlayerNameInfo = params.nickname !== "";
+    const randomAvatarOrder = Math.floor(Math.random() * params.avatars.length);
+    const target = params.avatars[randomAvatarOrder];
+    const targetHasCostume = params.avatars[randomAvatarOrder]["costumes"].length !== 0;
+    const costumeName = targetHasCostume ? params.avatars[randomAvatarOrder]["costumes"][0]["name"] : "";
+    const qqid = params.qqid || "";
 
-        const ye = { 10000005: "¿Õ", 10000007: "Ó«" };
-        const name = ye[target.id] || target.name;
-        const id = 10000007 === target.id ? 10000005 : target.id; // ÃÃÃÃÃûÆ¬ÖØ¶¨ÏòÖÁ¸ç¸çÃûÆ¬
-        const nameCardUrl = encodeURI(`http://localhost:9934/resources/Version2/namecard/${id}.png`);
-        const nameCard = `linear-gradient(hsla(0, 0%, 100%, 0) 0%, #fff 100%), url(${nameCardUrl})`;
+    const ye = { 10000005: "ï¿½ï¿½", 10000007: "Ó«" };
+    const name = ye[target.id] || target.name;
+    const id = 10000007 === target.id ? 10000005 : target.id; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬
+    const nameCardUrl = encodeURI(`http://localhost:9934/resources/Version2/namecard/${id}.png`);
+    const nameCard = `linear-gradient(hsla(0, 0%, 100%, 0) 0%, #fff 100%), url(${nameCardUrl})`;
 
-        const character = targetHasCostume
-            ? encodeURI(`http://localhost:9934/resources/Version2/costumes/avatars/${costumeName}.png`)
-            : encodeURI(`http://localhost:9934/resources/Version2/thumb/character/${name}.png`);
+    const character = targetHasCostume
+      ? encodeURI(`http://localhost:9934/resources/Version2/costumes/avatars/${costumeName}.png`)
+      : encodeURI(`http://localhost:9934/resources/Version2/thumb/character/${name}.png`);
 
-        const namecardAvatar = "" !== qqid ? `https://q1.qlogo.cn/g?b=qq&s=5&nk=${qqid}` : character;
+    const namecardAvatar = "" !== qqid ? `https://q1.qlogo.cn/g?b=qq&s=5&nk=${qqid}` : character;
 
-        return {
-            playerUid: uid,
-            playerNickname: nickname,
-            nameCard,
-            namecardAvatar,
-            hasPlayerNameInfo,
-        };
-    },
+    return {
+      playerUid: uid,
+      playerNickname: nickname,
+      nameCard,
+      namecardAvatar,
+      hasPlayerNameInfo,
+    };
+  },
 });

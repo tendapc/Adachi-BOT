@@ -1,4 +1,3 @@
-
 import { html } from "../common/utils.js";
 
 const { defineComponent } = window.Vue;
@@ -12,25 +11,25 @@ const weaponTemplate = html` <div class="character-box">
   <div class="char-info">
     <div class="container-char-info weapon-briefing" :style="additionalStyle">
       <span class="weapon-name">{{ data.name }}</span>
-      <span class="weapon-affix">¾«{{ data.affix_level }}</span>
+      <span class="weapon-affix">ï¿½ï¿½{{ data.affix_level }}</span>
     </div>
   </div>
 </div>`;
 const WeaponBox = defineComponent({
-    name: "WeaponBox",
-    template: weaponTemplate,
-    props: {
-        data: Object,
-    },
-    setup(props) {
-        const starBackground = encodeURI(
-            `http://localhost:9934/resources/Version2/thumb/stars/${props.data.rarity}-Star.png`
-        );
+  name: "WeaponBox",
+  template: weaponTemplate,
+  props: {
+    data: Object,
+  },
+  setup(props) {
+    const starBackground = encodeURI(
+      `http://localhost:9934/resources/Version2/thumb/stars/${props.data.rarity}-Star.png`
+    );
 
-        const weaponNameLength = props.data.name.length || 5;
-        const additionalStyle = weaponNameLength > 5 ? "font-size: 9px;" : undefined;
+    const weaponNameLength = props.data.name.length || 5;
+    const additionalStyle = weaponNameLength > 5 ? "font-size: 9px;" : undefined;
 
-        return { starBackground, additionalStyle };
-    },
+    return { starBackground, additionalStyle };
+  },
 });
 export { WeaponBox };
