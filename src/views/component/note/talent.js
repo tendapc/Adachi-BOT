@@ -40,7 +40,7 @@ export default defineComponent({
     const costumeName = targetHasCostume ? params.avatars[randomAvatarOrder]["costumes"][0]["name"] : "";
     const qqid = params.qqid || "";
 
-    const ye = { 10000005: "��", 10000007: "ӫ" };
+    const ye = { 10000005: "空", 10000007: "荧" };
     const name = ye[target.id] || target.name;
     const id = 10000007 === target.id ? 10000005 : target.id; // 妹妹名片重定向至哥哥名片
     const nameCardUrl = encodeURI(`http://localhost:9934/resources/Version2/namecard/${id}.png`);
@@ -58,6 +58,7 @@ export default defineComponent({
       nameCard,
       namecardAvatar,
       hasPlayerNameInfo,
+      avatars: params.avatars,
     };
   },
 });
