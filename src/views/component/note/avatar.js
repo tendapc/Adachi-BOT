@@ -15,8 +15,12 @@ const avatarTemplate = html`<div class="avatar">
   <div class="fetter fetter{{data.fetter}}">{{data.fetter}}</div>
   <div class="cons"><span class="life{{data.actived_constellation_num}}">{{data.actived_constellation_num}}</span></div>
   <div class="talent lv{{data.skills.a_lvl}}">{{data.skills.a.level_current}}</div>
-  <div class="talent lv{{data.skills.e_lvl}} {{data.skills.e_plus ? 'talent_plus':''}}">{{data.skills.e.level_current}}</div>
-  <div class="talent lv{{data.skills.q_lvl}} {{data.skills.q_plus ? 'talent_plus':''}}">{{data.skills.q.level_current}}</div>
+  <div class="talent lv{{data.skills.e_lvl}} {{data.skills.e_plus ? 'talent_plus':''}}">
+    {{data.skills.e.level_current}}
+  </div>
+  <div class="talent lv{{data.skills.q_lvl}} {{data.skills.q_plus ? 'talent_plus':''}}">
+    {{data.skills.q.level_current}}
+  </div>
 </div>`;
 const AvatarBox = defineComponent({
   name: "AvatarBox",
