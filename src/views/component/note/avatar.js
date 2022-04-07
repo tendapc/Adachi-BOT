@@ -6,7 +6,7 @@ const avatarTemplate = html`<div class="avatar">
               <div class="name_cont star{{data.rarity}}">
                 <div class="name">
                   <div class="avatar_img">
-                    <img src="{{_res_path}}genshin/logo/side/{{data.name}}.png" onerror="whenError(this)"/>
+                    <img src="data.icon" onerror="whenError(this)"/>
                   </div>
                   <div class="avatar_name">
                     {{abbr[data.name] || data.name}}
