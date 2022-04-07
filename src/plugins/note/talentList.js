@@ -117,7 +117,7 @@ async function doTalentList(msg, uid, region, args) {
   if (undefined !== qqid) {
     talent.qqid = qqid;
   }
-  msg.bot.logger.debug(`talent:${JSON.stringify(talent)}`);
+  //msg.bot.logger.debug(`talent:${JSON.stringify(talent)}`);
   render(msg, talent, "genshin-talent");
   return undefined;
 }
