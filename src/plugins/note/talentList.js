@@ -97,27 +97,25 @@ async function doTalentList(msg, uid, region, args) {
     db.update("talent", "user", { uid }, value);
   }
 
-    let talent = {};
-    talent.nickname = value.nickname;
-    talent.uid = value.uid;
-    talent.avatars = [];
-    if (msg.text.includes("五星")) {
-        for (var i = 0; i < value.avatars.length; i++) {
-            if (value.avatars[i].rarity >= 5 )
-                talent.avatars[talent.avatars.length] = value.avatars[i];
-        }
-    } else if (msg.text.includes("四星")) {
-        for (var i = 0; i < value.avatars.length; i++) {
-            if (value.avatars[i].rarity == 4)
-                talent.avatars[talent.avatars.length] = value.avatars[i];
-        }
-    } else {
-        talent = value;
+  let talent = {};
+  talent.nickname = value.nickname;
+  talent.uid = value.uid;
+  talent.avatars = [];
+  if (msg.text.includes("五星")) {
+    for (var i = 0; i < value.avatars.length; i++) {
+      if (value.avatars[i].rarity >= 5) talent.avatars[talent.avatars.length] = value.avatars[i];
     }
+  } else if (msg.text.includes("四星")) {
+    for (var i = 0; i < value.avatars.length; i++) {
+      if (value.avatars[i].rarity == 4) talent.avatars[talent.avatars.length] = value.avatars[i];
+    }
+  } else {
+    talent = value;
+  }
   const qqid = "" === args ? msg.uid : msg.text.includes("[CQ:at") ? parseInt(msg.text.match(/\d+/g)[0]) : undefined;
 
   if (undefined !== qqid) {
-      talent.qqid = qqid;
+    talent.qqid = qqid;
   }
   //msg.bot.logger.debug(`talent:${JSON.stringify(talent)}`);
   render(msg, talent, "genshin-talent");
