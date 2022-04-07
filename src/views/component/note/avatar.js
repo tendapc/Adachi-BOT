@@ -8,7 +8,7 @@ const avatarTemplate = html`<div class="avatar">
       <div class="avatar_img">
         <img :src="data.icon" onerror="whenError(this)" />
       </div>
-      <div class="avatar_name">{{abbr[data.name] || data.name}}</div>
+      <div class="avatar_name">{{data.name}}</div>
     </div>
   </div>
   <div class="lvl lvl{{data.level}}">{{data.level}}</div>
