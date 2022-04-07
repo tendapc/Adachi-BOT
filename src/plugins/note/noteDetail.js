@@ -414,7 +414,7 @@ async function signInfoPromise(uid, server, userID, bot) {
 async function getAvatarDetailPromise(uid, server, avatar_id, userID, bot) {
   const cookie = await getUserCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人cookie`);
-  bot.logger.debug(`getAvatarDetail ${uid} ${server} ${cookie}`);
+  //bot.logger.debug(`getAvatarDetail ${uid} ${server} ${cookie}`);
   const { retcode, message, data } = await getAvatarDetail(uid, server, avatar_id, cookie);
 
   if (retcode !== 0) {

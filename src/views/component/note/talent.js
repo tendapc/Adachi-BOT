@@ -19,7 +19,6 @@ const template = html`
           <AvatarBox v-for="avatar in avatars" :data="avatar" />
         </div>
       </div>
-      <!-- ���� container ���� -->
     </div>
     <div id="credit">Created by Adachi-BOT</div>
   </div>
@@ -43,7 +42,7 @@ export default defineComponent({
 
     const ye = { 10000005: "��", 10000007: "ӫ" };
     const name = ye[target.id] || target.name;
-    const id = 10000007 === target.id ? 10000005 : target.id; // ������Ƭ�ض����������Ƭ
+    const id = 10000007 === target.id ? 10000005 : target.id; // 妹妹名片重定向至哥哥名片
     const nameCardUrl = encodeURI(`http://localhost:9934/resources/Version2/namecard/${id}.png`);
     const nameCard = `linear-gradient(hsla(0, 0%, 100%, 0) 0%, #fff 100%), url(${nameCardUrl})`;
 
