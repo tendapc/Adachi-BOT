@@ -179,7 +179,7 @@ async function Plugin(msg) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
-        message = await doTalentList(msg, uid, region);
+        message = await doTalentList(msg, uid, region, args);
       }
     } else if (hasEntrance(msg.text, "note", "fivestar")) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {

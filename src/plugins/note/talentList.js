@@ -48,7 +48,7 @@ async function doAvatarDetail(uid, server, avatar, msg) {
   }
   return skill;
 }
-async function doTalentList(msg, uid, region) {
+async function doTalentList(msg, uid, region, args) {
   const nowTime = new Date().valueOf() / 1000;
   let value = db.get("talent", "user", { uid });
   if (!value || nowTime - value.time > 6 * 60 * 60) {
