@@ -2,7 +2,7 @@ import { html } from "../common/utils.js";
 
 const { defineComponent } = window.Vue;
 const avatarTemplate = html`<div class="avatar">
-              <div class="index star{{data.rarity}}">{{idx+1}}</div>
+              <div class="index star{{data.rarity}}">{{index+1}}</div>
               <div class="name_cont star{{data.rarity}}">
                 <div class="name">
                   <div class="avatar_img">

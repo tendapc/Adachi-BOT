@@ -29,7 +29,7 @@ const template = html`
               <div class="talent">爆发</div>
               <div class="weapon for_weapon">武器</div>
             </div>
-        <AvatarBox v-for="avatar in avatars" :data="avatar" />
+        <AvatarBox v-for="(avatar,index) in avatars" :data="avatar" :index="index" />
 </div>
       </div>
     </div>
