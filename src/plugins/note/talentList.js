@@ -3,7 +3,7 @@ import {
 } from "./noteDetail.js";
 import { getInfo } from "#utils/api";
 import db from "#utils/database";
-
+import lodash from "lodash";
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
