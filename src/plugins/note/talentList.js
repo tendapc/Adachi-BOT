@@ -17,15 +17,20 @@ async function doAvatarDetail(uid, server, avatar, msg) {
     for (let val of skill_list) {
       val.level_original = val.level_current;
       if (val.name.includes("普通攻击")) {
-        skill.a = val;
+          skill.a = val;
+          skill.a_lvl = 1;
         continue;
       }
       if (val.max_level >= 10 && !skill.e) {
-        skill.e = val;
+          skill.e = val;
+          skill.e_lvl = 1;
+          skill.e_plus = false;
         continue;
       }
       if (val.max_level >= 10 && !skill.q) {
-        skill.q = val;
+          skill.q = val;
+          skill.q_lvl = 1;
+          skill.q_plus = false;
         continue;
       }
     }
@@ -34,15 +39,19 @@ async function doAvatarDetail(uid, server, avatar, msg) {
       //msg.bot.logger.debug(`avatar:${JSON.stringify(info)}`);
       if (info && info.constellations.length >= 5) {
         if (info.constellations[2].includes("元素战技")) {
-          skill.e.level_current += 3;
+            skill.e.level_current += 3;
+            skill.e_plus = true;
         } else if (info.constellations[2].includes("元素爆发")) {
-          skill.q.level_current += 3;
+            skill.q.level_current += 3;
+            skill.q_plus = true;
         }
         if (avatar.actived_constellation_num >= 5) {
           if (info.constellations[4].includes("元素战技")) {
-            skill.e.level_current += 3;
+              skill.e.level_current += 3;
+              skill.e_plus = true;
           } else if (info.constellations[4].includes("元素爆发")) {
-            skill.q.level_current += 3;
+              skill.q.level_current += 3;
+              skill.q_plus = true;
           }
         }
       }
