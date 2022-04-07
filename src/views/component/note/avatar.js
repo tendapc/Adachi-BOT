@@ -1,39 +1,38 @@
 import { html } from "../common/utils.js";
 
 const { defineComponent } = window.Vue;
-const avatarTemplate = html`<div class="character-box">
-  <div class="container-char-headups">
-    <img v-if="data.element !== 'None'" class="element" :src="element" alt="ERROR" />
-    <div class="constellation" :class="data.constellationNum === 6 ? 'max-constellation' : ''">
-      {{ data.constellationNum }}
-    </div>
-  </div>
-  <img
-    v-if="hasCostume"
-    class="main"
-    :src="costumePath"
-    :style="{ 'background-image': 'url(' + starBackground + ')' }"
-    alt="ERROR"
-  />
-  <img
-    v-else
-    class="main"
-    :src="data.icon"
-    :style="{ 'background-image': 'url(' + starBackground + ')' }"
-    alt="ERROR"
-  />
+const avatarTemplate = html`<div class="avatar">
+              <div class="index star{{data.rarity}}">{{idx+1}}</div>
+              <div class="name_cont star{{data.rarity}}">
+                <div class="name">
+                  <div class="avatar_img">
+                    <img src="{{_res_path}}genshin/logo/side/{{data.name}}.png" onerror="whenError(this)"/>
+                  </div>
+                  <div class="avatar_name">
+                    {{abbr[data.name] || data.name}}
+                  </div>
+                </div>
+              </div>
+              <div class="lvl lvl{{data.level}}">{{data.level}}</div>
+              <div class="fetter fetter{{data.fetter}}">{{data.fetter}}</div>
+              <div class="cons"><span class="life{{data.actived_constellation_num}}">{{data.actived_constellation_num}}</span></div>
+              <div class="talent lv{{data.a_lvl}}">{{data.a}}</div>
+              <div class="talent lv{{data.e_lvl}} {{data.e_plus ? 'talent_plus':''}}">{{data.e}}</div>
+              <div class="talent lv{{data.q_lvl}} {{data.q_plus ? 'talent_plus':''}}">{{data.q}}</div>
+              <div class="weapon for_weapon weapon_{{data.weapon.rarity}}">
+                {{if data.weapon_name}}
+                <div class="weapon_box">
 
-  <div class="char-info">
-    <div class="container-char-info character-briefing">
-      <span class="char-level">Lv.{{ data.level }}</span>
-      <span class="char-fetter">好感{{ data.fetter }}</span>
-    </div>
-    <div class="container-char-info weapon-briefing" :style="additionalStyle">
-      <span class="weapon-name">{{ data.weapon.name }}</span>
-      <span class="weapon-affix">精{{ data.weapon.affix_level }}</span>
-    </div>
-  </div>
-</div>`;
+                  <span class="weapon_lv">Lv{{data.weapon.level}}</span>
+
+                  <span class="weapon_alv weapon_alv_{{data.weapon.affix_level}}">{{data.weapon.affix_level}}</span>
+                  <img src="{{_res_path}}genshin/logo/weapon/{{data.weapon.name}}.png"/>
+                  <span class="weapon_name">{{abbr[data.weapon.name] || data.weapon.name}}</span>
+                </div>
+                {{/if}}
+              </div>
+
+            </div>`;
 const AvatarBox = defineComponent({
   name: "AvatarBox",
   template: avatarTemplate,
