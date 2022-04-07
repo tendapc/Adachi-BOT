@@ -22,6 +22,7 @@ const __API = {
   MYB_POST_FULL_URL: "https://bbs-api.mihoyo.com/post/api/getPostFull",
   MYB_UPVOTE_URL: "https://bbs-api.mihoyo.com/apihub/sapi/upvotePost",
   MYB_SHARE_URL: "https://bbs-api.mihoyo.com/apihub/api/getShareConf",
+  DETAIL_URL: "https://api-takumi.mihoyo.com/event/e20200928calculate/v1/sync/avatar/detail",
 };
 const HEADERS = {
   "User-Agent":
@@ -181,6 +182,25 @@ function mysReSignIn(role_id, server, cookie) {
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
+}
+
+function getAvatarDetail(uid, region, avatar_id, cookie) {
+    const query = {
+        uid: uid,
+        region: region,
+        avatar_id: avatar_id,
+    };
+
+    return fetch(`${__API.DETAIL_URL}?${new URLSearchParams(query)}`, {
+        method: "GET",
+        qs: query,
+        headers: {
+            ...HEADERS,
+            DS: getDS(query),
+            Cookie: cookie,
+            Referer: __API.REFERER_URL,
+        },
+    }).then((res) => res.json());
 }
 
 function getLedger(bind_uid, bind_region, cookie, month = 0) {
@@ -389,6 +409,19 @@ async function signInfoPromise(uid, server, userID, bot) {
   }
 
   return data;
+}
+
+async function getAvatarDetailPromise(uid, server, avatar_id, userID, bot) {
+    const cookie = await getUserCookie(uid, bot);
+    if (!cookie) return Promise.reject(`未设置私人cookie`);
+    bot.logger.debug(`getAvatarDetail ${uid} ${server} ${cookie}`);
+    const { retcode, message, data } = await getAvatarDetail(uid, server, avatar_id, cookie);
+
+    if (retcode !== 0) {
+        return Promise.reject(`米游社接口报错: ${message}`);
+    }
+
+    return data;
 }
 
 async function resignInfoPromise(uid, server, userID, bot) {
@@ -746,6 +779,7 @@ export {
   setUserCookie,
   getUserCookie,
   mybCookiePromise,
+  getAvatarDetailPromise,
   setMYBCookie,
   getMYBCookie,
   setCacheTimeout,

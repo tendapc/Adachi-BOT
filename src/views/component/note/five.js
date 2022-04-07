@@ -52,7 +52,7 @@ const template = html`
 `;
 
 export default defineComponent({
-  name: "genshinCard",
+  name: "genshinFive",
   template: template,
   components: {
     SectionTitle,

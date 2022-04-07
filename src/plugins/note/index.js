@@ -2,7 +2,8 @@
 import { getID } from "../../utils/id.js";
 import { render } from "../../utils/render.js";
 import db from "#utils/database";
-import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
+import { doTalentList } from "#plugins/note/talentList";
+import { baseDetail } from "#utils/detail";
 import { filterWordsByRegex } from "#utils/tools";
 import {
   changeAuto,
@@ -174,7 +175,13 @@ async function Plugin(msg) {
     return;
   }
   try {
-    if (hasEntrance(msg.text, "note", "fivestar")) {
+      if (hasEntrance(msg.text, "note", "talent_list")) {
+          if ((await getUserCookie(uid, msg.bot)) == undefined) {
+              message = `未设置私人Cookie`;
+          } else {
+              message = await doTalentList(msg, uid, region);
+          }
+      }else if (hasEntrance(msg.text, "note", "fivestar")) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {

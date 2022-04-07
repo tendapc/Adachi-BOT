@@ -472,6 +472,7 @@ note:
     - ^开启自动签到\s*$
     - ^关闭自动签到\s*$
     - ^五星统计
+    - ^(五星|四星)?(技能|练度)+(汇总|统计|列表)
   functions:
     set_user_cookie:
       weights: 9998
@@ -576,6 +577,13 @@ note:
       description:
       entrance:
         - ^五星统计
+    talent_list:
+      weights: 9199
+      name:
+      usage:
+      description:
+      entrance:
+        - ^技能汇总
 
 nikename:
   enable: true
