@@ -2,6 +2,7 @@ import lodash from "lodash";
 import { getInfo } from "#utils/api";
 import db from "#utils/database";
 import { getAvatarDetailPromise } from "./noteDetail.js";
+import { render } from "#utils/render";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -30,6 +31,7 @@ async function doAvatarDetail(uid, server, avatar, msg) {
     }
     if (avatar.actived_constellation_num >= 3) {
       const info = await getInfo(avatar.name);
+      msg.bot.logger.debug(`avatar:${JSON.stringify(info)}`);
       if (info && info.constellations.length >= 5) {
         if (info.constellations[2].includes("元素战技")) {
           skill.e.level_current += 3;

@@ -22,6 +22,7 @@ function initDB() {
   db.init("time");
   db.init("note", { user: [], cookie: [], myb: [], auto: [] });
   db.init("nikename", { uid: [] });
+  db.init("talent", { user: [] });
 
   mysNewsTryToResetDB();
 }
