@@ -104,9 +104,8 @@ async function doTalentList(msg, uid, region, args) {
     for (var i = 0; i < others.length; i++) {
       avatars[avatars.length] = others[i];
     }
-      value.avatars = avatars;
-    if (value.avatars.length > 0)
-      db.update("talent", "user", { uid }, value);
+    value.avatars = avatars;
+    if (value.avatars.length > 0) db.update("talent", "user", { uid }, value);
   }
 
   let talent = {};
