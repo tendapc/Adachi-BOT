@@ -20,6 +20,8 @@ const avatarTemplate = html`<div class="avatar">
   <div class="talent" :class="'lv'+data.skills.q_lvl + (data.skills.q_plus ? ' talent_plus':'')">
     {{data.skills.q.level_current}}
   </div>
+<div class="weapon for_weapon" :class="' weapon_' + data.weapon.rarity">
+</div>
 </div>`;
 const AvatarBox = defineComponent({
   name: "AvatarBox",

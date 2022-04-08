@@ -301,7 +301,7 @@ img.avatar {
 .talent_list {
   display: table;
   border-collapse: collapse;
-  width: calc(100% - 30px);
+  width: calc(100% -5px);
   margin: 0 -15px -5px;
   font-size: 12px;
   /* border-radius: 0 0 15px 15px; */
