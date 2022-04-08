@@ -67,7 +67,7 @@ async function doTalentList(msg, uid, region, args) {
     value = {};
     value.time = nowTime;
     const data = db.get("info", "user", { uid });
-    if (!data) return "请先获取角色信息";
+    if (!data || !data.avatars) return "请先获取角色信息";
     value.nickname = data.nickname;
     value.uid = data.uid;
     let avatars = [];
@@ -104,8 +104,9 @@ async function doTalentList(msg, uid, region, args) {
     for (var i = 0; i < others.length; i++) {
       avatars[avatars.length] = others[i];
     }
-    value.avatars = avatars;
-    db.update("talent", "user", { uid }, value);
+      value.avatars = avatars;
+    if (value.avatars.length > 0)
+      db.update("talent", "user", { uid }, value);
   }
 
   let talent = {};
