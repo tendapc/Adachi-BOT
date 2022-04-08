@@ -629,7 +629,7 @@ img.avatar {
 }
 
 .talent_list .lv5 {
-  background: url("./crown.png") center center no-repeat rgba(255, 36, 26, .55);
+  background: url("./crown.png") center center no-repeat rgba(255, 36, 26, 0.55);
   background-size: contain;
 }
 
