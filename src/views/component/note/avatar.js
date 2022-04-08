@@ -20,7 +20,13 @@ const avatarTemplate = html`<div class="avatar">
   <div class="talent" :class="'lv'+data.skills.q_lvl + (data.skills.q_plus ? ' talent_plus':'')">
     {{data.skills.q.level_current}}
   </div>
-  <div class="weapon for_weapon" :class="' weapon_' + data.weapon.rarity"></div>
+  <div class="weapon for_weapon" :class="' weapon_' + data.weapon.rarity">
+<div class="weapon_box">
+<span class="weapon_lv">Lv{{data.weapon.level}}</span>
+<span class="weapon_alv" :class="' weapon_alv_'+data.weapon.affix_level">{{data.weapon.affix_level}}</span>
+<span class="weapon_name">{{data.weapon.name}}</span>
+</div>
+</div>
 </div>`;
 const AvatarBox = defineComponent({
   name: "AvatarBox",
