@@ -24,7 +24,7 @@ const avatarTemplate = html`<div class="avatar">
     <div class="weapon_box">
       <span class="weapon_lv">Lv{{data.weapon.level}}</span>
       <span class="weapon_alv" :class="' weapon_alv_'+data.weapon.affix_level">{{data.weapon.affix_level}}</span>
-<img :src="data.weapon.icon"/>
+      <img :src="data.weapon.icon" />
       <span class="weapon_name">{{data.weapon.name}}</span>
     </div>
   </div>
