@@ -15,7 +15,6 @@ const template = html`
     </div>
     <div class="info-container">
 <div class="talent_list">
-<div class="index">#</div>
             <div class="avatar th">
               <div class="name">
                 角色
