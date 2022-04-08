@@ -10,7 +10,8 @@ function sleep(ms) {
 
 async function doAvatarDetail(uid, server, avatar, msg) {
   let skillres = await getAvatarDetailPromise(uid, server, avatar.id, msg.uid, msg.bot);
-  let skill = {};
+    let skill = {};
+    const skill_lvl = '0,1,1,1,2,2,3,3,3,4,5'.split(',');
   if (skillres && skillres.skill_list) {
     skill.id = avatar.id;
     let skill_list = lodash.orderBy(skillres.skill_list, ["id"], ["asc"]);
@@ -18,18 +19,18 @@ async function doAvatarDetail(uid, server, avatar, msg) {
       val.level_original = val.level_current;
       if (val.name.includes("普通攻击")) {
         skill.a = val;
-        skill.a_lvl = 1;
+        skill.a_lvl = skill_lvl[skill.a.level_current];
         continue;
       }
       if (val.max_level >= 10 && !skill.e) {
         skill.e = val;
-        skill.e_lvl = 1;
+        skill.e_lvl = skill_lvl[skill.e.level_current];
         skill.e_plus = false;
         continue;
       }
       if (val.max_level >= 10 && !skill.q) {
         skill.q = val;
-        skill.q_lvl = 1;
+        skill.q_lvl = skill_lvl[skill.q.level_current];
         skill.q_plus = false;
         continue;
       }
