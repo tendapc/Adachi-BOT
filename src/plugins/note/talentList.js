@@ -106,6 +106,7 @@ async function doTalentList(msg, uid, region, args) {
     }
     value.avatars = avatars;
     if (value.avatars.length > 0) db.update("talent", "user", { uid }, value);
+    else return "请先获取角色信息";
   }
 
   let talent = {};
