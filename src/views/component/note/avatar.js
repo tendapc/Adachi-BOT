@@ -2,8 +2,8 @@ import { html } from "../common/utils.js";
 
 const { defineComponent } = window.Vue;
 const avatarTemplate = html`<div class="avatar">
-  <div class="index star{{data.rarity}}"></div>
-  <div class="name_cont star{{data.rarity}}">
+  <div class="index" :class="data.rarity === 5 ? 'star5' : 'star4'"></div>
+  <div class="name_cont" :class="data.rarity === 5 ? 'star5' : 'star4'">
     <div class="name">
       <div class="avatar_img">
         <img :src="data.icon" onerror="whenError(this)" />
@@ -11,8 +11,8 @@ const avatarTemplate = html`<div class="avatar">
       <div class="avatar_name">{{data.name}}</div>
     </div>
   </div>
-  <div class="lvl lvl{{data.level}}">{{data.level}}</div>
-  <div class="fetter fetter{{data.fetter}}">{{data.fetter}}</div>
+  <div class="lvl" :class="data.level === 90 ? 'lvl90':''">{{data.level}}</div>
+  <div class="fetter" :class="data.fetter === 10 ? 'fetter10':''">{{data.fetter}}</div>
   <div class="cons"><span class="life{{data.actived_constellation_num}}">{{data.actived_constellation_num}}</span></div>
   <div class="talent lv{{data.skills.a_lvl}}">{{data.skills.a.level_current}}</div>
   <div class="talent lv{{data.skills.e_lvl}} {{data.skills.e_plus ? 'talent_plus':''}}">{{data.skills.e.level_current}}</div>
