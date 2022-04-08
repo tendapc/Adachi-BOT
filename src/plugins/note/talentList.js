@@ -63,11 +63,11 @@ async function doAvatarDetail(uid, server, avatar, msg) {
 async function doTalentList(msg, uid, region, args) {
   const nowTime = new Date().valueOf() / 1000;
   let value = db.get("talent", "user", { uid });
-  if (!value || nowTime - value.time > 6 * 60 * 60) {
+  const data = db.get("info", "user", { uid });
+  if (!data || !data.avatars) return "请先获取角色信息";
+  if (!value || !value.avatars || nowTime - value.time > 6 * 60 * 60 || data.avatars.length > value.avatars.length) {
     value = {};
     value.time = nowTime;
-    const data = db.get("info", "user", { uid });
-    if (!data || !data.avatars) return "请先获取角色信息";
     value.nickname = data.nickname;
     value.uid = data.uid;
     let avatars = [];
