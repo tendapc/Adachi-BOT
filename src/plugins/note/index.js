@@ -157,7 +157,7 @@ async function Plugin(msg) {
   let uid, region;
   let message = undefined;
   if ("string" === typeof dbInfo) {
-    await msg.bot.say(sendID, dbInfo, msg.type, msg.uid);
+    await msg.bot.say(msg.sid, dbInfo, msg.type, msg.uid);
     return;
   }
 
