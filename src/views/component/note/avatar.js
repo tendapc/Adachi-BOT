@@ -11,8 +11,14 @@ const avatarTemplate = html`<div class="avatar">
     </div>
   </div>
   <div class="lvl" :class="data.level === 90 ? 'lvl90':''">{{data.level}}</div>
-  <div class="fetter" :class="(data.fetter === 10 || data.id === 10000007 || data.id === 10000005) ? 'fetter10':''">{{(data.id === 10000007 || data.id === 10000005)?'':''+data.fetter}}</div>
-  <div class="cons"><span :class="'life'+data.actived_constellation_num">{{data.id === 10000062 ? '-':''+data.actived_constellation_num}}</span></div>
+  <div class="fetter" :class="(data.fetter === 10 || data.id === 10000007 || data.id === 10000005) ? 'fetter10':''">
+    {{(data.id === 10000007 || data.id === 10000005)?'':''+data.fetter}}
+  </div>
+  <div class="cons">
+    <span :class="'life'+data.actived_constellation_num"
+      >{{data.id === 10000062 ? '-':''+data.actived_constellation_num}}</span
+    >
+  </div>
   <div class="talent" :class="'lv'+data.skills.a_lvl">{{data.skills.a.level_current}}</div>
   <div class="talent" :class="'lv'+data.skills.e_lvl + (data.skills.e_plus ? ' talent_plus':'')">
     {{data.skills.e.level_current}}
