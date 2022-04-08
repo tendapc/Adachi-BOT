@@ -301,7 +301,7 @@ img.avatar {
 .talent_list {
   display: table;
   border-collapse: collapse;
-  width: calc(100% -5px);
+  width: calc(100% - 10px);
   margin: 0 -15px -5px;
   font-size: 12px;
   /* border-radius: 0 0 15px 15px; */
@@ -629,7 +629,7 @@ img.avatar {
 }
 
 .talent_list .lv5 {
-  background: url("./crown.png") center center no-repeat rgba(255, 36, 26, 0.55);
+  background: url("./crown.png") center center no-repeat rgba(255, 36, 26, .55);
   background-size: contain;
 }
 
