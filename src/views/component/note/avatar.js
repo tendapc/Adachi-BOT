@@ -7,7 +7,7 @@ const avatarTemplate = html`<div class="avatar">
       <div class="avatar_img">
         <img :src="data.icon" onerror="whenError(this)" />
       </div>
-      <div class="avatar_name">{{data.name}}</div>
+      <div class="avatar_name">{{data.id === 10000007 ? 'гЋ' : data.id === 10000005 ? 'Пе' : data.name}}</div>
     </div>
   </div>
   <div class="lvl" :class="data.level === 90 ? 'lvl90':''">{{data.level}}</div>
