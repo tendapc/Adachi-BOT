@@ -10,8 +10,8 @@ function sleep(ms) {
 
 async function doAvatarDetail(uid, server, avatar, msg) {
   let skillres = await getAvatarDetailPromise(uid, server, avatar.id, msg.uid, msg.bot);
-    let skill = {};
-    const skill_lvl = '0,1,1,1,2,2,3,3,3,4,5'.split(',');
+  let skill = {};
+  const skill_lvl = "0,1,1,1,2,2,3,3,3,4,5".split(",");
   if (skillres && skillres.skill_list) {
     skill.id = avatar.id;
     let skill_list = lodash.orderBy(skillres.skill_list, ["id"], ["asc"]);
