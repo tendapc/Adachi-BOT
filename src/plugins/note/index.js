@@ -313,6 +313,7 @@ ${await doGetMYB(msg, uid, region)}`;
     }
   } catch (e) {
     if ("" !== e) {
+      msg.bot.logger.debug(`error：${JSON.stringify(e)}`);
       await msg.bot.say(msg.sid, ` ${e}`, msg.type, msg.uid);
       return;
     }
