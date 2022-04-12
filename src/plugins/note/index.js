@@ -179,16 +179,24 @@ async function Plugin(msg) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
-        const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
-        await characterDetail(...baseInfo, detailInfo, false, msg.bot);
+          try {
+              const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
+              await characterDetail(...baseInfo, detailInfo, false, msg.bot);
+          } catch (e) {
+
+          }
         message = await doTalentList(msg, uid, region, args);
       }
     } else if (hasEntrance(msg.text, "note", "fivestar")) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
-        const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
-        await characterDetail(...baseInfo, detailInfo, false, msg.bot);
+          try {
+              const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
+              await characterDetail(...baseInfo, detailInfo, false, msg.bot);
+          } catch (e) {
+
+          }
         const data = db.get("info", "user", { uid });
         var fiveStar = {};
         fiveStar.up_avatars = [];
