@@ -3,7 +3,7 @@ import { getID } from "../../utils/id.js";
 import { render } from "../../utils/render.js";
 import { doTalentList } from "#plugins/note/talentList";
 import db from "#utils/database";
-import { baseDetail } from "#utils/detail";
+import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
 import { filterWordsByRegex } from "#utils/tools";
 import {
   changeAuto,
@@ -179,12 +179,16 @@ async function Plugin(msg) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
+        const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
+        await characterDetail(...baseInfo, detailInfo, false, msg.bot);
         message = await doTalentList(msg, uid, region, args);
       }
     } else if (hasEntrance(msg.text, "note", "fivestar")) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
+        const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
+        await characterDetail(...baseInfo, detailInfo, false, msg.bot);
         const data = db.get("info", "user", { uid });
         var fiveStar = {};
         fiveStar.up_avatars = [];
