@@ -152,7 +152,11 @@ async function doSetMYBCookie(msg, uid) {
 }
 
 async function Plugin(msg) {
-  const dbInfo = await getID(msg.text, msg.uid); // 米游社 ID
+    let dbInfo = undefined; // 米游社 ID
+    if (hasEntrance(msg.text, "note", "set_user_cookie") || hasEntrance(msg.text, "note", "set_myb_cookie")) {
+        dbInfo = await getID("", msg.uid);
+    } else
+        dbInfo = await getID(msg.text, msg.uid);
   const args = filterWordsByRegex(msg.text, ...global.command.functions.entrance.card);
   let uid, region;
   let message = undefined;
