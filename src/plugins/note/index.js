@@ -171,6 +171,11 @@ async function Plugin(msg) {
     uid = baseInfo[0];
     region = baseInfo[1];
   } catch (e) {
+      try {
+          msg.bot.logger.debug(`获取游戏UID失败：${JSON.stringify(e)}`);
+      } catch {
+
+      }
     await msg.bot.say(msg.sid, `获取游戏UID失败：${e}`, msg.type, msg.uid);
     return;
   }
