@@ -143,8 +143,10 @@ function getUCookie(user, bot) {
 }
 
 function getCookie(uid, use, bot) {
-  let userCookie = getUCookie(uid, bot);
-  if (userCookie != undefined) return userCookie;
+  if (uid != undefined) {
+    let userCookie = getUCookie(uid, bot);
+    if (userCookie != undefined) return userCookie;
+  }
   if ("string" === typeof uid) {
     uid = parseInt(uid);
   }
