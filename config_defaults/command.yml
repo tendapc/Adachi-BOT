@@ -537,7 +537,7 @@ note:
         - ^米游币
     sign_in:
       weights: 9799
-      name: 米游社签到
+      name: 签到
       usage: "[游戏内UID、@群友]"
       description:
       entrance:
