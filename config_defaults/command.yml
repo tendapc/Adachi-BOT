@@ -491,7 +491,7 @@ note:
     get_note:
       weights: 9899
       name: 实时便笺
-      usage: "[游戏内UID、@群友]"
+      usage: "[米游社通行证ID、@群友]"
       description:
       entrance:
         - ^实时便笺
@@ -538,7 +538,7 @@ note:
     sign_in:
       weights: 9799
       name: 签到
-      usage: "[游戏内UID、@群友]"
+      usage: "[米游社通行证ID、@群友]"
       description:
       entrance:
         - ^签到
