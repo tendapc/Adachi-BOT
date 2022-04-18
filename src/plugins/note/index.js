@@ -165,7 +165,7 @@ async function Plugin(msg) {
   }
 
   if (!dbInfo) {
-    msg.bot.say(msg.sid, "请先绑定米游社通行证 ID。", msg.type, msg.uid, true);
+    await msg.bot.say(msg.sid, "请先绑定米游社通行证 ID。", msg.type, msg.uid, true);
     return;
   }
   let baseInfo;
@@ -175,9 +175,10 @@ async function Plugin(msg) {
     region = baseInfo[1];
   } catch (e) {
     try {
-      msg.bot.logger.debug(`MHY${dbInfo}：${JSON.stringify(e)}`);
-    } catch {}
-    await msg.bot.say(msg.sid, `获取游戏UID失败：${e}`, msg.type, msg.uid);
+      await msg.bot.say(msg.sid, `获取游戏UID失败：${JSON.stringify(e)}`, msg.type, msg.uid);
+    } catch {
+      await msg.bot.say(msg.sid, `获取游戏UID失败：${e}`, msg.type, msg.uid);
+    }
     return;
   }
   try {
