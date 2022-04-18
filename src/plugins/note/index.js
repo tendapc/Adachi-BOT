@@ -152,11 +152,10 @@ async function doSetMYBCookie(msg, uid) {
 }
 
 async function Plugin(msg) {
-    let dbInfo = undefined; // 米游社 ID
-    if (hasEntrance(msg.text, "note", "set_user_cookie") || hasEntrance(msg.text, "note", "set_myb_cookie")) {
-        dbInfo = await getID("", msg.uid);
-    } else
-        dbInfo = await getID(msg.text, msg.uid);
+  let dbInfo = undefined; // 米游社 ID
+  if (hasEntrance(msg.text, "note", "set_user_cookie") || hasEntrance(msg.text, "note", "set_myb_cookie")) {
+    dbInfo = await getID("", msg.uid);
+  } else dbInfo = await getID(msg.text, msg.uid);
   const args = filterWordsByRegex(msg.text, ...global.command.functions.entrance.card);
   let uid, region;
   let message = undefined;
@@ -175,11 +174,9 @@ async function Plugin(msg) {
     uid = baseInfo[0];
     region = baseInfo[1];
   } catch (e) {
-      try {
-          msg.bot.logger.debug(`MHY${dbInfo}：${JSON.stringify(e)}`);
-      } catch {
-
-      }
+    try {
+      msg.bot.logger.debug(`MHY${dbInfo}：${JSON.stringify(e)}`);
+    } catch {}
     await msg.bot.say(msg.sid, `获取游戏UID失败：${e}`, msg.type, msg.uid);
     return;
   }
@@ -188,24 +185,20 @@ async function Plugin(msg) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
-          try {
-              const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
-              await characterDetail(...baseInfo, detailInfo, false, msg.bot);
-          } catch (e) {
-
-          }
+        try {
+          const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
+          await characterDetail(...baseInfo, detailInfo, false, msg.bot);
+        } catch (e) {}
         message = await doTalentList(msg, uid, region, args);
       }
     } else if (hasEntrance(msg.text, "note", "fivestar")) {
       if ((await getUserCookie(uid, msg.bot)) == undefined) {
         message = `未设置私人Cookie`;
       } else {
-          try {
-              const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
-              await characterDetail(...baseInfo, detailInfo, false, msg.bot);
-          } catch (e) {
-
-          }
+        try {
+          const detailInfo = await indexDetail(...baseInfo, msg.uid, msg.bot);
+          await characterDetail(...baseInfo, detailInfo, false, msg.bot);
+        } catch (e) {}
         const data = db.get("info", "user", { uid });
         var fiveStar = {};
         fiveStar.up_avatars = [];

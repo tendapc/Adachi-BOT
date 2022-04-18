@@ -1,4 +1,5 @@
 import { html } from "../common/utils.js";
+
 const { defineComponent } = window.Vue;
 const avatarTemplate = html`<div class="avatar">
   <div class="name_cont" :class="data.rarity === 5 ? 'star5' : 'star4'">
@@ -14,9 +15,7 @@ const avatarTemplate = html`<div class="avatar">
     {{(data.id === 10000007 || data.id === 10000005)?'':''+data.fetter}}
   </div>
   <div class="cons">
-    <span :class="'life'+data.constellationNum"
-      >{{data.id === 10000062 ? '-':''+data.actived_constellation_num}}</span
-    >
+    <span :class="'life'+data.constellationNum">{{data.id === 10000062 ? '-':''+data.actived_constellation_num}}</span>
   </div>
   <div class="talent" :class="'lv'+data.skills.a_lvl">{{data.skills.a.level_current}}</div>
   <div class="talent" :class="'lv'+data.skills.e_lvl + (data.skills.e_plus ? ' talent_plus':'')">
@@ -35,14 +34,13 @@ const avatarTemplate = html`<div class="avatar">
   </div>
 </div>`;
 const AvatarBox = defineComponent({
-    name: "AvatarBox",
-    template: avatarTemplate,
-    props: {
-        data: Object,
-    },
-    setup(props) {
-
-        return {};
-    },
+  name: "AvatarBox",
+  template: avatarTemplate,
+  props: {
+    data: Object,
+  },
+  setup(props) {
+    return {};
+  },
 });
 export { AvatarBox };
