@@ -458,7 +458,6 @@ note:
     - ^(实时)?(便笺|树脂|便签)\s*$
     - ^(实时)?(便笺|树脂|便签)\s+\d+.*$
     - ^(实时)?(便笺|树脂|便签)\s*\[CQ:at,type=.*?,qq=.*$
-    - ^图片便签
     - ^签到\s*$
     - ^签到\s+\d+.*$
     - ^签到\s*\[CQ:at,type=.*?,qq=.*$
@@ -500,18 +499,11 @@ note:
         - ^树脂
         - ^实时便签
         - ^便签
-    get_pic_note:
-      weights: 9899
-      name:
-      usage:
-      description:
-      entrance:
-        - ^图片便签
     auto_sign_in:
       weights: 9701
       name: 开启自动签到
       usage:
-      description:
+      description: 加入自动签到列表（凌晨1点开始当天的签到任务，每隔10分钟处理10个）
       entrance:
         - ^开启自动签到
     cancel_auto_sign_in:
@@ -530,16 +522,16 @@ note:
         - ^米游币Cookie
     get_myb:
       weights: 9199
-      name:
+      name: 米游币
       usage:
-      description:
+      description: 获取米游币（签到浏览点赞分享）
       entrance:
         - ^米游币
     sign_in:
       weights: 9799
       name: 签到
       usage: "[米游社通行证ID、@群友]"
-      description:
+      description: 米游社每日签到
       entrance:
         - ^签到
     re_sign:
@@ -572,16 +564,16 @@ note:
         - ^上上月札记
     fivestar:
       weights: 9299
-      name:
-      usage:
+      name: 五星统计
+      usage: "[米游社通行证ID、@群友]"
       description:
       entrance:
         - ^五星统计
     talent_list:
       weights: 9199
-      name:
-      usage:
-      description:
+      name: 练度统计
+      usage: "[米游社通行证ID、@群友]"
+      description: 
       entrance:
         - ^(五星|四星)?(技能|练度)+(汇总|统计|列表)
 
