@@ -22,7 +22,7 @@ const __API = {
   MYB_POST_FULL_URL: "https://bbs-api.mihoyo.com/post/api/getPostFull",
   MYB_UPVOTE_URL: "https://bbs-api.mihoyo.com/apihub/sapi/upvotePost",
   MYB_SHARE_URL: "https://bbs-api.mihoyo.com/apihub/api/getShareConf",
-  DETAIL_URL: "https://api-takumi-record.mihoyo.com/event/e20200928calculate/v1/sync/avatar/detail",
+  DETAIL_URL: "https://api-takumi.mihoyo.com/event/e20200928calculate/v1/sync/avatar/detail",
 };
 const HEADERS = {
   "User-Agent":
