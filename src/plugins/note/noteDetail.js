@@ -15,7 +15,7 @@ const __API = {
   RESIGN_URL: "https://api-takumi.mihoyo.com/event/bbs_sign_reward/resign",
   REWARD_URL: "https://api-takumi.mihoyo.com/event/bbs_sign_reward/home",
   LEDGER_URL: "https://hk4e-api.mihoyo.com/event/ys_ledger/monthInfo",
-  GET_TOKEN_URL: "https://api-takumi-record.mihoyo.com/auth/api/getMultiTokenByLoginTicket",
+  GET_TOKEN_URL: "https://api-takumi.mihoyo.com/auth/api/getMultiTokenByLoginTicket",
   MISSION_STATE_URL: "https://bbs-api.mihoyo.com/apihub/sapi/getUserMissionsState",
   MYB_SIGN_URL: "https://bbs-api.mihoyo.com/apihub/sapi/signIn",
   MYB_POST_LIST_URL: "https://bbs-api.mihoyo.com/post/api/getForumPostList",
