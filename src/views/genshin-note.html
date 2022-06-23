@@ -307,7 +307,7 @@
           myDate.getMonth() + 1 + "月" + myDate.getDate() + "日<br/>" + myDate.Format("hh:mm:ss");
 
         const rrt = parseInt(params.note.resin_recovery_time) + (params.baseTime - nowTime) / 1000;
-
+        const rrd = params.note.remain_resin_discount_num;
         if (rrt <= 0) {
           document.getElementById("rrt").innerHTML = "树脂已回满";
           document.getElementById("resin").innerHTML = "160/160";
@@ -382,7 +382,6 @@
           document.getElementById("task").innerHTML = "完成";
         } else if (task != null) document.getElementById("task").innerHTML = task + "/4";
 
-        const rrd = params.note.remain_resin_discount_num;
 
         if (rrd == 0) document.getElementById("rrd").innerHTML = "完成";
         else if (rrd != null) document.getElementById("rrd").innerHTML = 3 - rrd + "/3";
