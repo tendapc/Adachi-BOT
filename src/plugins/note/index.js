@@ -95,21 +95,22 @@ async function doLedger(msg, uid, region) {
 async function doPicNote(msg, uid, region) {
   const noteInfo = await notePromise(uid, region, msg.uid, msg.bot);
   const note = noteInfo[1];
-    const baseTime = noteInfo[0];
-    let bg = undefined;
-    try {
-        const bgPath = "../../views/component/note/";
-        let bgs = [];
-        let filesArr = fs.readdirSync(bgPath, { encoding: 'utf8', withFileTypes: true });
-        filesArr.forEach(item => {
-            if ((item.name.startWith("background") || item.name.startWith("bg")) && (item.name.endsWith(".png") || item.name.endsWith(".jpg"))) {
-                bgs.push(item.name);
-            }
-        });
-        bg = "component/note/" + bgs[Math.floor(Math.random() * bgs.length)];
-    } catch(e) {
-
-    }
+  const baseTime = noteInfo[0];
+  let bg = undefined;
+  try {
+    const bgPath = "../../views/component/note/";
+    let bgs = [];
+    let filesArr = fs.readdirSync(bgPath, { encoding: "utf8", withFileTypes: true });
+    filesArr.forEach((item) => {
+      if (
+        (item.name.startWith("background") || item.name.startWith("bg")) &&
+        (item.name.endsWith(".png") || item.name.endsWith(".jpg"))
+      ) {
+        bgs.push(item.name);
+      }
+    });
+    bg = "component/note/" + bgs[Math.floor(Math.random() * bgs.length)];
+  } catch (e) {}
   render(msg, { baseTime, note, bg }, "genshin-note");
   return undefined;
 }
