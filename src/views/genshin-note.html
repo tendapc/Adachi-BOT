@@ -49,7 +49,7 @@
         font-weight: bold;
         font-size: 30px;
       }
-      #rrt2 {
+      #rrt_next {
         position: absolute;
         width: 300px;
         height: 26px;
@@ -254,7 +254,7 @@
       <div id="date"></div>
       <div id="rrt"></div>
       <div id="resin"></div>
-      <div id="rrt2"></div>
+      <div id="rrt_next"></div>
       <div id="task"></div>
       <div id="rrd"></div>
       <div id="transformer"></div>
@@ -311,11 +311,11 @@
         if (rrt <= 0) {
           document.getElementById("rrt").innerHTML = "树脂已回满";
           document.getElementById("resin").innerHTML = "160/160";
-          document.getElementById("rrt2").innerHTML = "";
+          document.getElementById("rrt_next").innerHTML = "";
         } else {
+          document.getElementById("rrt").innerHTML = "树脂将在 " + getDayTime(myDate, rrt) + " 回满";
           let r_n = parseInt((76800 - rrt) / 60 / 8);
           document.getElementById("resin").innerHTML = r_n + "/160";
-          document.getElementById("rrt").innerHTML = "树脂将在 " + getDayTime(myDate, rrt) + " 回满";
           let next = parseInt(r_n / 40 + 1) * 40;
           if (rrd != 0 && r_n < 30) {
             next = 30;
@@ -324,7 +324,7 @@
           } else if (r_n < 60) {
             next = 60;
           }
-          document.getElementById("rrt2").innerHTML =
+          document.getElementById("rrt_next").innerHTML =
             "将在" + getDayTime(myDate, rrt + next * 8 * 60 - 76800) + "回复至" + next;
         }
 
