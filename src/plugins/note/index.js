@@ -98,7 +98,7 @@ async function doPicNote(msg, uid, region) {
     const baseTime = noteInfo[0];
     let bg = undefined;
     try {
-        const bgPath = "../../views/component/note/";
+        const bgPath = process.cwd() + "/src/views/component/note/";
         let bgs = [];
         let filesArr = fs.readdirSync(bgPath, { encoding: 'utf8', withFileTypes: true });
         filesArr.forEach(item => {
