@@ -49,6 +49,16 @@
         font-weight: bold;
         font-size: 30px;
       }
+        #rrt2 {
+            position: absolute;
+            width: 300px;
+            height: 26px;
+            left: 200px;
+            top: 243px;
+            color: #7b8386;
+            font-weight: bold;
+            font-size: 16px;
+        }
 
       #task {
         position: absolute;
@@ -240,28 +250,29 @@
   </head>
 
   <body>
-    <div class="app">
-      <div id="date"></div>
-      <div id="rrt"></div>
-      <div id="resin"></div>
-      <div id="task"></div>
-      <div id="rrd"></div>
-      <div id="transformer"></div>
-      <div id="tfrt"></div>
-      <div id="hc"></div>
-      <div id="hcrt"></div>
-      <div id="ert"></div>
-      <div id="e1"></div>
-      <div id="e2"></div>
-      <div id="e3"></div>
-      <div id="e4"></div>
-      <div id="e5"></div>
-      <img id="e1_img" style="visibility: hidden" />
-      <img id="e2_img" style="visibility: hidden" />
-      <img id="e3_img" style="visibility: hidden" />
-      <img id="e4_img" style="visibility: hidden" />
-      <img id="e5_img" style="visibility: hidden" />
-    </div>
+      <div class="app">
+          <div id="date"></div>
+          <div id="rrt"></div>
+          <div id="resin"></div>
+          <div id="rrt2"></div>
+          <div id="task"></div>
+          <div id="rrd"></div>
+          <div id="transformer"></div>
+          <div id="tfrt"></div>
+          <div id="hc"></div>
+          <div id="hcrt"></div>
+          <div id="ert"></div>
+          <div id="e1"></div>
+          <div id="e2"></div>
+          <div id="e3"></div>
+          <div id="e4"></div>
+          <div id="e5"></div>
+          <img id="e1_img" style="visibility: hidden" />
+          <img id="e2_img" style="visibility: hidden" />
+          <img id="e3_img" style="visibility: hidden" />
+          <img id="e4_img" style="visibility: hidden" />
+          <img id="e5_img" style="visibility: hidden" />
+      </div>
     <script type="text/javascript">
       Date.prototype.Format = function (fmt) {
         //author: meizz
@@ -300,9 +311,20 @@
         if (rrt <= 0) {
           document.getElementById("rrt").innerHTML = "树脂已回满";
           document.getElementById("resin").innerHTML = "160/160";
+          document.getElementById("rrt2").innerHTML = "";
         } else {
-          document.getElementById("resin").innerHTML = parseInt((76800 - rrt) / 60 / 8) + "/160";
-          document.getElementById("rrt").innerHTML = "树脂将在 " + getDayTime(myDate, rrt) + " 回满";
+            let r_n = parseInt((76800 - rrt) / 60 / 8);
+            document.getElementById("resin").innerHTML = r_n + "/160";
+            document.getElementById("rrt").innerHTML = "树脂将在 " + getDayTime(myDate, rrt) + " 回满";
+            let next = parseInt(r_n / 40 + 1) * 40;
+            if (rrd != 0 && r_n < 30) {
+                next = 30;
+            } else if (r_n < 40) {
+                next = 40;
+            } else if (r_n < 60) {
+                next = 60;
+            }
+            document.getElementById("rrt2").innerHTML = "将在" + getDayTime(myDate, rrt + next * 8 * 60 - 76800) + "回复至" + next;
         }
 
         if (params.note.transformer != null && params.note.transformer.obtained) {
