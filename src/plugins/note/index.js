@@ -5,6 +5,7 @@ import { doTalentList } from "#plugins/note/talentList";
 import db from "#utils/database";
 import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
 import { filterWordsByRegex } from "#utils/tools";
+import fs from "fs";
 import {
   changeAuto,
   doGetMYB,
@@ -95,7 +96,16 @@ async function doPicNote(msg, uid, region) {
   const noteInfo = await notePromise(uid, region, msg.uid, msg.bot);
   const note = noteInfo[1];
   const baseTime = noteInfo[0];
-  render(msg, { baseTime, note }, "genshin-note");
+    const bgPath = "../../views/component/note/";
+    let bgs = [];
+    let filesArr = fs.readdirSync(bgPath, { encoding: 'utf8', withFileTypes: true });
+    filesArr.forEach(item => {
+        if (item.name.startWith("bg") && (item.name.endsWith(".png") || item.name.endsWith(".jpg"))) {
+            bgs.push(item.name);
+        }
+    });
+    const bg = "component/note/" + bgs[Math.floor(Math.random() * bgs.length)];
+  render(msg, { baseTime, note, bg }, "genshin-note");
   return undefined;
 }
 
