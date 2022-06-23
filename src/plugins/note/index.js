@@ -100,7 +100,7 @@ async function doPicNote(msg, uid, region) {
     let bgs = [];
     let filesArr = fs.readdirSync(bgPath, { encoding: 'utf8', withFileTypes: true });
     filesArr.forEach(item => {
-        if (item.name.startWith("bg") && (item.name.endsWith(".png") || item.name.endsWith(".jpg"))) {
+        if ((item.name.startWith("background")  || item.name.startWith("bg")) && (item.name.endsWith(".png") || item.name.endsWith(".jpg"))) {
             bgs.push(item.name);
         }
     });
