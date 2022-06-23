@@ -255,7 +255,7 @@
   </head>
 
   <body>
-    <div class="app">
+    <div class="app" id="bg">
       <div id="date"></div>
       <div id="rrt"></div>
       <div id="resin"></div>
@@ -305,7 +305,10 @@
       function loadData() {
         const params = JSON.parse(
           decodeURIComponent(escape(window.atob(new URL(window.location.href).searchParams.get("data")) || "{}"))
-        );
+          );
+          if (params.bg) {
+              document.getElementById("bg").style.backgroundImage = "url(" + params.bg + ")";
+          }
         const myDate = new Date();
         const nowTime = myDate.valueOf();
         document.getElementById("date").innerHTML =
