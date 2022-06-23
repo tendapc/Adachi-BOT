@@ -324,9 +324,9 @@
           } else if (r_n < 60) {
             next = 60;
           }
-          if(next < 160)
-          document.getElementById("rrt_next").innerHTML =
-            "将在" + getDayTime(myDate, rrt + next * 8 * 60 - 76800) + "回复至" + next;
+          if (next < 160)
+            document.getElementById("rrt_next").innerHTML =
+              "将在" + getDayTime(myDate, rrt + next * 8 * 60 - 76800) + "回复至" + next;
         }
 
         if (params.note.transformer != null && params.note.transformer.obtained) {
