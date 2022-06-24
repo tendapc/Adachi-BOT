@@ -6,6 +6,7 @@ import { doTalentList } from "#plugins/note/talentList";
 import db from "#utils/database";
 import { baseDetail, characterDetail, indexDetail } from "#utils/detail";
 import { filterWordsByRegex } from "#utils/tools";
+import format from "date-format";
 import {
   changeAuto,
   doGetMYB,
