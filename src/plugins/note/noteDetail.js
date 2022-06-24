@@ -370,15 +370,15 @@ function mybSharePost(cookie, post_id) {
 
 async function notePromise(uid, server, userID, bot) {
   const nowTime = new Date().valueOf();
-  const { data: dbData, time: lastTime } = db.get("note", "user", { uid }) || {};
+  //const { data: dbData, time: lastTime } = db.get("note", "user", { uid }) || {};
 
-  // 尝试使用缓存
-  if (dbData) {
-    if (lastTime && nowTime - lastTime < config.cacheAbyEffectTime * 16 * 60 * 1000) {
-      bot.logger.debug(`缓存：使用 ${uid} 在 ${config.cacheAbyEffectTime} 小时内的实时便笺。`);
-      return [lastTime, dbData];
-    }
-  }
+  //// 尝试使用缓存
+  //if (dbData) {
+  //  if (lastTime && nowTime - lastTime < config.cacheAbyEffectTime * 16 * 60 * 1000) {
+  //    bot.logger.debug(`缓存：使用 ${uid} 在 ${config.cacheAbyEffectTime} 小时内的实时便笺。`);
+  //    return [lastTime, dbData];
+  //  }
+  //}
 
   const cookie = await getUserCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人cookie`);
@@ -389,12 +389,12 @@ async function notePromise(uid, server, userID, bot) {
     return Promise.reject(`米游社接口报错: ${message}`);
   }
 
-  if (!db.includes("note", "user", "uid", uid)) {
-    const initData = { uid, data: [] };
-    db.push("note", "user", initData);
-  }
+  //if (!db.includes("note", "user", "uid", uid)) {
+  //  const initData = { uid, data: [] };
+  //  db.push("note", "user", initData);
+  //}
 
-  db.update("note", "user", { uid }, { data, time: nowTime });
+  //db.update("note", "user", { uid }, { data, time: nowTime });
   return [nowTime, data];
 }
 

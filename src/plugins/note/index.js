@@ -91,12 +91,19 @@ async function doLedger(msg, uid, region) {
           }%`
     }。`;
 }
-
+function getDayTime(nowTime, offset) {
+    const newTime = new Date(parseInt(nowTime.valueOf() + offset * 1000));
+    return `${nowTime.getDate() != newTime.getDate() ? "明天" : "今天"}${format("hh:mm:ss", newTime)}`;
+}
+function initCss(width, height, left, top, size = 16, color = "#7b8386") {
+    return { width, height, left, top, size, color };
+}
 async function doPicNote(msg, uid, region) {
   const noteInfo = await notePromise(uid, region, msg.uid, msg.bot);
   const note = noteInfo[1];
   const baseTime = noteInfo[0];
   let bg = undefined;
+  let items = [];
   try {
     const bgPath = process.cwd() + "/src/views/component/note/";
     let bgs = [];
@@ -110,11 +117,147 @@ async function doPicNote(msg, uid, region) {
         bgs.push(item.name);
       }
     });
-    bg = "component/note/" + bgs[Math.floor(Math.random() * bgs.length)];
+      bg = "component/note/" + bgs[Math.floor(Math.random() * bgs.length)];
+      const myDate = new Date();
+      let uidAtime = {};
+      uidAtime.css = initCss(250, 100, 234, 64, 22);
+      uidAtime.text = uid + "<br/>" + (myDate.getMonth() + 1) + "月" + myDate.getDate() + "日" + "<br/>" + format("hh:mm:ss", myDate);
+      items.push(uidAtime);
+      let drrt = {};
+      drrt.css = initCss(258, 26, 180, 157, 16);
+      let dresin = {};
+      dresin.css = initCss(200, 26, 200, 200, 30);
+      let drrt_next = {};
+      drrt_next.css = initCss(300, 26, 200, 236, 16);
+      const rrt = parseInt(note.resin_recovery_time);
+      const rrd = note.remain_resin_discount_num;
+      if (rrt <= 0) {
+          drrt.text = "树脂已回满";
+          dresin.text = "160/160";
+          drrt_next.text = "";
+      } else {
+          drrt.text = "树脂将在 " + getDayTime(myDate, rrt) + " 回满";
+          let r_n = parseInt((76800 - rrt) / 60 / 8);
+          dresin.text = parseInt((76800 - rrt) / 60 / 8) + "/160";
+          let next = parseInt(r_n / 40 + 1) * 40;
+          if (rrd != 0 && r_n < 30) {
+              next = 30;
+          } else if (r_n < 40) {
+              next = 40;
+          } else if (r_n < 60) {
+              next = 60;
+          }
+          if (next < 160)
+              drrt_next.text = "将在" + getDayTime(myDate, rrt + next * 8 * 60 - 76800) + "回复至" + next;
+      }
+      items.push(drrt);
+      items.push(dresin);
+      items.push(drrt_next);
+      let dtf = {};
+      dtf.css = initCss(300, 26, 200, 427, 30);
+      let dtfrt = {};
+      dtfrt.css = initCss(300, 26, 200, 468, 16);
+      if (note.transformer != null && note.transformer.obtained) {
+          if (note.transformer.recovery_time.reached) {
+              dtf.text = "可使用";
+          } else {
+              var t = "冷却时间：";
+              var tfrt = 0;
+              var tfrtt = 0;
+              if (note.transformer.recovery_time.Day > 0) {
+                  t += note.transformer.recovery_time.Day + "天";
+                  tfrt += 24 * 3600 * note.transformer.recovery_time.Day;
+                  tfrtt = "预估" + format("M月d日", new Date(parseInt(myDate.valueOf() + tfrt * 1000))) + "之后可用";
+              }
+              if (note.transformer.recovery_time.Hour > 0) {
+                  t += note.transformer.recovery_time.Hour + "小时";
+                  tfrt += 3600 * note.transformer.recovery_time.Hour;
+                  tfrtt = "预估" + getDayTime(myDate, tfrt) + "之后可用";
+              }
+              if (note.transformer.recovery_time.Minute > 0) {
+                  t += note.transformer.recovery_time.Minute + "分";
+                  tfrt += 60 * note.transformer.recovery_time.Minute;
+                  tfrtt = "预估" + getDayTime(myDate, tfrt) + "之后可用";
+              }
+              if (note.transformer.recovery_time.Second > 0) {
+                  t += note.transformer.recovery_time.Second + "秒";
+                  tfrt += note.transformer.recovery_time.Second;
+                  tfrtt = getDayTime(myDate, tfrt) + "可用";
+              }
+              dtf.text = t;
+              dtfrt.text = tfrtt;
+              items.push(dtfrt);
+          }
+      } else {
+          dtf.text = "尚未获得";
+      }
+      items.push(dtf);
+      let dhc = {};
+      dhc.css = initCss(300, 26, 200, 510, 30);
+      let dhcrt = {};
+      dhcrt.css = initCss(300, 26, 200, 550, 16);
+      const hcrt = parseInt(note.home_coin_recovery_time);
+      if (hcrt <= 0) {
+          dhc.text = note.max_home_coin + "/" + note.max_home_coin;
+          dhcrt.text = "";
+      } else {
+          dhc.text = note.current_home_coin + "/" + note.max_home_coin;
+          dhcrt.text = (myDate.getMonth() + 1) + "月" + myDate.getDate() + "日" + format("hh:mm:ss", new Date(parseInt(myDate.valueOf() + hcrt * 1000))) + "回满";
+      }
+      items.push(dhc);
+      items.push(dhcrt);
+      const task = note.is_extra_task_reward_received ? -1 : note.finished_task_num;
+      let dtask = {};
+      dtask.css = initCss(228, 26, 200, 275, 30);
+      if (task == -1) {
+          dtask.text = "完成";
+      } else if (task != null) dtask.text = task + "/4";
+      items.push(dtask);
+
+      let drrd = {};
+      drrd.css = initCss(228, 26, 200, 350, 30);
+      if (rrd == 0) drrd.text = "完成";
+      else if (rrd != null) drrd.text = 3 - rrd + "/3";
+      items.push(drrd);
+      let num = 0;
+      let endTime = 0;
+      let minTime = 76800;
+      for (var expedition of note.expeditions) {
+          if (expedition) {
+              let img = {};
+              img.type = "img";
+              let div = {};
+              img.css = initCss(70, 70, 530, 115 + num * 72);
+              div.css = initCss(258, 26, 622, 145 + num * 72, 20);
+              img.src = expedition.avatar_side_icon.substring(expedition.avatar_side_icon.lastIndexOf('/') + 1, expedition.avatar_side_icon.length);
+              if (expedition.status == "Ongoing") {
+                  endTime = parseInt(expedition.remained_time);
+                  if (endTime <= 0) {
+                      div.text = "已完成";
+                      minTime = 0;
+                  } else {
+                      if (num == 1 || endTime < minTime) minTime = endTime;
+                      div.text = getDayTime(myDate, endTime) + "完成";
+                  }
+              } else if (expedition.status == "Finished") {
+                  div.text = "已完成";
+                  minTime = 0;
+              }
+              items.push(img);
+              items.push(div);
+          }
+          num++;
+      }
+      if (minTime > 0) {
+          let dert = {};
+          dert.css = initCss(258, 26, 610, 80, 16);
+          dert.text = "最快" + getDayTime(myDate, minTime) + "完成派遣";
+          items.push(dert);
+      }
   } catch (e) {
     msg.bot.logger.error(e);
   }
-  render(msg, { baseTime, note, bg }, "genshin-note");
+  render(msg, { items, bg }, "genshin-note");
   return undefined;
 }
 
