@@ -103,14 +103,17 @@ async function doPicNote(msg, uid, region) {
     let filesArr = fs.readdirSync(bgPath, { encoding: "utf8", withFileTypes: true });
     filesArr.forEach((item) => {
       if (
-        (item.name.startWith("background") || item.name.startWith("bg")) &&
-        (item.name.endsWith(".png") || item.name.endsWith(".jpg"))
+          (item.name.endsWith(".png") || item.name.endsWith(".jpg")) &&
+          item.name != 'crown.png' &&
+          item.name != 'hart.png'
       ) {
         bgs.push(item.name);
       }
     });
     bg = "component/note/" + bgs[Math.floor(Math.random() * bgs.length)];
-  } catch (e) {}
+  } catch (e) {
+    msg.bot.logger.error(e);
+  }
   render(msg, { baseTime, note, bg }, "genshin-note");
   return undefined;
 }
