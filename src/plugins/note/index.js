@@ -97,8 +97,8 @@ function getDayTime(nowTime, offset) {
   return `${nowTime.getDate() != newTime.getDate() ? "明天" : "今天"}${format("hh:mm:ss", newTime)}`;
 }
 function getDay(nowTime, offset) {
-    const newTime = new Date(parseInt(nowTime.valueOf() + offset * 1000));
-    return (newTime.getMonth() + 1) + "月" + newTime.getDate() + "日";
+  const newTime = new Date(parseInt(nowTime.valueOf() + offset * 1000));
+  return newTime.getMonth() + 1 + "月" + newTime.getDate() + "日";
 }
 function initCss(width, height, left, top, size = 16, color = "#7b8386") {
   return { width, height, left, top, size, color };
@@ -126,8 +126,7 @@ async function doPicNote(msg, uid, region) {
     const myDate = new Date();
     let uidAtime = {};
     uidAtime.css = initCss(250, 100, 234, 64, 22);
-    uidAtime.text =
-        uid + "<br/>" + getDay(myDate, 0) + "<br/>" + format("hh:mm:ss", myDate);
+    uidAtime.text = uid + "<br/>" + getDay(myDate, 0) + "<br/>" + format("hh:mm:ss", myDate);
     items.push(uidAtime);
     let drrt = {};
     drrt.css = initCss(258, 26, 180, 157, 16);
@@ -208,7 +207,7 @@ async function doPicNote(msg, uid, region) {
     } else {
       dhc.text = note.current_home_coin + "/" + note.max_home_coin;
       dhcrt.text =
-          getDay(myDate.valueOf(), hcrt) +
+        getDay(myDate.valueOf(), hcrt) +
         format("hh:mm:ss", new Date(parseInt(myDate.valueOf() + hcrt * 1000))) +
         "回满";
     }
