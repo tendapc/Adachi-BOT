@@ -86,7 +86,7 @@ const briefingTemplate = html` <div class="card container-vertical container-flo
       :src="getAvatarThumbUrl(avatar.id) ? encodeURI(getAvatarThumbUrl(avatar.id)) : avatar.icon"
       class="avatar-rounded-briefing"
       :class="getRarityClass(avatar.rarity)"
-      alt="图片加载失败"
+      :alt="getAvatarName(avatar.id) ? getAvatarName(avatar.id) : 'Err'"
     />
   </div>
 
@@ -123,21 +123,34 @@ export default defineComponent({
     const charactersMap = props.charactersMap || [];
 
     for (const chamber of floor.levels) {
-      const { index, star, battles } = chamber;
+      const { index, star, battles } = chamber || {};
+
       for (const battle of battles) {
-        const { timestamp, avatars: chamberAvatars } = battle;
+        const { timestamp, avatars: chamberAvatars } = battle || {};
         timestamps.push(timestamp);
         avatars = avatars.concat(chamberAvatars);
       }
+
       if (3 !== star) {
         chambers.push({ index, star, battles });
       }
     }
 
-    const getAvatarName = (id) => (charactersMap.filter((character) => character.id === id)[0] || {}).name;
+    function getAvatarThumbUrl(id) {
+      const { name } = charactersMap.filter((character) => character.id === id)[0] || {};
 
-    const getAvatarThumbUrl = (id) =>
-      getAvatarName(id) ? encodeURI(`/resources/Version2/thumb/character/${getAvatarName(id)}.png`) : undefined;
+      if (name) {
+        return `/resources/Version2/thumb/character/${name}.png`;
+      }
+    }
+
+    function getAvatarName(id) {
+      const { name } = charactersMap.filter((character) => character.id === id)[0] || {};
+
+      if (name) {
+        return name;
+      }
+    }
 
     return {
       floor,
@@ -148,6 +161,7 @@ export default defineComponent({
       endTime: timestamps[timestamps.length - 1],
       avatars: lodash.uniqBy(avatars, "id"),
       getAvatarThumbUrl,
+      getAvatarName,
     };
   },
 });
