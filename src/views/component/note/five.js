@@ -30,11 +30,11 @@ const template = html`
       <div class="section-container" id="character-box">
         <SectionTitle title="常驻5星角色" />
         <div class="container-character-box main-content">
-          <CharacterBox v-for="character in other_avatars" :data="character" />
+          <CharacterBox v-for="character in other_avatars" :data="character" :characterName="character.name" />
         </div>
         <SectionTitle title="UP5星角色" />
         <div class="container-character-box main-content">
-          <CharacterBox v-for="character in up_avatars" :data="character" />
+          <CharacterBox v-for="character in up_avatars" :data="character" :characterName="character.name" />
         </div>
         <SectionTitle title="常驻5星武器" />
         <div class="container-character-box main-content">
