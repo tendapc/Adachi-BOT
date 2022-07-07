@@ -1,5 +1,5 @@
-import { CharacterBox, ExplorationBox, SectionTitle } from "./cardComponents.js";
 import { getParams, html } from "../common/utils.js";
+import { CharacterBox, ExplorationBox, SectionTitle } from "./cardComponents.js";
 import { WeaponBox } from "./weaponComponents.js";
 
 const { defineComponent } = window.Vue;
@@ -34,7 +34,7 @@ const template = html`
         </div>
         <SectionTitle title="UP5星角色" />
         <div class="container-character-box main-content">
-          <CharacterBox v-for="character in up_avatars" :data="character"/>
+          <CharacterBox v-for="character in up_avatars" :data="character" />
         </div>
         <SectionTitle title="常驻5星武器" />
         <div class="container-character-box main-content">

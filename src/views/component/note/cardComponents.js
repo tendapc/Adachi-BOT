@@ -18,12 +18,12 @@ const titleTemplate = html` <div class="container-title">
   </div>
 </div>`;
 const SectionTitle = defineComponent({
-    name: "SectionTitle",
-    template: titleTemplate,
-    props: {
-        title: String,
-        subtitle: [String, Boolean],
-    },
+  name: "SectionTitle",
+  template: titleTemplate,
+  props: {
+    title: String,
+    subtitle: [String, Boolean],
+  },
 });
 const charBoxTemplate = html` <div class="character-box">
   <div class="container-char-headups">
@@ -59,28 +59,28 @@ const charBoxTemplate = html` <div class="character-box">
   </div>
 </div>`;
 const CharacterBox = defineComponent({
-    name: "CharacterBox",
-    template: charBoxTemplate,
-    props: {
-        data: Object,
-    },
-    setup(props) {
-        function getCostume(costumeName) {
-            return encodeURI(`http://localhost:9934/resources/Version2/costumes/avatars/${costumeName}.png`);
-        }
+  name: "CharacterBox",
+  template: charBoxTemplate,
+  props: {
+    data: Object,
+  },
+  setup(props) {
+    function getCostume(costumeName) {
+      return encodeURI(`http://localhost:9934/resources/Version2/costumes/avatars/${costumeName}.png`);
+    }
 
-        const starBackground = encodeURI(
-            `http://localhost:9934/resources/Version2/thumb/stars/${props.data.rarity}-Star.png`
-        );
-        const element = encodeURI(`http://localhost:9934/resources/gacha/element/${props.data.element.toLowerCase()}.png`);
-        const hasCostume = props.data.costumes.length !== 0;
-        const costumePath = hasCostume ? getCostume(props.data.costumes[0]["name"]) : "";
+    const starBackground = encodeURI(
+      `http://localhost:9934/resources/Version2/thumb/stars/${props.data.rarity}-Star.png`
+    );
+    const element = encodeURI(`http://localhost:9934/resources/gacha/element/${props.data.element.toLowerCase()}.png`);
+    const hasCostume = props.data.costumes.length !== 0;
+    const costumePath = hasCostume ? getCostume(props.data.costumes[0]["name"]) : "";
 
-        const weaponNameLength = props.data.weapon.name.length || 5;
-        const additionalStyle = weaponNameLength > 5 ? "font-size: 9px;" : undefined;
+    const weaponNameLength = props.data.weapon.name.length || 5;
+    const additionalStyle = weaponNameLength > 5 ? "font-size: 9px;" : undefined;
 
-        return { starBackground, element, hasCostume, costumePath, additionalStyle };
-    },
+    return { starBackground, element, hasCostume, costumePath, additionalStyle };
+  },
 });
 const explorationBoxTemplate = html` <div class="exploration">
   <div class="exp-area">
@@ -92,44 +92,44 @@ const explorationBoxTemplate = html` <div class="exploration">
   </div>
 </div>`;
 const ExplorationBox = defineComponent({
-    name: "ExplorationBox",
-    template: explorationBoxTemplate,
-    props: {
-        data: Object,
+  name: "ExplorationBox",
+  template: explorationBoxTemplate,
+  props: {
+    data: Object,
+  },
+  methods: {
+    getGridRowCount(object) {
+      const count = Object.keys(object).length;
+      return `repeat(${count}, 1fr)`;
     },
-    methods: {
-        getGridRowCount(object) {
-            const count = Object.keys(object).length;
-            return `repeat(${count}, 1fr)`;
-        },
-    },
-    setup(props) {
-        const logo_mapping = {
-            mengde: "mondstadt",
-            liyue: "liyue",
-            dragonspine: "dragonspine",
-            daoqi: "inazuma",
-            enkanomiya: "enkanomiya",
-            chasmsmaw: "chasm",
-        };
+  },
+  setup(props) {
+    const logo_mapping = {
+      mengde: "mondstadt",
+      liyue: "liyue",
+      dragonspine: "dragonspine",
+      daoqi: "inazuma",
+      enkanomiya: "enkanomiya",
+      chasmsmaw: "chasm",
+    };
 
-        function getIconUri(rawUri) {
-            const icon_filename = rawUri.split("_").slice(-1)[0].split(".").slice(0)[0];
-            let iconUri;
-            if (logo_mapping[icon_filename.toLowerCase()]) {
-                iconUri = encodeURI(
-                    `http://localhost:9934/resources/Version2/area/${logo_mapping[icon_filename.toLowerCase()]}.png`
-                );
-            } else {
-                iconUri = rawUri;
-            }
-            return iconUri;
-        }
+    function getIconUri(rawUri) {
+      const icon_filename = rawUri.split("_").slice(-1)[0].split(".").slice(0)[0];
+      let iconUri;
+      if (logo_mapping[icon_filename.toLowerCase()]) {
+        iconUri = encodeURI(
+          `http://localhost:9934/resources/Version2/area/${logo_mapping[icon_filename.toLowerCase()]}.png`
+        );
+      } else {
+        iconUri = rawUri;
+      }
+      return iconUri;
+    }
 
-        const areaLogo = getIconUri(props.data.iconUrl);
+    const areaLogo = getIconUri(props.data.iconUrl);
 
-        return { areaLogo };
-    },
+    return { areaLogo };
+  },
 });
 
 export { CharacterBox, ExplorationBox, SectionTitle };
