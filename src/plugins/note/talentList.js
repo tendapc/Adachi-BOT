@@ -65,7 +65,7 @@ async function doTalentList(msg, uid, region, args) {
   let value = db.get("talent", "user", { uid });
   const data = db.get("info", "user", { uid });
   if (!data || !data.avatars) return "请先获取角色信息";
-  if (!value || !value.avatars || nowTime - value.time > 6 * 60 * 60 || data.avatars.length > value.avatars.length) {
+  if (!value || !value.avatars || nowTime - value.time > 30 * 60 || data.avatars.length > value.avatars.length) {
     msg.bot.say(msg.sid, "正在获取技能数据，请稍等……", msg.type, msg.uid, true);
     value = {};
     value.time = nowTime;
