@@ -134,26 +134,37 @@ function getRewardsInfo(cookie) {
   }).then((res) => res.json());
 }
 
+function getDS1() {
+    const n = "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
+    const i = (Date.now() / 1000) | 0;
+    const r = randomString(6);
+    const c = md5(`salt=${n}&t=${i}&r=${r}`);
+    return `${i},${r},${c}`;
+}
+
+function getDS2() {
+    const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
+    const i = (Date.now() / 1000) | 0;
+    const r = randomString(6);
+    const c = md5(`salt=${n}&t=${i}&r=${r}`);
+    return `${i},${r},${c}`;
+}
+
 function mysSignIn(role_id, server, cookie) {
   const body = { act_id: "e202009291139501", region: server, uid: role_id };
-  const n = "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const c = md5(`salt=${n}&t=${i}&r=${r}`);
-
   return fetch(__API.SIGN_URL, {
     method: "POST",
     json: true,
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: `${i},${r},${c}`,
+      DS: getDS2(),
       Cookie: cookie,
       Referer: __API.REFERER_URL,
       "User-Agent":
         "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/2.3.0",
-      "x-rpc-app_version": "2.3.0",
-      "x-rpc-client_type": 5,
+      "x-rpc-app_version": "2.28.1",
+      "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
@@ -161,10 +172,6 @@ function mysSignIn(role_id, server, cookie) {
 
 function mysReSignIn(role_id, server, cookie) {
   const body = { act_id: "e202009291139501", region: server, uid: role_id };
-  const n = "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const c = md5(`salt=${n}&t=${i}&r=${r}`);
 
   return fetch(__API.RESIGN_URL, {
     method: "POST",
@@ -172,13 +179,13 @@ function mysReSignIn(role_id, server, cookie) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: `${i},${r},${c}`,
+      DS: getDS2(),
       Cookie: cookie,
       Referer: __API.REFERER_URL,
       "User-Agent":
         "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/2.3.0",
-      "x-rpc-app_version": "2.3.0",
-      "x-rpc-client_type": 5,
+      "x-rpc-app_version": "2.28.1",
+      "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
@@ -237,20 +244,16 @@ function getMybCookieByTicket(login_ticket, account_id) {
 }
 
 function getMybState(cookie) {
-  const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const c = md5(`salt=${n}&t=${i}&r=${r}`);
   return fetch(`${__API.MISSION_STATE_URL}`, {
     method: "GET",
     headers: {
       ...HEADERS,
-      DS: `${i},${r},${c}`,
+      DS: getDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.8.0",
-      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-app_version": "2.28.1",
+      "x-rpc-channel": "mihoyo",
       "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
@@ -260,10 +263,6 @@ function getMybState(cookie) {
 //1: '崩坏3', 2: '原神', 3: '崩坏2', 4: '未定事件簿', 5: '大别野'
 function mybSignIn(cookie, forum) {
   const body = { gids: forum };
-  const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const c = md5(`salt=${n}&t=${i}&r=${r}`);
 
   return fetch(__API.MYB_SIGN_URL, {
     method: "POST",
@@ -271,12 +270,12 @@ function mybSignIn(cookie, forum) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: `${i},${r},${c}`,
+      DS: getDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.8.0",
-      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-app_version": "2.28.1",
+      "x-rpc-channel": "mihoyo",
       "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
@@ -295,10 +294,6 @@ function mybPostList(cookie, forum_id) {
 
 function mybPostFull(cookie, post_id) {
   const query = { post_id };
-  const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const c = md5(`salt=${n}&t=${i}&r=${r}`);
 
   return fetch(`${__API.MYB_POST_FULL_URL}?${new URLSearchParams(query)}`, {
     method: "GET",
@@ -306,12 +301,12 @@ function mybPostFull(cookie, post_id) {
     qs: query,
     headers: {
       ...HEADERS,
-      DS: `${i},${r},${c}`,
+      DS: getDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.8.0",
-      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-app_version": "2.28.1",
+      "x-rpc-channel": "mihoyo",
       "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
@@ -320,10 +315,6 @@ function mybPostFull(cookie, post_id) {
 
 function mybUpVote(cookie, post_id) {
   const body = { post_id, is_cancel: false };
-  const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const c = md5(`salt=${n}&t=${i}&r=${r}`);
 
   return fetch(__API.MYB_UPVOTE_URL, {
     method: "POST",
@@ -331,12 +322,12 @@ function mybUpVote(cookie, post_id) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: `${i},${r},${c}`,
+      DS: getDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.8.0",
-      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-app_version": "2.28.1",
+      "x-rpc-channel": "mihoyo",
       "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
@@ -345,10 +336,6 @@ function mybUpVote(cookie, post_id) {
 
 function mybSharePost(cookie, post_id) {
   const query = { entity_id: post_id, entity_type: 1 };
-  const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const c = md5(`salt=${n}&t=${i}&r=${r}`);
 
   return fetch(`${__API.MYB_SHARE_URL}?${new URLSearchParams(query)}`, {
     method: "GET",
@@ -356,12 +343,12 @@ function mybSharePost(cookie, post_id) {
     qs: query,
     headers: {
       ...HEADERS,
-      DS: `${i},${r},${c}`,
+      DS: getDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.8.0",
-      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-app_version": "2.28.1",
+      "x-rpc-channel": "mihoyo",
       "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
