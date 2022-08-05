@@ -135,11 +135,11 @@ function getRewardsInfo(cookie) {
 }
 
 function getDS1() {
-    const n = "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
-    const i = (Date.now() / 1000) | 0;
-    const r = randomString(6);
-    const c = md5(`salt=${n}&t=${i}&r=${r}`);
-    return `${i},${r},${c}`;
+  const n = "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
+  const i = (Date.now() / 1000) | 0;
+  const r = randomString(6);
+  const c = md5(`salt=${n}&t=${i}&r=${r}`);
+  return `${i},${r},${c}`;
 }
 
 function getDS2() {
