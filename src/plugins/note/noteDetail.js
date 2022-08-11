@@ -448,7 +448,7 @@ async function signInPromise(uid, server, userID, bot) {
     return Promise.reject(`米游社接口报错: ${message}`);
   }
 
-  return data;
+  return { retcode, message, data };
 }
 
 async function resignInPromise(uid, server, userID, bot) {
@@ -590,6 +590,11 @@ async function doSign(msg, uid, region) {
   }
   let sign = await signInPromise(uid, region, msg.uid, msg.bot);
   let data = await rewardsPromise(uid, region, msg.uid, msg.bot);
+  let signed = await signInfoPromise(uid, region, msg.uid, msg.bot);
+  if (!signed.is_sign) {
+    msg.bot.logger.debug(`signIn:${JSON.stringify(sign)}`);
+    return `签到失败`;
+  }
   return `
 ${data.month}月累计签到：${signInfo.total_sign_day + 1}天
 今日奖励：${data.awards[signInfo.total_sign_day].name} * ${data.awards[signInfo.total_sign_day].cnt}${
