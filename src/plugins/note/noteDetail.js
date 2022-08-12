@@ -732,11 +732,11 @@ async function autoSignIn() {
     } else {
       try {
         message = await doSign(msg, uid, region);
-        num++;
         if (message == `签到失败`) {
           faildNum++;
           continue;
         }
+        num++;
         status = 1;
       } catch (e) {
         if ("" !== e) {
