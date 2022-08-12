@@ -707,8 +707,9 @@ async function autoSignIn() {
   const today = new Date().toLocaleDateString();
   let record, message, cookie, say, status, msg, uid, region, num;
   num = 0;
-
+  let faildNum = 0;
   for (let i = 0, len = records.length; i < len; ++i) {
+    if (num >= 10) break;
     record = records[i];
     say = false;
     status = record.status;
@@ -731,11 +732,12 @@ async function autoSignIn() {
     } else {
       try {
         message = await doSign(msg, uid, region);
+        num++;
         if (message == `签到失败`) {
+          faildNum++;
           continue;
         }
         status = 1;
-        num++;
       } catch (e) {
         if ("" !== e) {
           message += `
@@ -761,8 +763,8 @@ async function autoSignIn() {
 
     if (status == 1) db.update("note", "auto", { qq: record.qq }, { date: today, status });
     if (say) autoSay(record.sid, record.qq, record.type, message);
-    if (num >= 10) return;
   }
+  global.bots.logger.debug(`本次有${faildNum}个用户签到失败`);
 }
 
 export {
