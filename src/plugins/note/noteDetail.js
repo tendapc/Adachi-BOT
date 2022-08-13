@@ -697,7 +697,9 @@ async function autoSay(sid, uid, type, text) {
     await bot.say(sid, text, type, uid);
   }
 }
-
+function wait(ms) {
+    return new Promise(resolve = > setTimeout(() = > resolve(), ms));
+};
 async function autoSignIn() {
   global.bots.logger.debug(`开始自动签到`);
   const records = db.get("note", "auto");
@@ -712,6 +714,7 @@ async function autoSignIn() {
     let ret = {};
   for (let i = 0, len = records.length; i < len; ++i) {
     if (num >= 10) break;
+    await wait(10000);
     message = ``;
     record = records[i];
     say = false;
