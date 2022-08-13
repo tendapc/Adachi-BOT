@@ -442,7 +442,8 @@ async function Plugin(msg) {
     } else if (hasEntrance(msg.text, "note", "re_sign")) {
       message = await doReSign(msg, uid, region);
     } else if (hasEntrance(msg.text, "note", "sign_in")) {
-      message = await doSign(msg, uid, region);
+        let ret = await doSign(msg, uid, region);
+        message = ret.message;
       try {
         if ((await getMYBCookie(uid, msg.bot)) != undefined) {
           message += `
