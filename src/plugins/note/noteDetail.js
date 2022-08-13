@@ -643,7 +643,7 @@ async function doGetMYB(msg, uid) {
       share_post_0 = state.is_get_award;
     }
   }
-  let ret = ` `;
+  let ret = ``;
   if (!continuous_sign) {
     for (let i = 1; i < 6; i++) {
       let { retcode, message, data } = await mybSignPromise(uid, i, msg.uid, msg.bot);
