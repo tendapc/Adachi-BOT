@@ -712,6 +712,7 @@ async function autoSignIn() {
     let ret = {};
   for (let i = 0, len = records.length; i < len; ++i) {
     if (num >= 10) break;
+    message = ``;
     record = records[i];
     say = false;
     status = record.status;
