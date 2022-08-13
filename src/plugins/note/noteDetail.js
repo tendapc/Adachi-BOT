@@ -579,28 +579,35 @@ ${
 }
 
 async function doSign(msg, uid, region) {
-    let signInfo = await signInfoPromise(uid, region, msg.uid, msg.bot);
-    if (signInfo.is_sign) {
-        return {
-            code: 1, message: `今日已签到,本月累计签到${signInfo.total_sign_day}天${signInfo.sign_cnt_missed == 0 ? "" : await checkReSign(msg, uid, region)}`
-        };
-    }
-    if (signInfo.first_bind) {
-        return { code: 0, message: `请先手动签到一次` };
-    }
-    let sign = await signInPromise(uid, region, msg.uid, msg.bot);
-    let signed = await signInfoPromise(uid, region, msg.uid, msg.bot);
-    if (!signed.is_sign) {
-        return {
-            code: -1, message: `签到失败`
-        };
-    }
-    let data = await rewardsPromise(uid, region, msg.uid, msg.bot);
+  let signInfo = await signInfoPromise(uid, region, msg.uid, msg.bot);
+  if (signInfo.is_sign) {
     return {
-        code: 1, message: `
-${data.month}月累计签到：${signInfo.total_sign_day + 1}天
-今日奖励：${data.awards[signInfo.total_sign_day].name} * ${data.awards[signInfo.total_sign_day].cnt}${signInfo.sign_cnt_missed == 0 ? "" : await checkReSign(msg, uid, region)}`
+      code: 1,
+      message: `今日已签到,本月累计签到${signInfo.total_sign_day}天${
+        signInfo.sign_cnt_missed == 0 ? "" : await checkReSign(msg, uid, region)
+      }`,
     };
+  }
+  if (signInfo.first_bind) {
+    return { code: 0, message: `请先手动签到一次` };
+  }
+  let sign = await signInPromise(uid, region, msg.uid, msg.bot);
+  let signed = await signInfoPromise(uid, region, msg.uid, msg.bot);
+  if (!signed.is_sign) {
+    return {
+      code: -1,
+      message: `签到失败`,
+    };
+  }
+  let data = await rewardsPromise(uid, region, msg.uid, msg.bot);
+  return {
+    code: 1,
+    message: `
+${data.month}月累计签到：${signInfo.total_sign_day + 1}天
+今日奖励：${data.awards[signInfo.total_sign_day].name} * ${data.awards[signInfo.total_sign_day].cnt}${
+      signInfo.sign_cnt_missed == 0 ? "" : await checkReSign(msg, uid, region)
+    }`,
+  };
 }
 
 function getRandomArrayElements(arr, count) {
@@ -708,8 +715,8 @@ async function autoSignIn() {
   const today = new Date().toLocaleDateString();
   let record, message, cookie, say, status, msg, uid, region, num;
   num = 0;
-    let faildNum = 0;
-    let ret = {};
+  let faildNum = 0;
+  let ret = {};
   for (let i = 0, len = records.length; i < len; ++i) {
     if (num >= 10) break;
     message = ``;
@@ -733,9 +740,9 @@ async function autoSignIn() {
         db.update("note", "auto", { qq: record.qq }, { auto: false });
       } else db.update("note", "auto", { qq: record.qq }, { status: 0 });
     } else {
-        try {
-            ret = await doSign(msg, uid, region);
-            message = ret.message;
+      try {
+        ret = await doSign(msg, uid, region);
+        message = ret.message;
         if (ret.code == -1) {
           faildNum++;
           continue;
