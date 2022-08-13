@@ -705,7 +705,7 @@ async function autoSay(sid, uid, type, text) {
   }
 }
 function wait(ms) {
-    return new Promise(resolve = > setTimeout(() = > resolve(), ms));
+    return new Promise(resolve => setTimeout(() => resolve(), ms));
 };
 async function autoSignIn() {
   global.bots.logger.debug(`开始自动签到`);
