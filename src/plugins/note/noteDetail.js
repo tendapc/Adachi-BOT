@@ -721,13 +721,13 @@ async function autoSignIn() {
   let ret = {};
   for (let i = 0, len = records.length; i < len; ++i) {
     if (num >= 10) break;
-    await wait(10000);
-    message = ``;
     record = records[i];
-    say = false;
-    status = record.status;
     if (!record.auto) continue;
     if (record.date == today) continue;
+    await wait(10000);
+    message = ``;
+    status = record.status;
+    say = false;
     global.bots.logger.debug(`${record.qq} 签到 ${record.uid}`);
     msg = { uid: record.qq, sid: record.sid, type: record.type, bot: global.bots };
     uid = record.uid;
