@@ -720,11 +720,11 @@ async function autoSignIn() {
   let faildNum = 0;
   let ret = {};
   for (let i = 0, len = records.length; i < len; ++i) {
-    if (num >= 10) break;
+    if (num >= 20) break;
     record = records[i];
     if (!record.auto) continue;
     if (record.date == today) continue;
-    await wait(10000);
+    await wait(5000);
     message = ``;
     status = record.status;
     say = false;
