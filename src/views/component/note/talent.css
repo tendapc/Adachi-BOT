@@ -4,17 +4,17 @@
 }
 
 @font-face {
+  src: url("../../../../data/font/HYWenHei-85W.ttf");
   font-family: GenshinUsedFont;
   font-display: swap;
-  src: url("../../../../data/font/HYWenHei-85W.ttf");
 }
 
 html {
-  background-color: hsl(0, 0%, 97%);
-  color: #484848;
-  width: 420px;
-  font-family: GenshinUsedFont, monospace, sans-serif;
   -webkit-text-stroke: 0.018em currentColor;
+  background-color: hsl(0, 0%, 97%);
+  width: 420px;
+  color: #484848;
+  font-family: GenshinUsedFont, monospace, sans-serif;
 }
 
 body {
@@ -23,14 +23,14 @@ body {
 
 body:before {
   position: fixed;
-  left: -10px;
   top: -10px;
+  left: -10px;
+  opacity: 0.3;
+  background: url("../../../../resources/Version2/backgrounds/contour-background.svg");
+  background-size: cover;
   width: 430px;
   height: calc(100vh + 10px);
   content: "";
-  background: url("../../../../resources/Version2/backgrounds/contour-background.svg");
-  background-size: cover;
-  opacity: 0.3;
 }
 
 .main-content {
@@ -45,42 +45,42 @@ body:before {
 }
 
 img.avatar {
-  width: 100px;
-  height: 100px;
   border-radius: 50%;
   background-color: hsl(0deg 0% 83%);
+  width: 100px;
+  height: 100px;
 }
 
 .namecard-container {
-  margin-top: -50px;
-  width: 100%;
-  min-height: 152px;
-  border-radius: 10px 10px 0 0;
-  background-size: 100% !important;
-  -webkit-mask: url("../../../../resources/Version2/masks/namecard-mask.svg");
-  -webkit-mask-size: 100%;
   display: grid;
+  grid-template-rows: 68px 1fr;
   grid-template-areas:
     "placeholder"
     "player-info";
-  grid-template-rows: 68px 1fr;
   place-items: center;
+  -webkit-mask: url("../../../../resources/Version2/masks/namecard-mask.svg");
+  -webkit-mask-size: 100%;
+  margin-top: -50px;
+  border-radius: 10px 10px 0 0;
+  background-size: 100% !important;
+  width: 100%;
+  min-height: 152px;
 }
 
 .info-container {
-  display: grid;
   grid-row-gap: 16px;
-  background-color: #fff;
-  width: 100%;
+  display: grid;
   place-items: center;
+  background-color: #fff;
   padding-top: 16px;
+  width: 100%;
 }
 
 .player-info-container {
-  grid-area: player-info;
+  grid-row-gap: 1px;
   display: grid;
   grid-template-columns: max-content auto;
-  grid-row-gap: 1px;
+  grid-area: player-info;
   justify-items: stretch;
   font-size: 18px;
 }
@@ -97,15 +97,15 @@ img.avatar {
 }
 
 .section-container {
-  display: grid;
   grid-row-gap: 12px;
+  display: grid;
 }
 
 .stats {
-  display: grid;
-  grid-template-columns: auto 64px auto max-content;
   grid-row-gap: 3px;
   grid-column-gap: 20px;
+  display: grid;
+  grid-template-columns: auto 64px auto max-content;
 }
 
 .container-title {
@@ -115,16 +115,16 @@ img.avatar {
 }
 
 .title-content {
+  grid-column-gap: 5px;
   display: grid;
-  width: 300px;
+  grid-template-rows: 30px max-content;
+  grid-template-columns: 1fr min-content 1fr;
   grid-template-areas:
     "arrow-left main-title arrow-right"
     "arrow-left sub-title arrow-right";
-  grid-template-rows: 30px max-content;
-  grid-template-columns: 1fr min-content 1fr;
   align-items: center;
   justify-items: center;
-  grid-column-gap: 5px;
+  width: 300px;
 }
 
 .arrow-left,
@@ -138,14 +138,14 @@ img.avatar {
 
 .arrow-right {
   grid-area: arrow-right;
-  transform: scaleX(-1);
   justify-self: start;
+  transform: scaleX(-1);
 }
 
 .main-title {
-  white-space: nowrap;
-  font-size: 20px;
   transform: translateY(0.03em);
+  font-size: 20px;
+  white-space: nowrap;
 }
 
 .subtitle {
@@ -155,118 +155,118 @@ img.avatar {
 }
 
 .container-explorations {
+  grid-gap: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 8px;
 }
 
 .exploration {
-  min-width: 168px;
-  min-height: 58px;
-  padding: 4px;
-  box-sizing: border-box;
-  background-color: hsl(0, 0%, 95%);
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  box-sizing: border-box;
   box-shadow: 0 0 10px hsl(0deg 0% 70% / 16%);
+  border-radius: 10px;
+  background-color: hsl(0, 0%, 95%);
+  padding: 4px;
+  min-width: 168px;
+  min-height: 58px;
 }
 
 .logo {
-  width: 42px;
-  height: 42px;
   -webkit-mask-size: 42px;
   /* background: linear-gradient(hsl(59, 47%, 75%) 0%, hsl(42, 59%, 76%) 45%, hsl(37, 29%, 57%) 80%); */
   background: #636363;
+  width: 42px;
+  height: 42px;
 }
 
 .exp-area {
   display: grid;
   grid-template-columns: max-content auto;
-  height: 100%;
-  width: 100%;
   place-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .container-detailed-exploration {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: minmax(56px, max-content) max-content;
-  font-size: 13px;
   grid-row-gap: 2px;
   grid-column-gap: 7px;
+  display: grid;
+  grid-template-columns: minmax(56px, max-content) max-content;
+  grid-auto-flow: column;
+  font-size: 13px;
 }
 
 .container-character-box {
+  grid-gap: 8px;
   display: grid;
   grid-template-columns: repeat(4, max-content);
-  grid-gap: 8px;
 }
 
 .character-box {
   display: grid;
+  grid-template-rows: 0 min-content auto;
   grid-template-areas:
     "headups"
     "avatar"
     "text-area";
-  grid-template-rows: 0 min-content auto;
-  min-height: 110px;
-  width: 80px;
-  background-color: hsl(0, 0%, 95%);
-  border-radius: 6px;
   box-shadow: 0 0 10px hsl(0deg 0% 70% / 16%);
+  border-radius: 6px;
+  background-color: hsl(0, 0%, 95%);
+  width: 80px;
+  min-height: 110px;
 }
 
 .container-char-headups {
   display: grid;
-  width: 100%;
-  grid-template-areas: "element constellation";
   grid-template-columns: 1fr 1fr;
+  grid-template-areas: "element constellation";
   grid-area: headups;
   justify-items: stretch;
   z-index: 1;
+  width: 100%;
 }
 
 .element {
+  margin-top: 2px;
+  margin-left: 2px;
   width: 20px;
   height: 20px;
-  margin-left: 2px;
-  margin-top: 2px;
 }
 
 .constellation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   justify-self: end;
+  backdrop-filter: blur(4px);
+  border-radius: 0 6px;
   background: #33333391;
-  color: #f0ebe3;
-  font-size: 13px;
   width: 15px;
   height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0 6px;
-  backdrop-filter: blur(4px);
+  color: #f0ebe3;
+  font-size: 13px;
 }
 
 .main {
-  width: 80px;
-  height: 80px;
-  border-radius: 6px 6px 12px 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
   grid-area: avatar;
   grid-row-start: headups;
   grid-row-end: avatar;
+  border-radius: 6px 6px 12px 0;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 80px;
 }
 
 .char-info {
-  grid-area: text-area;
   display: flex;
+  grid-area: text-area;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
+  align-items: center;
   height: 100%;
   font-size: 10px;
 }
@@ -289,23 +289,23 @@ img.avatar {
 }
 
 #credit {
-  background-color: #fff;
-  width: 100%;
-  border-radius: 0 0 10px 10px;
-  text-align: end;
-  padding: 5px;
   box-sizing: border-box;
+  border-radius: 0 0 10px 10px;
+  background-color: #fff;
+  padding: 5px;
+  width: 100%;
   font-size: 12px;
+  text-align: end;
 }
 
 .talent_list {
   display: table;
+  margin: 0 -15px -5px;
   border-collapse: collapse;
   width: calc(100% - 10px);
-  margin: 0 -15px -5px;
-  font-size: 12px;
   /* border-radius: 0 0 15px 15px; */
   overflow: hidden;
+  font-size: 12px;
 }
 
 .talent_list .avatar {
@@ -334,16 +334,16 @@ img.avatar {
 
 .talent_list .avatar > div {
   display: table-cell;
-  text-align: center;
-  height: 30px;
   vertical-align: middle;
+  height: 30px;
   line-height: 30px;
+  text-align: center;
 }
 
 .talent_list .avatar .index {
-  color: #333;
-  width: 30px;
   padding-left: 5px;
+  width: 30px;
+  color: #333;
 }
 
 .talent_list .avatar .name_cont {
@@ -363,9 +363,9 @@ img.avatar {
 }
 
 .talent_list .avatar .name {
-  text-align: left;
   display: flex;
   width: 80px;
+  text-align: left;
 }
 
 .talent_list .th .name {
@@ -373,35 +373,35 @@ img.avatar {
 }
 
 .talent_list .avatar .name .avatar_img {
-  width: 26px;
-  height: 26px;
   position: relative;
   margin-right: 3px;
+  width: 26px;
+  height: 26px;
 }
 
 .talent_list .avatar .name img {
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: -3px;
   margin-left: 3px;
+  width: 100%;
+  height: 100%;
 }
 
 .talent_list .avatar .name .avatar_name {
-  white-space: nowrap;
-  overflow: hidden;
   width: 48px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .talent_list .avatar .res {
-  font-size: 12px;
   width: 90px;
+  font-size: 12px;
 }
 
 .talent_list .avatar .res img {
+  vertical-align: middle;
   width: 20px;
   height: 20px;
-  vertical-align: middle;
 }
 
 .talent_list .avatar > div.lvl90 {
@@ -415,12 +415,12 @@ img.avatar {
 
 .talent_list .cons span {
   display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 2px;
+  border-radius: 4px;
   width: 14px;
   height: 18px;
   line-height: 18px;
-  vertical-align: middle;
-  border-radius: 4px;
-  margin-bottom: 2px;
 }
 
 .talent_list .life0 {
@@ -458,8 +458,8 @@ img.avatar {
 }
 
 .talent_list .avatar .weapon {
-  text-align: left;
   width: 148px;
+  text-align: left;
 }
 
 .talent_list .avatar .weapon_1 {
@@ -497,10 +497,10 @@ img.avatar {
 }
 
 .talent_list .avatar .weapon_icon {
+  display: inline-block;
+  position: relative;
   width: 20px;
   height: 20px;
-  position: relative;
-  display: inline-block;
 }
 
 .talent_list .avatar .weapon_icon span {
@@ -512,10 +512,10 @@ img.avatar {
 
 .talent_list .weapon img,
 .talent_list .talent_res img {
-  width: 20px;
-  height: 20px;
   vertical-align: middle;
   margin-bottom: 2px;
+  width: 20px;
+  height: 20px;
 }
 
 .talent_list .weapon .weapon_box {
@@ -527,18 +527,18 @@ img.avatar {
 }
 
 .talent_list .weapon .weapon_lv {
-  width: 30px;
   margin-left: 8px;
+  width: 30px;
 }
 
 .talent_list .weapon .weapon_alv {
+  margin-right: 5px;
+  border-radius: 4px;
+  padding: 0 3px;
   width: 14px;
-  text-align: center;
   height: 18px;
   line-height: 18px;
-  padding: 0 3px;
-  border-radius: 4px;
-  margin-right: 5px;
+  text-align: center;
 }
 
 .talent_list .weapon .weapon_alv_0 {
@@ -573,11 +573,11 @@ img.avatar {
 
 .talent_list .weapon .weapon_name {
   flex-grow: 1;
+  margin-left: 2px;
+  padding-left: 2px;
   max-width: 60px;
   overflow: hidden;
   white-space: nowrap;
-  padding-left: 2px;
-  margin-left: 2px;
 }
 
 .talent_list .talent_res {
@@ -597,10 +597,10 @@ img.avatar {
 }
 
 .talent_list .talent_plus {
+  position: relative;
   color: #006cc7;
   font-weight: bold;
   font-size: 13px;
-  position: relative;
   text-shadow: 0px 0px 1px #fff;
 }
 
@@ -638,8 +638,8 @@ img.avatar {
 }
 
 .talent_notice {
+  padding: 12px 5px 5px;
   color: #888;
   font-size: 12px;
   text-align: right;
-  padding: 12px 5px 5px;
 }
