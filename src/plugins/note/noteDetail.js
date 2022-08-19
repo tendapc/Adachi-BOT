@@ -150,7 +150,19 @@ function getDS2() {
   const c = md5(`salt=${n}&t=${i}&r=${r}`);
   return `${i},${r},${c}`;
 }
+function getQueryParam(data) {
+    let arr = [];
 
+    if (undefined === data) {
+        return "";
+    }
+
+    for (const key of Object.keys(data)) {
+        arr.push(`${key}=${data[key]}`);
+    }
+
+    return arr.join("&");
+}
 function getMybDS(query, body = "") {
     const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
     const i = (Date.now() / 1000) | 0;
