@@ -151,17 +151,17 @@ function getDS2() {
   return `${i},${r},${c}`;
 }
 function getQueryParam(data) {
-    let arr = [];
+  let arr = [];
 
-    if (undefined === data) {
-        return "";
-    }
+  if (undefined === data) {
+    return "";
+  }
 
-    for (const key of Object.keys(data)) {
-        arr.push(`${key}=${data[key]}`);
-    }
+  for (const key of Object.keys(data)) {
+    arr.push(`${key}=${data[key]}`);
+  }
 
-    return arr.join("&");
+  return arr.join("&");
 }
 function getMybDS(query, body = "") {
   const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
