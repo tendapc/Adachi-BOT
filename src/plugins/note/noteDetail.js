@@ -151,6 +151,16 @@ function getDS2() {
   return `${i},${r},${c}`;
 }
 
+function getMybDS() {
+    //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
+    const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
+    const i = (Date.now() / 1000) | 0;
+    const r = randomString(6);
+    const c = md5(`salt=${n}&t=${i}&r=${r}`);
+    return `${i},${r},${c}`;
+}
+
+
 function mysSignIn(role_id, server, cookie) {
   const body = { act_id: "e202009291139501", region: server, uid: role_id };
   return fetch(__API.SIGN_URL, {
@@ -271,11 +281,11 @@ function mybSignIn(cookie, forum) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: getDS2(),
+      DS: getMybDS(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.28.1",
+      "x-rpc-app_version": "2.34.1",
       "x-rpc-channel": "miyousheluodi",
       "x-rpc-client_type": 2,
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
