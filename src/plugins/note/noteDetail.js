@@ -151,12 +151,12 @@ function getDS2() {
   return `${i},${r},${c}`;
 }
 
-function getMybDS() {
-    //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
+function getMybDS(query, body = "") {
     const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
     const i = (Date.now() / 1000) | 0;
     const r = randomString(6);
-    const c = md5(`salt=${n}&t=${i}&r=${r}`);
+    const q = getQueryParam(query);
+    const c = md5(`salt=${n}&t=${i}&r=${r}&b=${body}&q=${q}`);
     return `${i},${r},${c}`;
 }
 
@@ -281,7 +281,7 @@ function mybSignIn(cookie, forum) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: getMybDS(),
+      DS: getMybDS(undefined, JSON.stringify(body)),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
