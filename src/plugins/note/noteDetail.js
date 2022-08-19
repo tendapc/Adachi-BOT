@@ -152,14 +152,13 @@ function getDS2() {
 }
 
 function getMybDS() {
-    //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-    const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
-    const i = (Date.now() / 1000) | 0;
-    const r = randomString(6);
-    const c = md5(`salt=${n}&t=${i}&r=${r}`);
-    return `${i},${r},${c}`;
+  //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
+  const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
+  const i = (Date.now() / 1000) | 0;
+  const r = randomString(6);
+  const c = md5(`salt=${n}&t=${i}&r=${r}`);
+  return `${i},${r},${c}`;
 }
-
 
 function mysSignIn(role_id, server, cookie) {
   const body = { act_id: "e202009291139501", region: server, uid: role_id };
