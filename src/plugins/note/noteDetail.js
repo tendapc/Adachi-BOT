@@ -160,7 +160,6 @@ function getMybDS(query, body = "") {
     return `${i},${r},${c}`;
 }
 
-
 function mysSignIn(role_id, server, cookie) {
   const body = { act_id: "e202009291139501", region: server, uid: role_id };
   return fetch(__API.SIGN_URL, {
