@@ -164,12 +164,12 @@ function getQueryParam(data) {
     return arr.join("&");
 }
 function getMybDS(query, body = "") {
-    const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
-    const i = (Date.now() / 1000) | 0;
-    const r = randomString(6);
-    const q = getQueryParam(query);
-    const c = md5(`salt=${n}&t=${i}&r=${r}&b=${body}&q=${q}`);
-    return `${i},${r},${c}`;
+  const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
+  const i = (Date.now() / 1000) | 0;
+  const r = randomString(6);
+  const q = getQueryParam(query);
+  const c = md5(`salt=${n}&t=${i}&r=${r}&b=${body}&q=${q}`);
+  return `${i},${r},${c}`;
 }
 
 function mysSignIn(role_id, server, cookie) {
