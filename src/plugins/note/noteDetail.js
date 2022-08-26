@@ -336,15 +336,15 @@ function mybPostFull(cookie, post_id) {
       DS: getDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
-        "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(cookie).substring(
-            0,
-            5
-        )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
-        "x-rpc-app_version": "2.35.2",
-        "x-rpc-client_type": 5,
-        "x-rpc-channel": "miyousheluodi",
-        "x-rpc-sys_version": "6.0.1",
-        "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(cookie).substring(
+        0,
+        5
+      )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
+      "x-rpc-app_version": "2.35.2",
+      "x-rpc-client_type": 5,
+      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-sys_version": "6.0.1",
+      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
 }
