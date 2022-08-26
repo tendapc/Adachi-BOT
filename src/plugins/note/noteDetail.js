@@ -776,6 +776,13 @@ async function autoSignIn() {
         message = ret.message;
         if (ret.code == -1) {
           faildNum++;
+            try {
+                if ((await getMYBCookie(uid, msg.bot)) != undefined) {
+                    message += `
+            ${await doGetMYB(msg, uid, region)}`;
+                }
+            } catch (e) {
+            }
           continue;
         }
         num++;
