@@ -175,18 +175,20 @@ function getMybDS(query, body = "") {
 }
 
 function mysSignIn(role_id, server, cookie) {
-    const body = { act_id: "e202009291139501", region: server, uid: role_id };
-    return fetch(__API.SIGN_URL, {
-        method: "POST",
-        json: true,
-        body: JSON.stringify(body),
-        headers: {
-            ...HEADERS,
-            DS: getDS2(),
-            Cookie: cookie,
-            Referer: __API.REFERER_URL,
-            "User-Agent":
-                `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(0, 5)}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
+  const body = { act_id: "e202009291139501", region: server, uid: role_id };
+  return fetch(__API.SIGN_URL, {
+    method: "POST",
+    json: true,
+    body: JSON.stringify(body),
+    headers: {
+      ...HEADERS,
+      DS: getDS2(),
+      Cookie: cookie,
+      Referer: __API.REFERER_URL,
+      "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(
+        0,
+        5
+      )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
       "x-rpc-app_version": "2.35.2",
       "x-rpc-client_type": 5,
       "x-rpc-channel": "miyousheluodi",
@@ -207,9 +209,11 @@ function mysReSignIn(role_id, server, cookie) {
       ...HEADERS,
       DS: getDS2(),
       Cookie: cookie,
-        Referer: __API.REFERER_URL,
-        "User-Agent":
-            `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(0, 5)}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
+      Referer: __API.REFERER_URL,
+      "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(
+        0,
+        5
+      )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
       "x-rpc-app_version": "2.35.2",
       "x-rpc-client_type": 5,
       "x-rpc-channel": "miyousheluodi",
