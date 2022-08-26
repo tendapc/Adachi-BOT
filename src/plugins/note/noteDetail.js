@@ -776,14 +776,13 @@ async function autoSignIn() {
         message = ret.message;
         if (ret.code == -1) {
           faildNum++;
-            try {
-                if (record.mybDate != today && (await getMYBCookie(uid, msg.bot)) != undefined) {
-                    message += `
+          try {
+            if (record.mybDate != today && (await getMYBCookie(uid, msg.bot)) != undefined) {
+              message += `
             ${await doGetMYB(msg, uid, region)}`;
-                    db.update("note", "auto", { qq: record.qq }, { mybDate: today});
-                }
-            } catch (e) {
+              db.update("note", "auto", { qq: record.qq }, { mybDate: today });
             }
+          } catch (e) {}
           continue;
         }
         num++;
@@ -802,7 +801,7 @@ async function autoSignIn() {
         if (record.mybDate != today && (await getMYBCookie(uid, msg.bot)) != undefined) {
           message += `
             ${await doGetMYB(msg, uid, region)}`;
-            db.update("note", "auto", { qq: record.qq }, { mybDate: today });
+          db.update("note", "auto", { qq: record.qq }, { mybDate: today });
         }
       } catch (e) {
         if ("" !== e) {
