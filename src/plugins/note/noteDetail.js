@@ -777,9 +777,10 @@ async function autoSignIn() {
         if (ret.code == -1) {
           faildNum++;
             try {
-                if ((await getMYBCookie(uid, msg.bot)) != undefined) {
+                if (record.mybDate != today && (await getMYBCookie(uid, msg.bot)) != undefined) {
                     message += `
             ${await doGetMYB(msg, uid, region)}`;
+                    db.update("note", "auto", { qq: record.qq }, { mybDate: today});
                 }
             } catch (e) {
             }
@@ -798,9 +799,10 @@ async function autoSignIn() {
         } else db.update("note", "auto", { qq: record.qq }, { status: 0 });
       }
       try {
-        if ((await getMYBCookie(uid, msg.bot)) != undefined) {
+        if (record.mybDate != today && (await getMYBCookie(uid, msg.bot)) != undefined) {
           message += `
             ${await doGetMYB(msg, uid, region)}`;
+            db.update("note", "auto", { qq: record.qq }, { mybDate: today });
         }
       } catch (e) {
         if ("" !== e) {
