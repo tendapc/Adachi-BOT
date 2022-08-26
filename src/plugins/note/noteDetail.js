@@ -612,14 +612,14 @@ async function doSign(msg, uid, region) {
   if (signInfo.first_bind) {
     return { code: 0, message: `请先手动签到一次` };
   }
-    try {
-        let sign = await signInPromise(uid, region, msg.uid, msg.bot);
-    } catch (e)  {
-        return {
-            code: -1,
-            message: e,
-        };
-    }
+  try {
+    let sign = await signInPromise(uid, region, msg.uid, msg.bot);
+  } catch (e) {
+    return {
+      code: -1,
+      message: e,
+    };
+  }
   let signed = await signInfoPromise(uid, region, msg.uid, msg.bot);
   if (!signed.is_sign) {
     return {
@@ -747,7 +747,7 @@ async function autoSignIn() {
   num = 0;
   let faildNum = 0;
   let ret = {};
-    for (let i = 0, len = records.length; i < len; ++i) {
+  for (let i = 0, len = records.length; i < len; ++i) {
     if (num >= 20 || faildNum >= 40) break;
     record = records[i];
     if (!record.auto) continue;
