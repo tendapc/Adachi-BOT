@@ -25,11 +25,13 @@ const __API = {
   DETAIL_URL: "https://api-takumi.mihoyo.com/event/e20200928calculate/v1/sync/avatar/detail",
 };
 const HEADERS = {
-  "User-Agent":
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/2.11.1",
+    "User-Agent":
+        "Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-AN00; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2",
   Referer: "https://webstatic.mihoyo.com/",
-  "x-rpc-app_version": "2.11.1",
-  "x-rpc-client_type": 5,
+    "x-rpc-app_version": "2.35.2",
+    "x-rpc-client_type": 5,
+    'x-rpc-channel': 'miyousheluodi',
+    'x-rpc-sys_version': '6.0.1',
   DS: "",
   Cookie: "",
 };
@@ -144,7 +146,7 @@ function getDS1() {
 
 function getDS2() {
   //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const n = "dWCcD2FsOUXEstC5f9xubswZxEeoBOTc";
+  const n = "N50pqm7FSy2AkFz2B3TqtuZMJ5TOl3Ep";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const c = md5(`salt=${n}&t=${i}&r=${r}`);
@@ -183,10 +185,12 @@ function mysSignIn(role_id, server, cookie) {
       DS: getDS2(),
       Cookie: cookie,
       Referer: __API.REFERER_URL,
-      "User-Agent":
-        "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/2.3.0",
-      "x-rpc-app_version": "2.28.1",
-      "x-rpc-client_type": 2,
+        "User-Agent":
+            "Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-AN00; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2",
+        "x-rpc-app_version": "2.35.2",
+        "x-rpc-client_type": 5,
+        'x-rpc-channel': 'miyousheluodi',
+        'x-rpc-sys_version': '6.0.1',
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
@@ -205,9 +209,11 @@ function mysReSignIn(role_id, server, cookie) {
       Cookie: cookie,
       Referer: __API.REFERER_URL,
       "User-Agent":
-        "Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-AN00; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.3.0",
-      "x-rpc-app_version": "2.28.1",
-      "x-rpc-client_type": 2,
+        "Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-AN00; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2",
+      "x-rpc-app_version": "2.35.2",
+      "x-rpc-client_type": 5,
+      'x-rpc-channel': 'miyousheluodi',
+      'x-rpc-sys_version': '6.0.1',
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
