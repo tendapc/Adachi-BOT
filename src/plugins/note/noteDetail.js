@@ -207,18 +207,18 @@ function mysReSignIn(role_id, server, cookie) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-        DS: getDS2(),
-        Cookie: cookie,
-        Referer: __API.REFERER_URL,
-        "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(
-            0,
-            5
-        )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
-        "x-rpc-app_version": "2.35.2",
-        "x-rpc-client_type": 5,
-        "x-rpc-channel": "miyousheluodi",
-        "x-rpc-sys_version": "6.0.1",
-        "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      DS: getDS2(),
+      Cookie: cookie,
+      Referer: __API.REFERER_URL,
+      "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(
+        0,
+        5
+      )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
+      "x-rpc-app_version": "2.35.2",
+      "x-rpc-client_type": 5,
+      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-sys_version": "6.0.1",
+      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
 }
@@ -280,7 +280,7 @@ function getMybState(cookie) {
     method: "GET",
     headers: {
       ...HEADERS,
-        DS: getDS1(),
+      DS: getDS1(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
@@ -302,14 +302,14 @@ function mybSignIn(cookie, forum) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-        DS: getMybDS(undefined, JSON.stringify(body)),
-        Cookie: cookie,
-        Referer: "https://app.mihoyo.com",
-        "User-Agent": "okhttp/4.8.0",
-        "x-rpc-app_version": "2.34.1",
-        "x-rpc-channel": "miyousheluodi",
-        "x-rpc-client_type": 2,
-        "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      DS: getMybDS(undefined, JSON.stringify(body)),
+      Cookie: cookie,
+      Referer: "https://app.mihoyo.com",
+      "User-Agent": "okhttp/4.8.0",
+      "x-rpc-app_version": "2.34.1",
+      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-client_type": 2,
+      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
 }
