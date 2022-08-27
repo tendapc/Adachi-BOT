@@ -166,7 +166,7 @@ function getQueryParam(data) {
   return arr.join("&");
 }
 function getMybDS(query, body = "") {
-    const n = "N50pqm7FSy2AkFz2B3TqtuZMJ5TOl3Ep";
+  const n = "N50pqm7FSy2AkFz2B3TqtuZMJ5TOl3Ep";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const q = getQueryParam(query);
