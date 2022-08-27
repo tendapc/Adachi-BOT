@@ -166,7 +166,7 @@ function getQueryParam(data) {
   return arr.join("&");
 }
 function getMybDS(query, body = "") {
-  const n = "N50pqm7FSy2AkFz2B3TqtuZMJ5TOl3Ep";
+    const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const q = getQueryParam(query);
@@ -211,7 +211,7 @@ function mysReSignIn(role_id, server, cookie) {
       Cookie: cookie,
       Referer: __API.REFERER_URL,
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.35.2",
+      "x-rpc-app_version": "2.28.1",
       "x-rpc-channel": "mihoyo",
       "x-rpc-client_type": 5,
       "x-rpc-sys_version": "6.0.1",
@@ -279,17 +279,14 @@ function getMybState(cookie) {
     method: "GET",
     headers: {
       ...HEADERS,
-      DS: getDS2(),
-      Cookie: cookie,
-      Referer: "https://app.mihoyo.com",
-      "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.35.2",
-      "x-rpc-channel": "mihoyo",
-      "x-rpc-client_type": 5,
-      "x-rpc-sys_version": "6.0.1",
-      "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
-      "x-rpc-device_model": "Mi 10",
-      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+        DS: getMybDS(undefined, JSON.stringify(body)),
+        Cookie: cookie,
+        Referer: "https://app.mihoyo.com",
+        "User-Agent": "okhttp/4.8.0",
+        "x-rpc-app_version": "2.34.1",
+        "x-rpc-channel": "miyousheluodi",
+        "x-rpc-client_type": 2,
+        "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
 }
