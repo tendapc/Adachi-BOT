@@ -166,7 +166,7 @@ function getQueryParam(data) {
   return arr.join("&");
 }
 function getMybDS(query, body = "") {
-    const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
+  const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const q = getQueryParam(query);
@@ -279,14 +279,14 @@ function getMybState(cookie) {
     method: "GET",
     headers: {
       ...HEADERS,
-        DS: getMybDS(undefined, JSON.stringify(body)),
-        Cookie: cookie,
-        Referer: "https://app.mihoyo.com",
-        "User-Agent": "okhttp/4.8.0",
-        "x-rpc-app_version": "2.34.1",
-        "x-rpc-channel": "miyousheluodi",
-        "x-rpc-client_type": 2,
-        "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      DS: getMybDS(undefined, JSON.stringify(body)),
+      Cookie: cookie,
+      Referer: "https://app.mihoyo.com",
+      "User-Agent": "okhttp/4.8.0",
+      "x-rpc-app_version": "2.34.1",
+      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-client_type": 2,
+      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
     },
   }).then((res) => res.json());
 }
