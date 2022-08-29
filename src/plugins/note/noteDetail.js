@@ -137,7 +137,7 @@ function getRewardsInfo(cookie) {
 }
 
 function getDS1() {
-  const n = "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
+  const n = "dWCcD2FsOUXEstC5f9xubswZxEeoBOTc";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const c = md5(`salt=${n}&t=${i}&r=${r}`);
@@ -339,12 +339,12 @@ function mybPostFull(cookie, post_id) {
     qs: query,
     headers: {
       ...HEADERS,
-      DS: getDS2(),
+      DS: getDS1(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-        "x-rpc-app_version": "2.34.1",
-      "x-rpc-channel": "mihoyo",
+      "x-rpc-app_version": "2.34.1",
+      "x-rpc-channel": "miyousheluodi",
       "x-rpc-client_type": 2,
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
@@ -363,13 +363,13 @@ function mybUpVote(cookie, post_id) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: getDS2(),
+      DS: getDS1(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.35.2",
-      "x-rpc-channel": "mihoyo",
-      "x-rpc-client_type": 5,
+      "x-rpc-app_version": "2.34.1",
+      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-client_type": 2,
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
       "x-rpc-device_model": "Mi 10",
@@ -387,13 +387,13 @@ function mybSharePost(cookie, post_id) {
     qs: query,
     headers: {
       ...HEADERS,
-      DS: getDS2(),
+      DS: getDS1(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
       "x-rpc-app_version": "2.34.1",
       "x-rpc-channel": "miyousheluodi",
-      "x-rpc-client_type": 5,
+      "x-rpc-client_type": 2,
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
       "x-rpc-device_model": "Mi 10",
