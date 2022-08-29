@@ -363,7 +363,7 @@ function mybUpVote(cookie, post_id) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-        DS: getMybDS(undefined, JSON.stringify(body)),
+      DS: getMybDS(undefined, JSON.stringify(body)),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
