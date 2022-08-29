@@ -152,6 +152,15 @@ function getDS2() {
   const c = md5(`salt=${n}&t=${i}&r=${r}`);
   return `${i},${r},${c}`;
 }
+
+function getMybDS2() {
+    //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
+    const n = "ZSHlXeQUBis52qD1kEgKt5lUYed4b7Bb";
+    const i = (Date.now() / 1000) | 0;
+    const r = randomString(6);
+    const c = md5(`salt=${n}&t=${i}&r=${r}`);
+    return `${i},${r},${c}`;
+}
 function getQueryParam(data) {
   let arr = [];
 
@@ -363,7 +372,7 @@ function mybUpVote(cookie, post_id) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: getMybDS(undefined, ""),
+      DS: getMybDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
