@@ -360,10 +360,10 @@ function mybUpVote(cookie, post_id) {
   return fetch(__API.MYB_UPVOTE_URL, {
     method: "POST",
     json: true,
-    body: getMybDS(undefined, JSON.stringify(body)),
+    body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-      DS: getDS1(),
+        DS: getMybDS(undefined, JSON.stringify(body)),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
