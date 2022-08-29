@@ -363,11 +363,11 @@ function mybUpVote(cookie, post_id) {
     body: JSON.stringify(body),
     headers: {
       ...HEADERS,
-        DS: getMybDS(undefined, JSON.stringify(body)),
+      DS: getMybDS(undefined, ""),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.34.1",
+      "x-rpc-app_version": "2.35.2",
       "x-rpc-channel": "miyousheluodi",
       "x-rpc-client_type": 2,
       "x-rpc-sys_version": "6.0.1",
