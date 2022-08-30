@@ -119,7 +119,7 @@ async function init() {
     await updateGachaJob();
   });
 
-  schedule.scheduleJob("*/10 2-23 * * *", () => autoSignIn());
+  schedule.scheduleJob("*/10 1-23 * * *", () => autoSignIn());
 }
 
 export { init };
