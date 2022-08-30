@@ -396,7 +396,7 @@ function mybSharePost(cookie, post_id) {
     qs: query,
     headers: {
       ...HEADERS,
-        DS: getMybDS2(),
+      DS: getMybDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
