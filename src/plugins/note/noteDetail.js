@@ -183,6 +183,13 @@ function getMybDS(query, body = "") {
   return `${i},${r},${c}`;
 }
 
+function getUserAgent(str){
+  return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-${md5(str).substring(
+        0,
+        5
+      )} HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`;
+}
+
 function mysSignIn(role_id, server, cookie) {
   const body = { act_id: "e202009291139501", region: server, uid: role_id };
   return fetch(__API.SIGN_URL, {
@@ -194,10 +201,7 @@ function mysSignIn(role_id, server, cookie) {
       DS: getDS2(),
       Cookie: cookie,
       Referer: __API.REFERER_URL,
-      "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(
-        0,
-        5
-      )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
+      "User-Agent": getUserAgent(role_id),
       "x-rpc-app_version": "2.35.2",
       "x-rpc-client_type": 5,
       "x-rpc-channel": "miyousheluodi",
@@ -219,10 +223,7 @@ function mysReSignIn(role_id, server, cookie) {
       DS: getDS2(),
       Cookie: cookie,
       Referer: __API.REFERER_URL,
-      "User-Agent": `Mozilla/5.0 (Linux; Android 10; YZ-${md5(role_id).substring(
-        0,
-        5
-      )}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`,
+      "User-Agent": getUserAgent(role_id),
       "x-rpc-app_version": "2.35.2",
       "x-rpc-client_type": 5,
       "x-rpc-channel": "miyousheluodi",
