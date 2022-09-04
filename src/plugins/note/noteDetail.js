@@ -183,11 +183,11 @@ function getMybDS(query, body = "") {
   return `${i},${r},${c}`;
 }
 
-function getUserAgent(str){
+function getUserAgent(str) {
   return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-${md5(str).substring(
-        0,
-        5
-      )} HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`;
+    0,
+    5
+  )} HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`;
 }
 
 function mysSignIn(role_id, server, cookie) {
