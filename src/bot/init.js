@@ -5,6 +5,8 @@ import { mysNewsNotice, mysNewsTryToResetDB, mysNewsUpdate } from "#jobs/news";
 import db from "#utils/database";
 import { renderClose, renderOpen, renderPath } from "#utils/render";
 
+("use strict");
+
 let mPostRunning = false;
 
 function initDB() {

@@ -1,6 +1,7 @@
 import { getTrueNameByNikeName } from "../nikename/nikename.js";
 import { filterWordsByRegex, getWordByRegex } from "#utils/tools";
 
+("use strict");
 function getName(text, userID = undefined) {
   let character = filterWordsByRegex(
     text,
