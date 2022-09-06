@@ -801,7 +801,7 @@ async function autoSignIn() {
     record = records[i];
     if (!record.auto) continue;
     if (record.date == today) continue;
-    if (record.tryTime != undefined && nowTime - record.tryTime < 60 * 60) continue;
+    if (record.tryTime != undefined && nowTime - record.tryTime < 30 * 60) continue;
     await wait(5000);
     message = ``;
     status = record.status;
