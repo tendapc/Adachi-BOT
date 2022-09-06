@@ -847,6 +847,7 @@ async function autoSignIn() {
           message += `。关闭自动签到`;
           db.update("note", "auto", { qq: record.qq }, { auto: false });
         } else db.update("note", "auto", { qq: record.qq }, { status: 0 });
+        status = 0;
       }
       try {
         if (record.mybDate != today && (await getMYBCookie(uid, msg.bot)) != undefined) {
