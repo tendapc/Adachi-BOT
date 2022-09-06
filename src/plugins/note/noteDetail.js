@@ -186,11 +186,13 @@ function getMybDS(query, body = "") {
 }
 
 function getDeviceName(str) {
-    return `LIO-${md5(str).substring(0, 5)}`;
+  return `LIO-${md5(str).substring(0, 5)}`;
 }
 
 function getUserAgent(str) {
-    return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; ${getDeviceName(str)} ; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`;
+  return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; ${getDeviceName(
+    str
+  )} ; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`;
 }
 
 function mysSignIn(role_id, server, cookie) {
@@ -213,7 +215,7 @@ function mysSignIn(role_id, server, cookie) {
       "x-rpc-device_model": getDeviceName(role_id),
       "x-rpc-device_name": getDeviceName(role_id),
       "x-rpc-platform": "android",
-      "X-Requested-With":"com.mihoyo.hyperion",
+      "X-Requested-With": "com.mihoyo.hyperion",
     },
   }).then((res) => res.json());
 }
