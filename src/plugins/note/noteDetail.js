@@ -32,6 +32,8 @@ const HEADERS = {
   "x-rpc-client_type": 5,
   "x-rpc-channel": "miyousheluodi",
   "x-rpc-sys_version": "6.0.1",
+  "x-rpc-platform": "android",
+  "X-Requested-With": "com.mihoyo.hyperion",
   DS: "",
   Cookie: "",
 };
@@ -183,11 +185,12 @@ function getMybDS(query, body = "") {
   return `${i},${r},${c}`;
 }
 
+function getDeviceName(str) {
+    return `LIO-${md5(str).substring(0, 5)}`;
+}
+
 function getUserAgent(str) {
-  return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-${md5(str).substring(
-    0,
-    5
-  )} HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`;
+    return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; ${getDeviceName(str)} ; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.35.2`;
 }
 
 function mysSignIn(role_id, server, cookie) {
@@ -207,6 +210,10 @@ function mysSignIn(role_id, server, cookie) {
       "x-rpc-channel": "miyousheluodi",
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      "x-rpc-device_model": getDeviceName(role_id),
+      "x-rpc-device_name": getDeviceName(role_id),
+      "x-rpc-platform": "android",
+      "X-Requested-With":"com.mihoyo.hyperion",
     },
   }).then((res) => res.json());
 }
@@ -229,6 +236,10 @@ function mysReSignIn(role_id, server, cookie) {
       "x-rpc-channel": "miyousheluodi",
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      "x-rpc-device_model": getDeviceName(role_id),
+      "x-rpc-device_name": getDeviceName(role_id),
+      "x-rpc-platform": "android",
+      "X-Requested-With": "com.mihoyo.hyperion",
     },
   }).then((res) => res.json());
 }
