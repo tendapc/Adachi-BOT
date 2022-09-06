@@ -778,6 +778,7 @@ async function autoSignIn() {
   }
   global.bots.logger.debug(`有${records.length}个用户需要签到`);
   const today = new Date().toLocaleDateString();
+  const nowTime = new Date().valueOf() / 1000;
   let record, message, cookie, say, status, msg, uid, region, num;
   num = 0;
   let faildNum = 0;
@@ -787,6 +788,7 @@ async function autoSignIn() {
     record = records[i];
     if (!record.auto) continue;
     if (record.date == today) continue;
+    if (record.tryTime != undefined && nowTime - record.tryTime < 60 * 60) continue;
     await wait(5000);
     message = ``;
     status = record.status;
@@ -811,6 +813,7 @@ async function autoSignIn() {
         message = ret.message;
         if (ret.code == -1) {
           faildNum++;
+          db.update("note", "auto", { qq: record.qq }, { tryTime: nowTime });
           try {
             if (record.mybDate != today && (await getMYBCookie(uid, msg.bot)) != undefined) {
               message += `
