@@ -10,16 +10,16 @@ function sleep(ms) {
 }
 
 function getInfo(name) {
-    const dir = path.resolve(global.rootdir,"resources", "info", "doc");
+  const dir = path.resolve(global.rootdir, "resources", "info", "doc");
 
-    return new Promise((resolve, reject) => {
-        try {
-            const file = path.resolve(dir, `${name}.json`);
-            resolve(JSON.parse(fs.readFileSync(file)));
-        } catch (e) {
-            reject(e);
-        }
-    });
+  return new Promise((resolve, reject) => {
+    try {
+      const file = path.resolve(dir, `${name}.json`);
+      resolve(JSON.parse(fs.readFileSync(file)));
+    } catch (e) {
+      reject(e);
+    }
+  });
 }
 
 async function doAvatarDetail(uid, server, avatar, msg) {
