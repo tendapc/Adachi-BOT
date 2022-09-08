@@ -33,7 +33,7 @@ const m_HEADERS = Object.freeze({
 });
 
 function getInfo(name) {
-  const dir = path.resolve(global.rootdir, "info", "doc");
+  const dir = path.resolve(global.rootdir, "info", "docs");
 
   return new Promise((resolve, reject) => {
     try {
