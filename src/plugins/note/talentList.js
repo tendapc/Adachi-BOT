@@ -1,9 +1,9 @@
+import fs from "fs";
 import lodash from "lodash";
+import path from "path";
 import db from "#utils/database";
 import { render } from "#utils/render";
 import { getAvatarDetailPromise } from "./noteDetail.js";
-import path from "path";
-import fs from "fs";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
