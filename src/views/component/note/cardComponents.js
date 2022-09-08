@@ -1,19 +1,11 @@
 import { html, toReadableElem } from "../common/utils.js";
 
 const { defineComponent } = window.Vue;
-const titleTemplate = html` <div class="container-title">
+const titleTemplate = html`<div class="container-title">
   <div class="title-content">
-    <img
-      class="arrow-left"
-      src="http://localhost:9934/resources/Version2/components/title-decoration.svg"
-      alt="ERROR"
-    />
+    <img class="arrow-left" src="http://localhost:9934/resources/etc/image/title-decoration.svg" alt="ERROR" />
     <div class="main-title">{{ title }}</div>
-    <img
-      class="arrow-right"
-      src="http://localhost:9934/resources/Version2/components/title-decoration.svg"
-      alt="ERROR"
-    />
+    <img class="arrow-right" src="http://localhost:9934/resources/etc/image/title-decoration.svg" alt="ERROR" />
     <div class="subtitle" v-show="subtitle">{{ subtitle }}</div>
   </div>
 </div>`;
