@@ -66,15 +66,10 @@ const CharacterBox = defineComponent({
   },
   setup(props) {
     function getCostume(costumeName) {
-      return encodeURI(`http://localhost:9934/resources/Version2/costumes/avatars/${costumeName}.png`);
+        return encodeURI(`http://localhost:9934/resources/costume/icon/${costumeName}.webp`);
     }
-
-    const starBackground = encodeURI(
-      `http://localhost:9934/resources/Version2/thumb/stars/${props.data.rarity}-Star.png`
-    );
-    const element = encodeURI(
-      `http://localhost:9934/resources/gacha/element/${toReadableElem(props.data.element)}.png`
-    );
+    const starBackground = encodeURI(`http://localhost:9934/resources/etc/image/${props.data.rarity}-Star.png`);
+    const element = encodeURI(`http://localhost:9934/resources/element/icon/${toReadableElem(props.data.element)}.png`);
     const hasCostume = props.data.costumes.length !== 0;
     const costumePath = hasCostume ? getCostume(props.data.costumes[0]["name"]) : "";
 
@@ -115,18 +110,13 @@ const ExplorationBox = defineComponent({
       chasmsmaw: "chasm",
     };
 
-    function getIconUri(rawUri) {
-      const icon_filename = rawUri.split("_").slice(-1)[0].split(".").slice(0)[0];
-      let iconUri;
-      if (logo_mapping[icon_filename.toLowerCase()]) {
-        iconUri = encodeURI(
-          `http://localhost:9934/resources/Version2/area/${logo_mapping[icon_filename.toLowerCase()]}.png`
-        );
-      } else {
-        iconUri = rawUri;
+      function getIconUri(rawUri) {
+          const icon_filename = rawUri.split("_").slice(-1)[0].split(".").slice(0)[0];
+
+          return logo_mapping[icon_filename.toLowerCase()]
+              ? encodeURI(`http://localhost:9934/resources/area/icon/${logo_mapping[icon_filename.toLowerCase()]}.png`)
+              : rawUri;
       }
-      return iconUri;
-    }
 
     const areaLogo = getIconUri(props.data.iconUrl);
 
