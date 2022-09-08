@@ -66,7 +66,7 @@ const CharacterBox = defineComponent({
   },
   setup(props) {
     function getCostume(costumeName) {
-        return encodeURI(`http://localhost:9934/resources/costume/icon/${costumeName}.webp`);
+      return encodeURI(`http://localhost:9934/resources/costume/icon/${costumeName}.webp`);
     }
     const starBackground = encodeURI(`http://localhost:9934/resources/etc/image/${props.data.rarity}-Star.png`);
     const element = encodeURI(`http://localhost:9934/resources/element/icon/${toReadableElem(props.data.element)}.png`);
@@ -110,13 +110,13 @@ const ExplorationBox = defineComponent({
       chasmsmaw: "chasm",
     };
 
-      function getIconUri(rawUri) {
-          const icon_filename = rawUri.split("_").slice(-1)[0].split(".").slice(0)[0];
+    function getIconUri(rawUri) {
+      const icon_filename = rawUri.split("_").slice(-1)[0].split(".").slice(0)[0];
 
-          return logo_mapping[icon_filename.toLowerCase()]
-              ? encodeURI(`http://localhost:9934/resources/area/icon/${logo_mapping[icon_filename.toLowerCase()]}.png`)
-              : rawUri;
-      }
+      return logo_mapping[icon_filename.toLowerCase()]
+        ? encodeURI(`http://localhost:9934/resources/area/icon/${logo_mapping[icon_filename.toLowerCase()]}.png`)
+        : rawUri;
+    }
 
     const areaLogo = getIconUri(props.data.iconUrl);
 
