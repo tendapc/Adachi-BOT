@@ -7,14 +7,15 @@ import { getWordByRegex } from "#utils/tools";
 
 ("use strict");
 
-// 如果注释中的链接失效，尝试在米游社中搜索用户“好多梨”。
+// 观测枢最底部“角色天赋材料周常表”入口
+// 周本图，包括天赋、武器、世界BOSS
 const m_URL = Object.freeze({
-  // https://bbs.mihoyo.com/ys/obc/content/1226/detail
-  talent: getUrl("/2022/07/12/75833613/dfa899ac62e854a2b3fcde3cf290d67e_4384913260559512486.png"),
-  // https://bbs.mihoyo.com/ys/obc/content/1187/detail
-  weapon: getUrl("/2022/07/12/75833613/cf8caacae5cfe095a760d5065d5ed39e_813310935669478403.png"),
-  // https://bbs.mihoyo.com/ys/obc/content/1226/detail
-  weekly: getUrl("/2022/07/12/75833613/d252cbb87d69a2f5f679d38f81c2e9f6_8220318949914596754.png"),
+  // 角色天赋
+  talent: getUrl("/2022/09/28/75833613/7fa4f61ddfe112f45e1ca3a35c9b92d2_5978218192327487057.png"),
+  // 武器素材
+  weapon: getUrl("/2022/09/28/75833613/31f4887f10f3ef55224b489edbe5a906_8568941919684533373.png"),
+  // boss 周本
+  weekly: getUrl("/2022/09/28/75833613/eb33cb712bab6991876c1ba590eecf3d_5898987548354516514.png"),
 });
 
 function getUrl(p) {
