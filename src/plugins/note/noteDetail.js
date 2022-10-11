@@ -247,8 +247,8 @@ function mysSignIn(role_id, server, cookie, challenge, validate) {
   return fetch(__API.SIGN_URL, {
     method: "POST",
     json: true,
-    body: JSON.stringify(body),
-    headers: ,
+      body: JSON.stringify(body),
+      headers: headers,
   }).then((res) => res.json());
 }
 
