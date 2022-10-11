@@ -675,7 +675,7 @@ async function upVotePostPromise(uid, post_id, userID, bot) {
   const cookie = await getMYBCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人米游币cookie`);
   const { retcode, message, data } = await mybUpVote(cookie, post_id);
-
+  bot.logger.debug(`vote ${retcode} ${message}`);
   return { retcode, message, data };
 }
 
@@ -683,7 +683,7 @@ async function sharePostPromise(uid, post_id, userID, bot) {
   const cookie = await getMYBCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人米游币cookie`);
   const { retcode, message, data } = await mybSharePost(cookie, post_id);
-  bot.logger.debug(`share ${uid} ${cookie} ${post_id}`);
+  //bot.logger.debug(`share ${uid} ${cookie} ${post_id}`);
   return { retcode, message, data };
 }
 
