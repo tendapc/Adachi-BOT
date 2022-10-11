@@ -384,7 +384,7 @@ function mybSignIn(cookie, forum) {
       ...HEADERS,
       DS: getMybDS(undefined, JSON.stringify(body)),
       Cookie: cookie,
-      Host:"bbs-api.mihoyo.com",
+      Host: "bbs-api.mihoyo.com",
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
       "x-rpc-app_version": "2.34.1",
