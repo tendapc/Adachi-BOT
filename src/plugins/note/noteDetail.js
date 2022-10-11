@@ -1,5 +1,4 @@
-﻿import { random } from "lodash";
-import md5 from "md5";
+﻿import md5 from "md5";
 import fetch from "node-fetch";
 import { v3 as uuidv3 } from "uuid";
 import db from "../../utils/database.js";
