@@ -160,10 +160,10 @@ function getDS2() {
 }
 
 //米游币
-const app_version3 = "2.34.1";
+const app_version3 = "2.36.1";
 const app_type3 = "2";
 function getMybDS2() {
-  const n = "z8DRIUjNDT7IT5IZXvrUAxyupA1peND9";
+  const n = "n0KjuIrKgLHh08LWSCYP0WXlVXaYvV64";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const c = md5(`salt=${n}&t=${i}&r=${r}`);
@@ -361,9 +361,9 @@ function getMybState(cookie) {
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.34.1",
+      "x-rpc-app_version": app_version3,
       "x-rpc-channel": "miyousheluodi",
-      "x-rpc-client_type": 2,
+      "x-rpc-client_type": app_type3,
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
       "x-rpc-device_model": "Mi 10",
@@ -387,7 +387,7 @@ function mybSignIn(cookie, forum) {
       Host:"bbs-api.mihoyo.com",
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.34.1",
+      "x-rpc-app_version": "2.36.1",
       "x-rpc-channel": "miyousheluodi",
       "x-rpc-client_type": 2,
       "x-rpc-sys_version": "6.0.1",
