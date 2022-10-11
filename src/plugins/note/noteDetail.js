@@ -1,4 +1,5 @@
-﻿import md5 from "md5";
+﻿import { random } from "lodash";
+import md5 from "md5";
 import fetch from "node-fetch";
 import { v3 as uuidv3 } from "uuid";
 import db from "../../utils/database.js";
@@ -26,9 +27,9 @@ const __API = {
 };
 const HEADERS = {
   "User-Agent":
-    "Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-AN00; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.36.1",
+    "Mozilla/5.0 (Linux; Android 10; HarmonyOS; LIO-AN00; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.37.1",
   Referer: "https://webstatic.mihoyo.com/",
-  "x-rpc-app_version": "2.36.1",
+  "x-rpc-app_version": "2.37.1",
   "x-rpc-client_type": 5,
   "x-rpc-channel": "miyousheluodi",
   "x-rpc-sys_version": "6.0.1",
@@ -146,15 +147,22 @@ function getDS1() {
   return `${i},${r},${c}`;
 }
 
+//签到
+const app_version2 = "2.37.1";
+const app_type2 = "5";
 function getDS2() {
   //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const n = "YVEIkzDFNHLeKXLxzqCA9TzxCpWwbIbk";
+  //const n = "YVEIkzDFNHLeKXLxzqCA9TzxCpWwbIbk";
+  const n = "Qqx8cyv7kuyD8fTw11SmvXSFHp7iZD29";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const c = md5(`salt=${n}&t=${i}&r=${r}`);
   return `${i},${r},${c}`;
 }
 
+//米游币
+const app_version3 = "2.35.2";
+const app_type3 = "5";
 function getMybDS2() {
   //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
   const n = "ZSHlXeQUBis52qD1kEgKt5lUYed4b7Bb";
@@ -189,35 +197,81 @@ function getDeviceName(str) {
   return `LIO-${md5(str).substring(0, 5)}`;
 }
 
-function getUserAgent(str) {
+function getUserAgent(str,version) {
   return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; ${getDeviceName(
     str
-  )} ; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/2.36.1`;
+  )} ; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/${version}`;
 }
 
-function mysSignIn(role_id, server, cookie) {
-  const body = { act_id: "e202009291139501", region: server, uid: role_id };
+function mysSignIn(role_id, server, cookie, challenge, validate) {
+    const body = { act_id: "e202009291139501", region: server, uid: role_id };
+    let headers = {};
+    if (challenge != undefined && validate != undefined) {
+        headers = {
+            ...HEADERS,
+            DS: getDS2(),
+            Cookie: cookie,
+            Referer: __API.REFERER_URL,
+            "User-Agent": getUserAgent(role_id, app_version2),
+            "x-rpc-app_version": app_version2,
+            "x-rpc-client_type": app_type2,
+            "x-rpc-channel": "miyousheluodi",
+            "x-rpc-sys_version": "6.0.1",
+            "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+            "x-rpc-device_model": getDeviceName(role_id),
+            "x-rpc-device_name": getDeviceName(role_id),
+            "x-rpc-platform": "android",
+            "X-Requested-With": "com.mihoyo.hyperion",
+            "x-rpc-challenge": challenge,
+            "x-rpc-validate": validate,
+            "x-rpc-seccode": `${validate}|jordan`,
+        };
+    } else {
+        headers = {
+            ...HEADERS,
+            DS: getDS2(),
+            Cookie: cookie,
+            Referer: __API.REFERER_URL,
+            "User-Agent": getUserAgent(role_id, app_version2),
+            "x-rpc-app_version": app_version2,
+            "x-rpc-client_type": app_type2,
+            "x-rpc-channel": "miyousheluodi",
+            "x-rpc-sys_version": "6.0.1",
+            "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+            "x-rpc-device_model": getDeviceName(role_id),
+            "x-rpc-device_name": getDeviceName(role_id),
+            "x-rpc-platform": "android",
+            "X-Requested-With": "com.mihoyo.hyperion",
+        };
+    }
   return fetch(__API.SIGN_URL, {
     method: "POST",
     json: true,
     body: JSON.stringify(body),
-    headers: {
-      ...HEADERS,
-      DS: getDS2(),
-      Cookie: cookie,
-      Referer: __API.REFERER_URL,
-      "User-Agent": getUserAgent(role_id),
-      "x-rpc-app_version": "2.36.1",
-      "x-rpc-client_type": 5,
-      "x-rpc-channel": "miyousheluodi",
-      "x-rpc-sys_version": "6.0.1",
-      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
-      "x-rpc-device_model": getDeviceName(role_id),
-      "x-rpc-device_name": getDeviceName(role_id),
-      "x-rpc-platform": "android",
-      "X-Requested-With": "com.mihoyo.hyperion",
-    },
+    headers: ,
   }).then((res) => res.json());
+}
+
+function geetest(gt, challenge) {
+    const query = {
+        lang: "zh-cn",
+        pt: 3,
+        client_type: "web_mobile",
+        gt: gt,
+        challenge: challenge,
+    };
+
+    return fetch(`https://api.geetest.com/ajax.php?${new URLSearchParams(query)}`, {
+        method: "GET",
+        qs: query,
+        headers: {
+            ...HEADERS,
+            "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+            "Accept": "*/*",
+            Referer: "https://webstatic.mihoyo.com/",
+            "X-Requested-With":"com.mihoyo.hyperion",
+        },
+    }).then((res) => res.json());
 }
 
 function mysReSignIn(role_id, server, cookie) {
@@ -232,9 +286,9 @@ function mysReSignIn(role_id, server, cookie) {
       DS: getDS2(),
       Cookie: cookie,
       Referer: __API.REFERER_URL,
-      "User-Agent": getUserAgent(role_id),
-      "x-rpc-app_version": "2.36.1",
-      "x-rpc-client_type": 5,
+      "User-Agent": getUserAgent(role_id, app_version2),
+      "x-rpc-app_version": app_version2,
+      "x-rpc-client_type": app_type2,
       "x-rpc-channel": "miyousheluodi",
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
@@ -366,9 +420,9 @@ function mybPostFull(cookie, post_id) {
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.35.2",
+      "x-rpc-app_version": app_version3,
       "x-rpc-channel": "miyousheluodi",
-      "x-rpc-client_type": 2,
+      "x-rpc-client_type": app_type3,
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
       "x-rpc-device_model": "Mi 10",
@@ -390,9 +444,9 @@ function mybUpVote(cookie, post_id) {
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.35.2",
+      "x-rpc-app_version": app_version3,
       "x-rpc-channel": "miyousheluodi",
-      "x-rpc-client_type": 2,
+      "x-rpc-client_type": app_type3,
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
       "x-rpc-device_model": "Mi 10",
@@ -414,9 +468,9 @@ function mybSharePost(cookie, post_id) {
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.35.2",
+      "x-rpc-app_version": app_version3,
       "x-rpc-channel": "miyousheluodi",
-      "x-rpc-client_type": 2,
+      "x-rpc-client_type": app_type3,
       "x-rpc-sys_version": "6.0.1",
       "x-rpc-device_name": uuidv3(cookie, uuidv3.URL).replace("-", ""),
       "x-rpc-device_model": "Mi 10",
@@ -468,6 +522,17 @@ async function signInfoPromise(uid, server, userID, bot) {
   return data;
 }
 
+async function getValidatePromise(gt, challenge, bot) {
+    const ret = await geetest(gt, challenge);
+    if (ret != undefined &&
+        ret.status != undefined && ret.status.indexOf("success") != -1 &&
+        ret.data != undefined && ret.data.result != undefined && ret.data.result.indexOf("success") != -1 &&
+        ret.validate != undefined) {
+        return ret.validate;
+    }
+    return undefined;
+}
+
 async function getAvatarDetailPromise(uid, server, avatar_id, userID, bot) {
   const cookie = await getUserCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人cookie`);
@@ -507,11 +572,11 @@ async function rewardsPromise(uid, server, userID, bot) {
   return data;
 }
 
-async function signInPromise(uid, server, userID, bot) {
+async function signInPromise(uid, server, userID, bot,challenge, validate) {
   const cookie = await getUserCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人cookie`);
   bot.logger.debug(`signIn ${uid} ${server} ${cookie}`);
-  const { retcode, message, data } = await mysSignIn(uid, server, cookie);
+  const { retcode, message, data } = await mysSignIn(uid, server, cookie, challenge, validate);
 
   if (retcode !== 0) {
     return Promise.reject(`米游社接口报错: ${message}`);
@@ -660,8 +725,20 @@ async function doSign(msg, uid, region) {
   if (signInfo.first_bind) {
     return { code: 0, message: `请先手动签到一次` };
   }
-  try {
-    let sign = await signInPromise(uid, region, msg.uid, msg.bot);
+    try {
+      let sign = await signInPromise(uid, region, msg.uid, msg.bot, undefined, undefined);
+      if (sign.data.risk_code == 375) {
+          let gt = sign.data.gt;
+          let challenge = sign.data.challenge;
+          let validate = await getValidatePromise(gt, challenge);
+          if (validate != undefined) {
+              msg.bot.logger.debug(`无感验证`);
+              await wait(15000);
+              let sign = await signInPromise(uid, region, msg.uid, msg.bot, challenge, validate);
+          } else {
+              msg.bot.logger.debug(`无感验证失败`);
+          }
+      }
   } catch (e) {
     return {
       code: -1,
