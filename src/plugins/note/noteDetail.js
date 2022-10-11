@@ -832,7 +832,7 @@ ${message}`;
     }
     if (!post_up_0) {
       let n = 0;
-      for (var post_id of getRandomArrayElements(post_ids, 10)) {
+      for (var post_id of getRandomArrayElements(post_ids, 5)) {
         let { retcode, message, data } = await upVotePostPromise(uid, post_id, msg.uid, msg.bot);
         if ("OK" == message) n++;
         else
@@ -840,7 +840,7 @@ ${message}`;
 ${message}`;
       }
       ret += `
-点赞（${n}/10）`;
+点赞（${n}/5）`;
     }
     if (!share_post_0) {
       let n = 0;
