@@ -196,81 +196,81 @@ function getDeviceName(str) {
   return `LIO-${md5(str).substring(0, 5)}`;
 }
 
-function getUserAgent(str,version) {
+function getUserAgent(str, version) {
   return `Mozilla/5.0 (Linux; Android 10; HarmonyOS; ${getDeviceName(
     str
   )} ; HMSCore 6.6.0.352) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.1.2.311 Mobile Safari/537.36 miHoYoBBS/${version}`;
 }
 
 function mysSignIn(role_id, server, cookie, challenge, validate) {
-    const body = { act_id: "e202009291139501", region: server, uid: role_id };
-    let headers = {};
-    if (challenge != undefined && validate != undefined) {
-        headers = {
-            ...HEADERS,
-            DS: getDS2(),
-            Cookie: cookie,
-            Referer: __API.REFERER_URL,
-            "User-Agent": getUserAgent(role_id, app_version2),
-            "x-rpc-app_version": app_version2,
-            "x-rpc-client_type": app_type2,
-            "x-rpc-channel": "miyousheluodi",
-            "x-rpc-sys_version": "6.0.1",
-            "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
-            "x-rpc-device_model": getDeviceName(role_id),
-            "x-rpc-device_name": getDeviceName(role_id),
-            "x-rpc-platform": "android",
-            "X-Requested-With": "com.mihoyo.hyperion",
-            "x-rpc-challenge": challenge,
-            "x-rpc-validate": validate,
-            "x-rpc-seccode": `${validate}|jordan`,
-        };
-    } else {
-        headers = {
-            ...HEADERS,
-            DS: getDS2(),
-            Cookie: cookie,
-            Referer: __API.REFERER_URL,
-            "User-Agent": getUserAgent(role_id, app_version2),
-            "x-rpc-app_version": app_version2,
-            "x-rpc-client_type": app_type2,
-            "x-rpc-channel": "miyousheluodi",
-            "x-rpc-sys_version": "6.0.1",
-            "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
-            "x-rpc-device_model": getDeviceName(role_id),
-            "x-rpc-device_name": getDeviceName(role_id),
-            "x-rpc-platform": "android",
-            "X-Requested-With": "com.mihoyo.hyperion",
-        };
-    }
+  const body = { act_id: "e202009291139501", region: server, uid: role_id };
+  let headers = {};
+  if (challenge != undefined && validate != undefined) {
+    headers = {
+      ...HEADERS,
+      DS: getDS2(),
+      Cookie: cookie,
+      Referer: __API.REFERER_URL,
+      "User-Agent": getUserAgent(role_id, app_version2),
+      "x-rpc-app_version": app_version2,
+      "x-rpc-client_type": app_type2,
+      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-sys_version": "6.0.1",
+      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      "x-rpc-device_model": getDeviceName(role_id),
+      "x-rpc-device_name": getDeviceName(role_id),
+      "x-rpc-platform": "android",
+      "X-Requested-With": "com.mihoyo.hyperion",
+      "x-rpc-challenge": challenge,
+      "x-rpc-validate": validate,
+      "x-rpc-seccode": `${validate}|jordan`,
+    };
+  } else {
+    headers = {
+      ...HEADERS,
+      DS: getDS2(),
+      Cookie: cookie,
+      Referer: __API.REFERER_URL,
+      "User-Agent": getUserAgent(role_id, app_version2),
+      "x-rpc-app_version": app_version2,
+      "x-rpc-client_type": app_type2,
+      "x-rpc-channel": "miyousheluodi",
+      "x-rpc-sys_version": "6.0.1",
+      "x-rpc-device_id": uuidv3(cookie, uuidv3.URL).replace("-", ""),
+      "x-rpc-device_model": getDeviceName(role_id),
+      "x-rpc-device_name": getDeviceName(role_id),
+      "x-rpc-platform": "android",
+      "X-Requested-With": "com.mihoyo.hyperion",
+    };
+  }
   return fetch(__API.SIGN_URL, {
     method: "POST",
     json: true,
-      body: JSON.stringify(body),
-      headers: headers,
+    body: JSON.stringify(body),
+    headers: headers,
   }).then((res) => res.json());
 }
 
 function geetest(gt, challenge) {
-    const query = {
-        lang: "zh-cn",
-        pt: 3,
-        client_type: "web_mobile",
-        gt: gt,
-        challenge: challenge,
-    };
+  const query = {
+    lang: "zh-cn",
+    pt: 3,
+    client_type: "web_mobile",
+    gt: gt,
+    challenge: challenge,
+  };
 
-    return fetch(`https://api.geetest.com/ajax.php?${new URLSearchParams(query)}`, {
-        method: "GET",
-        qs: query,
-        headers: {
-            ...HEADERS,
-            "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
-            "Accept": "*/*",
-            Referer: "https://webstatic.mihoyo.com/",
-            "X-Requested-With":"com.mihoyo.hyperion",
-        },
-    }).then((res) => res.json());
+  return fetch(`https://api.geetest.com/ajax.php?${new URLSearchParams(query)}`, {
+    method: "GET",
+    qs: query,
+    headers: {
+      ...HEADERS,
+      "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+      Accept: "*/*",
+      Referer: "https://webstatic.mihoyo.com/",
+      "X-Requested-With": "com.mihoyo.hyperion",
+    },
+  }).then((res) => res.json());
 }
 
 function mysReSignIn(role_id, server, cookie) {
@@ -522,14 +522,19 @@ async function signInfoPromise(uid, server, userID, bot) {
 }
 
 async function getValidatePromise(gt, challenge, bot) {
-    const ret = await geetest(gt, challenge);
-    if (ret != undefined &&
-        ret.status != undefined && ret.status.indexOf("success") != -1 &&
-        ret.data != undefined && ret.data.result != undefined && ret.data.result.indexOf("success") != -1 &&
-        ret.validate != undefined) {
-        return ret.validate;
-    }
-    return undefined;
+  const ret = await geetest(gt, challenge);
+  if (
+    ret != undefined &&
+    ret.status != undefined &&
+    ret.status.indexOf("success") != -1 &&
+    ret.data != undefined &&
+    ret.data.result != undefined &&
+    ret.data.result.indexOf("success") != -1 &&
+    ret.validate != undefined
+  ) {
+    return ret.validate;
+  }
+  return undefined;
 }
 
 async function getAvatarDetailPromise(uid, server, avatar_id, userID, bot) {
@@ -571,7 +576,7 @@ async function rewardsPromise(uid, server, userID, bot) {
   return data;
 }
 
-async function signInPromise(uid, server, userID, bot,challenge, validate) {
+async function signInPromise(uid, server, userID, bot, challenge, validate) {
   const cookie = await getUserCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人cookie`);
   bot.logger.debug(`signIn ${uid} ${server} ${cookie}`);
@@ -724,20 +729,20 @@ async function doSign(msg, uid, region) {
   if (signInfo.first_bind) {
     return { code: 0, message: `请先手动签到一次` };
   }
-    try {
-      let sign = await signInPromise(uid, region, msg.uid, msg.bot, undefined, undefined);
-      if (sign.data.risk_code == 375) {
-          let gt = sign.data.gt;
-          let challenge = sign.data.challenge;
-          let validate = await getValidatePromise(gt, challenge);
-          if (validate != undefined) {
-              msg.bot.logger.debug(`无感验证`);
-              await wait(15000);
-              let sign = await signInPromise(uid, region, msg.uid, msg.bot, challenge, validate);
-          } else {
-              msg.bot.logger.debug(`无感验证失败`);
-          }
+  try {
+    let sign = await signInPromise(uid, region, msg.uid, msg.bot, undefined, undefined);
+    if (sign.data.risk_code == 375) {
+      let gt = sign.data.gt;
+      let challenge = sign.data.challenge;
+      let validate = await getValidatePromise(gt, challenge);
+      if (validate != undefined) {
+        msg.bot.logger.debug(`无感验证`);
+        await wait(15000);
+        let sign = await signInPromise(uid, region, msg.uid, msg.bot, challenge, validate);
+      } else {
+        msg.bot.logger.debug(`无感验证失败`);
       }
+    }
   } catch (e) {
     return {
       code: -1,
