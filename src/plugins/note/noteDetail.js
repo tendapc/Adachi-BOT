@@ -646,8 +646,8 @@ async function mybStatePromise(uid, userID, bot) {
 async function mybSignPromise(uid, fourm, userID, bot) {
   const cookie = await getMYBCookie(uid, bot);
   if (!cookie) return Promise.reject(`未设置私人米游币cookie`);
-  bot.logger.debug(`mybSign ${uid} ${cookie}`);
   const { retcode, message, data } = await mybSignIn(cookie, fourm);
+  bot.logger.debug(`vote ${retcode} ${message}`);
   return { retcode, message, data };
 }
 
