@@ -160,16 +160,25 @@ function getDS2() {
 }
 
 //米游币
-const app_version3 = "2.35.2";
-const app_type3 = "5";
+const app_version3 = "2.34.1";
+const app_type3 = "2";
 function getMybDS2() {
-  //const n = "dmq2p7ka6nsu0d3ev6nex4k1ndzrnfiy";
-  const n = "ZSHlXeQUBis52qD1kEgKt5lUYed4b7Bb";
+  const n = "z8DRIUjNDT7IT5IZXvrUAxyupA1peND9";
   const i = (Date.now() / 1000) | 0;
   const r = randomString(6);
   const c = md5(`salt=${n}&t=${i}&r=${r}`);
   return `${i},${r},${c}`;
 }
+
+function getMybDS(query, body = "") {
+    const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
+    const i = (Date.now() / 1000) | 0;
+    const r = randomString(6);
+    const q = getQueryParam(query);
+    const c = md5(`salt=${n}&t=${i}&r=${r}&b=${body}&q=${q}`);
+    return `${i},${r},${c}`;
+}
+
 function getQueryParam(data) {
   let arr = [];
 
@@ -182,14 +191,6 @@ function getQueryParam(data) {
   }
 
   return arr.join("&");
-}
-function getMybDS(query, body = "") {
-  const n = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
-  const i = (Date.now() / 1000) | 0;
-  const r = randomString(6);
-  const q = getQueryParam(query);
-  const c = md5(`salt=${n}&t=${i}&r=${r}&b=${body}&q=${q}`);
-  return `${i},${r},${c}`;
 }
 
 function getDeviceName(str) {
@@ -356,7 +357,7 @@ function getMybState(cookie) {
     method: "GET",
     headers: {
       ...HEADERS,
-      DS: getDS1(),
+      DS: getMybDS2(),
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
@@ -385,7 +386,7 @@ function mybSignIn(cookie, forum) {
       Cookie: cookie,
       Referer: "https://app.mihoyo.com",
       "User-Agent": "okhttp/4.8.0",
-      "x-rpc-app_version": "2.35.2",
+      "x-rpc-app_version": "2.34.1",
       "x-rpc-channel": "miyousheluodi",
       "x-rpc-client_type": 2,
       "x-rpc-sys_version": "6.0.1",
