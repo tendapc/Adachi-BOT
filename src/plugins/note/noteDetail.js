@@ -947,7 +947,7 @@ async function autoSignIn() {
     }
 
     if (status == 1) db.update("note", "auto", { qq: record.qq }, { date: today, status });
-    if (say) autoSay(record.sid, record.qq, record.type, message);
+    //if (say) autoSay(record.sid, record.qq, record.type, message);
   }
   global.bots.logger.debug(`本次有${faildNum}个用户签到失败`);
 }
