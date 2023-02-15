@@ -7,7 +7,7 @@ import { guessPossibleNames } from "#utils/tools";
 ("use strict");
 
 async function Plugin(msg) {
-  const name = getName(msg.text);
+  const name = getName(msg.text, msg.uid);
   const guess = guessPossibleNames(name, global.names.character);
 
   switch (true) {

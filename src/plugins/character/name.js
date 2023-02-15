@@ -1,8 +1,8 @@
+import { getTrueNameByNikeName } from "../nikename/nikename.js";
 import { filterWordsByRegex, getWordByRegex } from "#utils/tools";
 
 ("use strict");
-
-function getName(text) {
+function getName(text, userID = undefined) {
   let character = filterWordsByRegex(
     text,
     ...[...global.command.functions.entrance.character, ...global.command.functions.entrance.others_character]
@@ -18,6 +18,7 @@ function getName(text) {
   }
 
   character = "string" === typeof character ? character.toLowerCase() : "";
+  character = getTrueNameByNikeName(userID, character);
   character = global.names.characterAlias[character] || character;
 
   return character;

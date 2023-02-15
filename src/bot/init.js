@@ -1,4 +1,5 @@
 import schedule from "node-schedule";
+import { autoSignIn } from "../plugins/note/noteDetail.js";
 import { gachaUpdate } from "#jobs/gacha";
 import { mysNewsNotice, mysNewsTryToResetDB, mysNewsUpdate } from "#jobs/news";
 import db from "#utils/database";
@@ -21,6 +22,9 @@ function initDB() {
   db.init("music", { source: [] });
   db.init("news", { data: {}, timestamp: [] });
   db.init("time");
+  db.init("note", { user: [], cookie: [], myb: [], auto: [] });
+  db.init("nikename", { uid: [] });
+  db.init("talent", { user: [] });
 
   mysNewsTryToResetDB();
 }
@@ -116,6 +120,8 @@ async function init() {
     cleanDBJob();
     await updateGachaJob();
   });
+
+  schedule.scheduleJob("*/10 1-23 * * *", () => autoSignIn());
 }
 
 export { init };

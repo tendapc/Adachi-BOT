@@ -390,5 +390,8 @@ function clean(dbName) {
 
   return 0;
 }
+function containKey(name, key) {
+  return mDatabase[name].chain.has(key).value();
+}
 
-export default { clean, file, names, get, has, includes, init, push, remove, set, sync, update };
+export default { clean, file, names, get, has, includes, init, push, remove, set, sync, update, containKey };

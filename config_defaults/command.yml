@@ -103,6 +103,9 @@ card:
     # XXX 文件 ../src/utils/id.js 同步改动
     - ^米游社\s*\d{5,10}\s*$
     - ^米游社\s*\[CQ:at,type=.*?,qq=.*$
+    - ^(米哈游|mhy|mys)\s*$
+    - ^(米哈游|mhy|mys)\s+\d+\s*$
+    - ^(米哈游|mhy|mys)\s*\[CQ:at,type=.*?,qq=.*$
   functions:
     card:
       type: command
@@ -114,6 +117,7 @@ card:
       description: 查询并更新角色信息
       entrance:
         - ^米游社
+        - ^(米哈游|mhy|mys)
 
 character:
   enable: true
@@ -455,3 +459,148 @@ save:
       description: 不带ID则解除已有绑定
       entrance:
         - ^(绑定|改绑)
+note:
+  enable: true
+  weights: 9998
+  regex:
+    - ^设置Cookie\s+.+$
+    - ^清除Cookie
+    - ^米游币Cookie\s+.+$
+    - ^(实时)?(便笺|树脂|便签|体力)\s*$
+    - ^(实时)?(便笺|树脂|便签|体力)\s+\d+.*$
+    - ^(实时)?(便笺|树脂|便签|体力)\s*\[CQ:at,type=.*?,qq=.*$
+    - ^签到\s*$
+    - ^签到\s+\d+.*$
+    - ^签到\s*\[CQ:at,type=.*?,qq=.*$
+    - ^米游币\s*$
+    - ^米游币\s+\d+.*$
+    - ^米游币\s*\[CQ:at,type=.*?,qq=.*$
+    - ^札记\s*$
+    - ^上月札记\s*$
+    - ^上上月札记\s*$
+    - ^补签\s*$
+    - ^开启自动签到\s*$
+    - ^关闭自动签到\s*$
+    - ^五星统计
+    - ^(五星|四星)?(技能|练度)+(汇总|统计|列表)
+  functions:
+    set_user_cookie:
+      weights: 9998
+      name: 设置Cookie
+      usage: <米游社Cookie>
+      description:
+      entrance:
+        - ^设置Cookie
+    del_user_cookie:
+      weights: 9989
+      name: 清除Cookie
+      usage:
+      description:
+      entrance:
+        - ^清除Cookie
+    get_note:
+      weights: 9899
+      name: 实时便笺
+      usage: "[米游社通行证ID、@群友]"
+      description:
+      entrance:
+        - ^实时便笺
+        - ^便笺
+        - ^实时树脂
+        - ^树脂
+        - ^实时便签
+        - ^便签
+        - ^体力
+    auto_sign_in:
+      weights: 9701
+      name: 开启自动签到
+      usage:
+      description: 加入自动签到列表（凌晨1点开始当天的签到任务，每隔10分钟处理10个）
+      entrance:
+        - ^开启自动签到
+    cancel_auto_sign_in:
+      weights: 9700
+      name: 关闭自动签到
+      usage:
+      description:
+      entrance:
+        - ^关闭自动签到
+    set_myb_cookie:
+      weights: 9299
+      name: 米游币Cookie
+      usage: <登录通行证页面的Cookie，需要包含login_ticket>
+      description:
+      entrance:
+        - ^米游币Cookie
+    get_myb:
+      weights: 9199
+      name: 米游币
+      usage:
+      description: 获取米游币（签到浏览点赞分享）
+      entrance:
+        - ^米游币
+    sign_in:
+      weights: 9799
+      name: 签到
+      usage: "[米游社通行证ID、@群友]"
+      description: 米游社每日签到
+      entrance:
+        - ^签到
+    re_sign:
+      weights: 9699
+      name:
+      usage:
+      description:
+      entrance:
+        - ^补签
+    ledger:
+      weights: 9599
+      name: 札记
+      usage:
+      description:
+      entrance:
+        - ^札记
+    lastledger:
+      weights: 9499
+      name:
+      usage:
+      description:
+      entrance:
+        - ^上月札记
+    lastlastledger:
+      weights: 9399
+      name:
+      usage:
+      description:
+      entrance:
+        - ^上上月札记
+    fivestar:
+      weights: 9299
+      name: 五星统计
+      usage: "[米游社通行证ID、@群友]"
+      description:
+      entrance:
+        - ^五星统计
+    talent_list:
+      weights: 9199
+      name: 练度统计
+      usage: "[米游社通行证ID、@群友]"
+      description: 
+      entrance:
+        - ^(五星|四星)?(技能|练度)+(汇总|统计|列表)
+
+nikename:
+  enable: true
+  weights: 7799
+  regex:
+    - ^修改昵称 +.+$
+    - ^初始化昵称 *$
+  functions:
+    nikename:
+      weights: 9599
+      name: 修改昵称
+      usage: <角色名称> <自定义昵称>
+      description: 设置昵称
+      entrance:
+        - ^修改昵称
+        - ^初始化昵称

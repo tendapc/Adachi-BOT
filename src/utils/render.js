@@ -24,6 +24,8 @@ const m_SETTINGS = Object.freeze({
     "genshin-card": true,
     "genshin-card-8": true,
     "genshin-package": true,
+    "genshin-talent": true,
+    "genshin-five": true,
   },
   scale: {
     "genshin-aby": 2,

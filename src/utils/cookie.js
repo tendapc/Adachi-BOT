@@ -135,7 +135,21 @@ function getEffectiveCookie(uid, i, use) {
   return cookie;
 }
 
+function getUCookie(user, bot) {
+  if (!db.includes("note", "cookie", "user", user)) {
+    return undefined;
+  }
+  let { cookie } = db.get("note", "cookie", { user });
+  if (!cookie) return undefined;
+  bot.logger.debug(`UCookie ${user} ${cookie}`);
+  return cookie;
+}
+
 function getCookie(uid, use, bot) {
+  if (uid != undefined) {
+    let userCookie = getUCookie(uid, bot);
+    if (userCookie != undefined) return userCookie;
+  }
   if ("string" === typeof uid) {
     uid = parseInt(uid);
   }

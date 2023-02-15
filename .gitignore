@@ -123,3 +123,5 @@ dist
 # IDE auto generated file
 .idea/
 .DS_Store
+/.vs
+.package-lock.json
